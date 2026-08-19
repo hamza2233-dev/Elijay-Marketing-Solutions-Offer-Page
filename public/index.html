@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijay Performance Partners - Exclusive Offers Portal</title>
+    <title>Elijay Performance Partners - Publishers Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -40,7 +40,7 @@
     <!-- Top Navigation Header -->
     <header class="backdrop-blur-md border-b sticky top-0 z-40 py-4 px-6 transition-colors duration-300">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="goBackToVerticals()">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetPortal()">
                 <!-- Logo Box -->
                 <div class="bg-slate-950 border border-amber-500/50 text-amber-400 w-11 h-11 rounded-xl flex flex-col items-center justify-center font-black shadow-lg shadow-amber-950/50">
                     <span class="text-xs tracking-widest">EJ</span>
@@ -58,8 +58,8 @@
                     <span id="themeText" class="hidden sm:inline">Dark</span>
                 </button>
 
-                <span class="hidden sm:inline-flex text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                    <span class="w-2 h-2 inline-block rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Direct Media Buyers Only
+                <span class="hidden sm:inline-flex text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full">
+                    <span class="w-2 h-2 inline-block rounded-full bg-amber-500 animate-pulse mr-1.5"></span> Exclusive Publishers Portal
                 </span>
             </div>
         </div>
@@ -79,19 +79,64 @@
             </div>
         </div>
 
-        <!-- STEP 1: VERTICALS VIEW -->
-        <div id="verticalsView" class="space-y-6">
+        <!-- INTRO ROLE SELECTOR VIEW (Default) -->
+        <div id="introView" class="space-y-6 py-4">
+            <div class="theme-card border text-white p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden text-center max-w-4xl mx-auto">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="inline-flex items-center space-x-2 bg-slate-950 border border-amber-500/40 px-3.5 py-1.5 rounded-lg mb-4">
+                        <span class="text-amber-400 font-black text-xs tracking-widest">EJ</span>
+                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
+                    <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Please select your primary objective below to access our live active publishing offers or campaign verticals.</p>
+                
+                    <!-- Choice Buttons Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 text-left">
+                        <!-- Publisher Option -->
+                        <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-amber-500/50 hover:border-amber-400 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a publisher looking to sell calls?</h3>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Here are our active offers and direct payouts tailored for high-volume publishing networks.</p>
+                            <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
+                                View Active Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                            </span>
+                        </div>
+
+                        <!-- Buyer Option -->
+                        <div onclick="selectRole('buyer')" class="theme-box-sub border border-slate-700 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                            <div class="w-12 h-12 rounded-xl theme-card border text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a buyer looking to buy calls?</h3>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Here are the verticals we have calls for and routing specifications.</p>
+                            <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
+                                View Verticals Overview <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 1: VERTICALS VIEW (Used for both flows or Publisher offers list) -->
+        <div id="verticalsView" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <button onclick="resetPortal()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Role Selection</span>
+                </button>
+                <span id="roleBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Publishers Portal</span>
+            </div>
+
             <!-- Hero Welcome Card -->
             <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl">
-                    <!-- Logo Badge in Hero -->
-                    <div class="inline-flex items-center space-x-2 bg-slate-950 border border-amber-500/40 px-3 py-1.5 rounded-lg mb-4">
-                        <span class="text-amber-400 font-black text-xs tracking-widest">EJ</span>
-                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Select a Campaign Vertical</h2>
-                    <p class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct buyer allocations, real-time payouts, and verified geo-sheets. Choose your vertical below to submit compliance and request routing.</p>
+                    <h2 id="mainHeadingTitle" class="text-2xl sm:text-4xl font-black tracking-tight theme-heading">Select a Campaign Vertical</h2>
+                    <p id="mainHeadingDesc" class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct publisher allocations, real-time payouts, and verified geo-sheets. Choose your vertical below to review live offers.</p>
                 </div>
             </div>
 
@@ -110,7 +155,7 @@
         <!-- STEP 2: OFFERS VIEW (Hidden by default) -->
         <div id="offersView" class="hidden space-y-6">
             <div class="flex items-center justify-between">
-                <button onclick="goBackToVerticals()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
+                <button onclick="backToVerticals()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Verticals</span>
                 </button>
@@ -165,7 +210,7 @@
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Company Email *</label>
-                    <input type="email" id="company_email" name="company_email" required placeholder="buyer@company.com" 
+                    <input type="email" id="company_email" name="company_email" required placeholder="publisher@company.com" 
                         class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                 </div>
 
@@ -199,11 +244,43 @@
 
     <!-- Footer -->
     <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
-        &copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.
+        &copy; 2026 Elijay Performance Partners. All rights reserved. Secure Publishers Portal.
     </footer>
 
     <!-- JavaScript Data and Logic -->
     <script>
+        let currentMode = 'publisher'; // 'publisher' or 'buyer'
+
+        function selectRole(role) {
+            currentMode = role;
+            document.getElementById('introView').classList.add('hidden');
+            document.getElementById('verticalsView').classList.remove('hidden');
+
+            const mainHeadingTitle = document.getElementById('mainHeadingTitle');
+            const mainHeadingDesc = document.getElementById('mainHeadingDesc');
+            const roleBadge = document.getElementById('roleBadge');
+
+            if (role === 'publisher') {
+                mainHeadingTitle.textContent = "Active Publishing Offers";
+                mainHeadingDesc.textContent = "Here are our active offers and direct payouts tailored for high-volume publishing networks. Select a vertical below to review.";
+                roleBadge.textContent = "Publishers Portal";
+            } else {
+                mainHeadingTitle.textContent = "Campaign Verticals Overview";
+                mainHeadingDesc.textContent = "Here are the verticals we have calls for. Select a vertical below to explore available live allocations.";
+                roleBadge.textContent = "Buyers Portal";
+            }
+
+            renderVerticals();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetPortal() {
+            document.getElementById('offersView').classList.add('hidden');
+            document.getElementById('verticalsView').classList.add('hidden');
+            document.getElementById('introView').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Theme Toggle Logic
         function toggleTheme() {
             const html = document.documentElement;
@@ -411,6 +488,27 @@
                 `;
             }
 
+            // Hide apply button if user selected 'buyer' flow, or show it for publishers
+            let actionButtonHtml = '';
+            if (currentMode === 'publisher') {
+                actionButtonHtml = `
+                    <div class="pt-4">
+                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
+                            <span>Submit Compliance & Apply</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                actionButtonHtml = `
+                    <div class="pt-4">
+                        <span class="block text-center text-[11px] theme-text-muted italic bg-slate-900/40 py-2 rounded-xl border border-slate-800">
+                            🔒 Buyer View Mode (Contact Admin to Route Traffic)
+                        </span>
+                    </div>
+                `;
+            }
+
             return `
                 <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
                     <div>
@@ -432,12 +530,7 @@
                         </div>
                         ${zipListBtn}
                     </div>
-                    <div class="pt-4">
-                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
-                            <span>Submit Compliance & Apply</span>
-                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </button>
-                    </div>
+                    ${actionButtonHtml}
                 </div>
             `;
         }
@@ -461,7 +554,7 @@
             }
         }
 
-        function goBackToVerticals() {
+        function backToVerticals() {
             document.getElementById('offersView').classList.add('hidden');
             document.getElementById('verticalsView').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -510,8 +603,6 @@
                 btnText.textContent = "Submit Compliance & Apply";
             }
         }
-
-        renderVerticals();
     </script>
 </body>
 </html>
