@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijay Performance Partners - Portal</title>
+    <title>Elijay Marketing Solutions - Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -42,11 +42,11 @@
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="resetPortal()">
                 <div class="bg-slate-950 border border-amber-500/50 text-amber-400 w-11 h-11 rounded-xl flex flex-col items-center justify-center font-black shadow-lg shadow-amber-950/50">
-                    <span class="text-xs tracking-widest">EJ</span>
+                    <span class="text-xs tracking-widest">EM</span>
                 </div>
                 <div>
                     <h1 class="text-xs sm:text-sm font-extrabold tracking-widest uppercase theme-heading">Elijay</h1>
-                    <p class="text-[9px] gold-gradient-text font-bold tracking-widest uppercase">Performance Partners</p>
+                    <p class="text-[9px] gold-gradient-text font-bold tracking-widest uppercase">Marketing Solutions</p>
                 </div>
             </div>
             
@@ -56,7 +56,13 @@
                     <span id="themeText" class="hidden sm:inline">Dark</span>
                 </button>
 
-                <span class="hidden sm:inline-flex text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full">
+                <!-- Admin Access Button -->
+                <button onclick="openAdminLoginModal()" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-lock text-[10px]"></i>
+                    <span>Admin Login</span>
+                </button>
+
+                <span class="hidden md:inline-flex text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full">
                     <span class="w-2 h-2 inline-block rounded-full bg-amber-500 animate-pulse mr-1.5"></span> Partner Network Portal
                 </span>
             </div>
@@ -73,7 +79,7 @@
             </div>
             <div>
                 <h4 class="text-xs font-bold text-amber-500 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
-                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic with zero tolerance for fraudulent or incentivized activities.</p>
+                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under leadership of Natalia Pacheco & Victor Pacheco.</p>
             </div>
         </div>
 
@@ -83,13 +89,25 @@
                 <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10">
                     <div class="inline-flex items-center space-x-2 bg-slate-950 border border-amber-500/40 px-3.5 py-1.5 rounded-lg mb-4">
-                        <span class="text-amber-400 font-black text-xs tracking-widest">EJ</span>
-                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
+                        <span class="text-amber-400 font-black text-xs tracking-widest">EM</span>
+                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Marketing Solutions</span>
                     </div>
                     <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
                     <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Please select your primary objective below to proceed.</p>
                 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 text-left">
+                    <!-- Leadership Quick Links -->
+                    <div class="flex flex-wrap justify-center items-center gap-4 mt-6 text-xs">
+                        <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="theme-box-sub border px-3 py-1.5 rounded-lg hover:border-amber-500 transition flex items-center space-x-2">
+                            <i class="fa-brands fa-linkedin text-amber-400"></i>
+                            <span class="theme-heading font-bold">Natalia Pacheco</span> <span class="theme-text-muted">(CEO)</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="theme-box-sub border px-3 py-1.5 rounded-lg hover:border-amber-500 transition flex items-center space-x-2">
+                            <i class="fa-brands fa-linkedin text-amber-400"></i>
+                            <span class="theme-heading font-bold">Victor Pacheco</span> <span class="theme-text-muted">(Co-Founder)</span>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 text-left">
                         <!-- Publisher Option -->
                         <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-amber-500/50 hover:border-amber-400 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
                             <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
@@ -157,12 +175,19 @@
 
         <!-- STEP 2: OFFERS VIEW (Publisher Flow Only) -->
         <div id="offersView" class="hidden space-y-6">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-3">
                 <button onclick="backToVerticals()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Verticals</span>
                 </button>
-                <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Category</span>
+                <div class="flex items-center space-x-3">
+                    <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Category</span>
+                    <!-- Admin Quick Add Offer Button (Visible only when logged in as Admin) -->
+                    <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>+ Add New Offer</span>
+                    </button>
+                </div>
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 theme-card border p-6 rounded-2xl">
@@ -186,6 +211,112 @@
         </div>
 
     </main>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="theme-modal theme-card border rounded-3xl max-w-sm w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6 text-center">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mx-auto mb-3">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold theme-heading">Admin Portal Login</h3>
+                <p class="text-xs theme-text-muted mt-1">Enter credentials to manage offers in real-time.</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Username</label>
+                    <input type="text" id="adminUser" required value="admin" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Password</label>
+                    <input type="password" id="adminPass" required placeholder="••••••••" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                        Authenticate & Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Add Offer Modal -->
+    <div id="adminAddOfferModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeAdminAddOfferModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Admin Panel</span>
+                <h3 id="adminModalTitle" class="text-xl font-bold theme-heading mt-3">Add Real-Time Offer</h3>
+                <p class="text-xs theme-text-muted mt-1">Configure offer parameters to publish instantly on the portal.</p>
+            </div>
+
+            <form onsubmit="saveNewOffer(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
+                    <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <option value="wt">Live Transfer (WT)</option>
+                        <option value="ib">Inbound Call (IB)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Name / Campaign ID *</label>
+                    <input type="text" id="newOfferName" required placeholder="e.g. ACA-EN-WT-CPA-NEW" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Payout *</label>
+                        <input type="text" id="newOfferPayout" required placeholder="$50 / CPA" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Pay Term *</label>
+                        <input type="text" id="newOfferPayTerm" required placeholder="Bi-Monthly Net 15" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">States *</label>
+                    <input type="text" id="newOfferStates" required placeholder="TX, FL, OH or Nationwide" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Hours *</label>
+                        <input type="text" id="newOfferHours" required placeholder="9am-6pm EST" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Cap / CC *</label>
+                        <input type="text" id="newOfferCapCc" required placeholder="Cap: None | CC: None" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Qualifiers *</label>
+                    <input type="text" id="newOfferQualifiers" required placeholder="U64, Income under 20k..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Google Sheets Verified ZIP Link — <span class="text-slate-500 font-normal">Optional</span></label>
+                    <input type="url" id="newOfferZipLink" placeholder="https://docs.google.com/spreadsheets/..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                        Publish Offer Real-Time
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Publisher Application Modal -->
     <div id="applyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -302,12 +433,105 @@
 
     <!-- Footer -->
     <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
-        &copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>&copy; 2026 Elijay Marketing Solutions. All rights reserved. Secure Partner Portal.</div>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="hover:text-amber-500 transition">Natalia Pacheco (CEO)</a>
+                <span>•</span>
+                <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="hover:text-amber-500 transition">Victor Pacheco (Co-Founder)</a>
+            </div>
+        </div>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
         let currentMode = 'publisher'; // 'publisher' or 'buyer'
+        let isAdminLoggedIn = false;
+        let activeCategoryKey = '';
+
+        const verticalsData = {
+            "ACA OFFERS": {
+                icon: "fa-notes-medical",
+                description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
+                wt: [
+                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking, NO STIMULIS OR PROMISES", status: "Active" }
+                ],
+                ib: [
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
+                ]
+            },
+            "MEDICARE OFFERS": {
+                icon: "fa-user-nurse",
+                description: "High-intent senior Medicare Advantage and supplement inbound calls.",
+                wt: [],
+                ib: [
+                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Ages 65-85, Inbounds only", status: "Active" },
+                    { 
+                        name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", 
+                        payout: "$8-15 / 60-90 sec", 
+                        payTerm: "Monthly Net 30", 
+                        states: "Nationwide (SEP Zip Codes)", 
+                        hours: "M-F 9am-9pm EST", 
+                        cap: "None", 
+                        cc: "None", 
+                        qualifiers: "Has Medicare Part A & B, Plan review, Any age/creative angle", 
+                        status: "Active",
+                        zipListLink: "https://docs.google.com/spreadsheets/d/161DPyJcu_0zyNTA2otOUiel6ZVUY6Ugq/edit?gid=1844838763#gid=1844838763" 
+                    }
+                ]
+            },
+            "FINAL EXPENSE OFFERS": {
+                icon: "fa-heart-pulse",
+                description: "Burial and final expense insurance policy buyer offers.",
+                wt: [
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
+                ],
+                ib: [
+                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" }
+                ]
+            },
+            "AUTO OFFERS": {
+                icon: "fa-car-side",
+                description: "Auto insurance policy switchers looking for lower monthly premiums.",
+                wt: [],
+                ib: []
+            },
+            "HOME INSURANCE OFFERS": {
+                icon: "fa-house-chimney",
+                description: "Homeowners looking for property coverage quotes.",
+                wt: [],
+                ib: [
+                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
+                ]
+            },
+            "SSDI OFFERS": {
+                icon: "fa-scale-balanced",
+                description: "Social Security Disability Insurance representation leads.",
+                wt: [
+                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. Territories)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only, Data pass required", status: "Active" }
+                ],
+                ib: []
+            },
+            "DEBT OFFERS": {
+                icon: "fa-file-invoice-dollar",
+                description: "Debt relief and unsecured debt consolidation services.",
+                wt: [
+                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
+                ],
+                ib: []
+            },
+            "HOSPITAL INDEMNITY OFFERS": {
+                icon: "fa-hospital",
+                description: "Hospital indemnity coverage policy transfers.",
+                wt: [
+                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification", status: "Active" }
+                ],
+                ib: []
+            }
+        };
 
         function selectRole(role) {
             currentMode = role;
@@ -380,76 +604,6 @@
             }
         })();
 
-        const verticalsData = {
-            "ACA OFFERS": {
-                icon: "fa-notes-medical",
-                description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
-                wt: [
-                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
-                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
-                ],
-                ib: [
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k", status: "Active" }
-                ]
-            },
-            "MEDICARE OFFERS": {
-                icon: "fa-user-nurse",
-                description: "High-intent senior Medicare Advantage and supplement inbound calls.",
-                wt: [],
-                ib: [
-                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Ages 65-85", status: "Active" }
-                ]
-            },
-            "FINAL EXPENSE OFFERS": {
-                icon: "fa-heart-pulse",
-                description: "Burial and final expense insurance policy buyer offers.",
-                wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account", status: "Active" }
-                ],
-                ib: [
-                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, 50-80 Ages", status: "Active" }
-                ]
-            },
-            "AUTO OFFERS": {
-                icon: "fa-car-side",
-                description: "Auto insurance policy switchers looking for lower monthly premiums.",
-                wt: [],
-                ib: []
-            },
-            "HOME INSURANCE OFFERS": {
-                icon: "fa-house-chimney",
-                description: "Homeowners looking for property coverage quotes.",
-                wt: [],
-                ib: [
-                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "Nationwide Available", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
-                ]
-            },
-            "SSDI OFFERS": {
-                icon: "fa-scale-balanced",
-                description: "Social Security Disability Insurance representation leads.",
-                wt: [
-                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide", hours: "Standard", cap: "None", cc: "None", qualifiers: "Data pass required", status: "Active" }
-                ],
-                ib: []
-            },
-            "DEBT OFFERS": {
-                icon: "fa-file-invoice-dollar",
-                description: "Debt relief and unsecured debt consolidation services.",
-                wt: [
-                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "Most States", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt", status: "Active" }
-                ],
-                ib: []
-            },
-            "HOSPITAL INDEMNITY OFFERS": {
-                icon: "fa-hospital",
-                description: "Hospital indemnity coverage policy transfers.",
-                wt: [
-                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "Multiple States", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity qualification", status: "Active" }
-                ],
-                ib: []
-            }
-        };
-
         function renderVerticals() {
             const grid = document.getElementById('verticalsGrid');
             grid.innerHTML = Object.keys(verticalsData).map(key => {
@@ -502,6 +656,7 @@
         }
 
         function selectVertical(categoryKey) {
+            activeCategoryKey = categoryKey;
             const vertical = verticalsData[categoryKey];
             if (!vertical) return;
 
@@ -538,6 +693,18 @@
                 ? `<span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
                 : `<span class="bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
 
+            let zipListBtn = '';
+            if (offer.zipListLink) {
+                zipListBtn = `
+                    <div class="mt-3">
+                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-500 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
+                        </a>
+                    </div>
+                `;
+            }
+
             return `
                 <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
                     <div>
@@ -557,6 +724,7 @@
                             <div><strong class="theme-text-muted">Cap / CC:</strong> Cap: ${offer.cap} | CC: ${offer.cc}</div>
                             <div><strong class="theme-text-muted">Qualifiers:</strong> ${offer.qualifiers}</div>
                         </div>
+                        ${zipListBtn}
                     </div>
                     <div class="pt-4">
                         <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
@@ -591,6 +759,78 @@
             document.getElementById('offersView').classList.add('hidden');
             document.getElementById('verticalsView').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Admin Auth Functions
+        function openAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.remove('hidden');
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+
+            // Default Credentials check
+            if (user === 'admin' && pass === 'elija2026') {
+                isAdminLoggedIn = true;
+                closeAdminLoginModal();
+                alert("Admin Authentication Successful! You can now add/update offers in real time.");
+                document.getElementById('adminAddOfferBtn').classList.remove('hidden');
+            } else {
+                alert("Invalid username or password! Use username: admin, password: elija2026");
+            }
+        }
+
+        function openAdminAddOfferModal() {
+            if (!isAdminLoggedIn) {
+                openAdminLoginModal();
+                return;
+            }
+            document.getElementById('adminAddOfferModal').classList.remove('hidden');
+        }
+
+        function closeAdminAddOfferModal() {
+            document.getElementById('adminAddOfferModal').classList.add('hidden');
+        }
+
+        function saveNewOffer(e) {
+            e.preventDefault();
+            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) {
+                alert("Please select a vertical first!");
+                return;
+            }
+
+            const type = document.getElementById('newOfferType').value; // 'wt' or 'ib'
+            const newOffer = {
+                name: document.getElementById('newOfferName').value,
+                payout: document.getElementById('newOfferPayout').value,
+                payTerm: document.getElementById('newOfferPayTerm').value,
+                states: document.getElementById('newOfferStates').value,
+                hours: document.getElementById('newOfferHours').value,
+                cap: "None",
+                cc: "None",
+                qualifiers: document.getElementById('newOfferQualifiers').value,
+                status: "Active",
+                zipListLink: document.getElementById('newOfferZipLink').value || ""
+            };
+
+            // Push to memory array
+            if (type === 'wt') {
+                verticalsData[activeCategoryKey].wt.push(newOffer);
+            } else {
+                verticalsData[activeCategoryKey].ib.push(newOffer);
+            }
+
+            alert("Offer successfully published live!");
+            closeAdminAddOfferModal();
+            
+            // Refresh view
+            selectVertical(activeCategoryKey);
         }
 
         function openModal(offerName, offerType) {
@@ -667,7 +907,7 @@
             const formData = {
                 buyer_name: document.getElementById('buyer_name').value,
                 buyer_email: document.getElementById('buyer_email').value,
-                buyer_vertical: document.getElementById('buyer_vertical').value,
+                buyer_vertical: document.getElementById('buyer_vertical', value).value,
                 buyer_details: document.getElementById('buyer_details').value
             };
 
