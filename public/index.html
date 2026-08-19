@@ -656,7 +656,11 @@
                 
                 let cardFooterHtml = '';
                 if (currentMode === 'publisher') {
-                    const totalOffers = v.wt.length + v.ib.length;
+                    // Count only active offers for publishers view
+                    const activeWt = v.wt.filter(o => o.status === 'Active').length;
+                    const activeIb = v.ib.filter(o => o.status === 'Active').length;
+                    const totalOffers = activeWt + activeIb;
+                    
                     cardFooterHtml = `
                         <div class="flex items-center justify-between text-[11px] font-semibold text-amber-500 pt-3 border-t border-amber-500/10">
                             <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
@@ -719,14 +723,26 @@
             const wtContainer = document.getElementById('wtContainer');
             const ibContainer = document.getElementById('ibContainer');
 
-            if (vertical.wt.length > 0) {
-                wtContainer.innerHTML = vertical.wt.map((offer, index) => renderOfferCard(offer, 'Live Transfer', 'wt', index)).join('');
+            // Filter offers if not logged in as admin (Publishers only see active offers, Admins see both active & paused)
+            const wtFiltered = isAdminLoggedIn ? vertical.wt : vertical.wt.filter(o => o.status === 'Active');
+            const ibFiltered = isAdminLoggedIn ? vertical.ib : vertical.ib.filter(o => o.status === 'Active');
+
+            if (wtFiltered.length > 0) {
+                wtContainer.innerHTML = vertical.wt.map((offer, index) => {
+                    // If regular publisher and offer is paused, skip rendering it
+                    if (!isAdminLoggedIn && offer.status !== 'Active') return '';
+                    return renderOfferCard(offer, 'Live Transfer', 'wt', index);
+                }).join('');
             } else {
                 wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
             }
 
-            if (vertical.ib.length > 0) {
-                ibContainer.innerHTML = vertical.ib.map((offer, index) => renderOfferCard(offer, 'Inbound Call', 'ib', index)).join('');
+            if (ibFiltered.length > 0) {
+                ibContainer.innerHTML = vertical.ib.map((offer, index) => {
+                    // If regular publisher and offer is paused, skip rendering it
+                    if (!isAdminLoggedIn && offer.status !== 'Active') return '';
+                    return renderOfferCard(offer, 'Inbound Call', 'ib', index);
+                }).join('');
             } else {
                 ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
             }
@@ -767,6 +783,9 @@
                     </div>
                 `;
             }
+
+            // If card is paused and viewed by a publisher, don't display it
+            if (!isAdminLoggedIn && !isActive) return '';
 
             return `
                 <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
@@ -912,8 +931,6 @@
             const editIndex = parseInt(document.getElementById('editItemIndex').value);
             const type = document.getElementById('newOfferType').value; // 'wt' or 'ib'
             
-            const capCcRaw = document.getElementById('newOfferCapCc').value;
-
             const offerData = {
                 name: document.getElementById('newOfferName').value,
                 payout: document.getElementById('newOfferPayout').value,
@@ -927,14 +944,12 @@
                 zipListLink: document.getElementById('newOfferZipLink').value || ""
             };
 
-            if (editIndex >= -1) {
-                // If editing existing item
-                if (editIndex > -1) {
-                    // Keep existing status
-                    offerData.status = verticalsData[activeCategoryKey][type][editIndex].status;
-                    // Remove from old array if type changed, or update in place
-                    verticalsData[activeCategoryKey][type].splice(editIndex, 1);
-                }
+            if (editIndex > -1) {
+                // If editing existing item, preserve its current status and replace at index
+                offerData.status = verticalsData[activeCategoryKey][type][editIndex] ? verticalsData[activeCategoryKey][type][editIndex].status : "Active";
+                verticalsData[activeCategoryKey][type][editIndex] = offerData;
+            } else {
+                // Adding a brand new offer
                 verticalsData[activeCategoryKey][type].push(offerData);
             }
 
