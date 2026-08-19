@@ -225,7 +225,7 @@
                 </button>
                 <div class="flex items-center space-x-3">
                     <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Category</span>
-                    <!-- Admin Quick Add Offer Button (Visible only when logged in as Admin) -->
+                    <!-- Admin Quick Add Offer Button -->
                     <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
                         <i class="fa-solid fa-plus"></i>
                         <span>+ Add New Offer</span>
@@ -669,7 +669,6 @@
                 
                 let cardFooterHtml = '';
                 if (currentMode === 'publisher') {
-                    // Count total offers (both active and paused so publisher sees accurate stats)
                     const totalOffers = v.wt.length + v.ib.length;
                     
                     cardFooterHtml = `
@@ -737,12 +736,10 @@
             const wtContainer = document.getElementById('wtContainer');
             const ibContainer = document.getElementById('ibContainer');
 
-            // Render ALL Live Transfer offers (both Active and Paused)
             const wtCards = vertical.wt.map((offer, index) => {
                 return renderOfferCard(offer, 'Live Transfer', 'wt', index);
             });
 
-            // Render ALL Inbound Call offers (both Active and Paused)
             const ibCards = vertical.ib.map((offer, index) => {
                 return renderOfferCard(offer, 'Inbound Call', 'ib', index);
             });
@@ -957,11 +954,9 @@
             };
 
             if (editIndex > -1) {
-                // Remove from previous position/type array if it exists
                 if (verticalsData[activeCategoryKey][oldType] && verticalsData[activeCategoryKey][oldType][editIndex]) {
                     verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
                 }
-                // Push to new target type array in real-time
                 verticalsData[activeCategoryKey][newType].push(offerData);
             } else {
                 verticalsData[activeCategoryKey][newType].push(offerData);
