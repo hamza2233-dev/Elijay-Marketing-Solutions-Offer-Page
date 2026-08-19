@@ -48,11 +48,11 @@
         <!-- Anti-Fraud & Payment Notice Banner -->
         <div class="mb-8 bg-gradient-to-r from-amber-950/40 via-slate-900 to-emerald-950/40 border border-amber-500/30 p-4 sm:p-5 rounded-2xl flex items-center space-x-4 shadow-xl">
             <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 p-3 rounded-xl shrink-0">
-                <i class="fa-solid fa-shield-check text-lg"></i>
+                <i class="fa-solid fa-shield-halved text-lg"></i>
             </div>
             <div>
-                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider">Secure & Trusted Network</h4>
-                <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">Our payments are on time. If you have quality traffic, let's work—we have zero space for fraudulent activities.</p>
+                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
+                <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">Our payments are always on time. If you run high-quality compliant traffic, let's scale—we have zero tolerance for fraudulent or incentivized activities.</p>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
                         <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
                     </div>
                     <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight text-white">Select a Campaign Vertical</h2>
-                    <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">Choose from our premium insurance and financial service verticals below to explore active buyer offers, pricing tiers, and submit compliance samples instantly.</p>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">Access direct buyer allocations, real-time payouts, and verified geo-sheets. Choose your vertical below to submit compliance and request routing.</p>
                 </div>
             </div>
 
@@ -167,7 +167,7 @@
                 <div class="pt-4">
                     <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-paper-plane"></i>
-                        <span id="submitBtnText">Submit Application</span>
+                        <span id="submitBtnText">Submit Compliance & Apply</span>
                     </button>
                 </div>
             </form>
@@ -224,7 +224,7 @@
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Paused" },
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" },
                     { name: "FE-EN-WT-CPL-WN20-RTB", payout: "$12 / 120 sec", payTerm: "Weekly Net 20", states: "All States Except NYC", hours: "M-F 11AM-9PM EST", cap: "Limited Capacity", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
                 ],
                 ib: [
@@ -342,7 +342,7 @@
                     <div class="mt-3">
                         <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-map-location-dot"></i>
-                            <span>View Approved Zip Code List (Google Sheet)</span>
+                            <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
                         </a>
                     </div>
                 `;
@@ -371,7 +371,7 @@
                     </div>
                     <div class="pt-4">
                         <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full bg-slate-950 hover:bg-amber-500 text-white hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border border-slate-700 hover:border-amber-500">
-                            <span>Apply Now</span>
+                            <span>Submit Compliance & Apply</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
                     </div>
@@ -444,7 +444,7 @@
                 alert("Network error: " + err.message);
             } finally {
                 btn.disabled = false;
-                btnText.textContent = "Submit Application";
+                btnText.textContent = "Submit Compliance & Apply";
             }
         }
 
