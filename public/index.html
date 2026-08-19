@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijay Marketing Solutions - Partner & Offers Portal</title>
+    <title>Elijay Performance Partners - Exclusive Offers Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta+Sans', sans-serif; }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: rgba(234, 179, 8, 0.3);
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
     <!-- Top Navigation Header -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 py-4 px-6">
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-amber-500/20 sticky top-0 z-40 py-4 px-6">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="goBackToVerticals()">
-                <div class="bg-gradient-to-tr from-emerald-600 to-teal-500 text-white w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg shadow-emerald-900/30">
-                    <i class="fa-solid fa-shield-halved"></i>
+                <!-- Logo Box -->
+                <div class="bg-slate-950 border border-amber-500/50 text-amber-400 w-11 h-11 rounded-xl flex flex-col items-center justify-center font-black shadow-lg shadow-amber-950/50">
+                    <span class="text-xs tracking-widest">EJ</span>
                 </div>
                 <div>
-                    <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white uppercase">Elijay Marketing Solutions</h1>
-                    <p class="text-[10px] text-emerald-400 font-medium tracking-wide">Exclusive Live Transfers & Inbound Calls Portal</p>
+                    <h1 class="text-xs sm:text-sm font-extrabold tracking-widest text-white uppercase">Elijay</h1>
+                    <p class="text-[9px] gold-gradient-text font-bold tracking-widest uppercase">Performance Partners</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
                 <span class="hidden sm:inline-flex text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                    <span class="w-2 h-2 inline-block rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Live Network Active
+                    <span class="w-2 h-2 inline-block rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Direct Media Buyers Only
                 </span>
             </div>
         </div>
@@ -36,23 +45,36 @@
     <!-- Main Container -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full flex-grow">
         
+        <!-- Anti-Fraud & Payment Notice Banner -->
+        <div class="mb-8 bg-gradient-to-r from-amber-950/40 via-slate-900 to-emerald-950/40 border border-amber-500/30 p-4 sm:p-5 rounded-2xl flex items-center space-x-4 shadow-xl">
+            <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 p-3 rounded-xl shrink-0">
+                <i class="fa-solid fa-shield-check text-lg"></i>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider">Secure & Trusted Network</h4>
+                <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">Our payments are on time. If you have quality traffic, let's work—we have zero space for fraudulent activities.</p>
+            </div>
+        </div>
+
         <!-- STEP 1: VERTICALS VIEW -->
         <div id="verticalsView" class="space-y-6">
             <!-- Hero Welcome Card -->
-            <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 border border-emerald-500/20 text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-amber-500/30 text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl">
-                    <span class="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-full">Secure Partner Portal</span>
-                    <h2 class="text-2xl sm:text-4xl font-black mt-4 tracking-tight text-white">Select a Campaign Vertical</h2>
-                    <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">Choose from our high-converting insurance and financial service verticals below to explore active buyer offers, pricing tiers, and submit compliance samples instantly.</p>
-                </div>
-                <div class="absolute right-[-30px] bottom-[-30px] text-emerald-500/5 text-[180px] pointer-events-none">
-                    <i class="fa-solid fa-bullseye"></i>
+                    <!-- Logo Badge in Hero -->
+                    <div class="inline-flex items-center space-x-2 bg-slate-950 border border-amber-500/40 px-3 py-1.5 rounded-lg mb-4">
+                        <span class="text-amber-400 font-black text-xs tracking-widest">EJ</span>
+                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight text-white">Select a Campaign Vertical</h2>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">Choose from our premium insurance and financial service verticals below to explore active buyer offers, pricing tiers, and submit compliance samples instantly.</p>
                 </div>
             </div>
 
             <div class="flex items-center justify-between pt-2">
                 <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center">
-                    <i class="fa-solid fa-layer-group text-emerald-500 mr-2"></i> Available Operating Verticals
+                    <i class="fa-solid fa-layer-group text-amber-400 mr-2"></i> Available Operating Verticals
                 </h3>
             </div>
 
@@ -65,22 +87,22 @@
         <!-- STEP 2: OFFERS VIEW (Hidden by default) -->
         <div id="offersView" class="hidden space-y-6">
             <div class="flex items-center justify-between">
-                <button onclick="goBackToVerticals()" class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2.5 rounded-xl hover:bg-emerald-500/20 transition flex items-center space-x-2 shadow-sm">
+                <button onclick="goBackToVerticals()" class="text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Verticals</span>
                 </button>
-                <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg bg-slate-800 text-emerald-400 border border-slate-700">Category</span>
+                <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg bg-slate-900 text-amber-400 border border-amber-500/30">Category</span>
             </div>
 
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-slate-800/50 border border-slate-800 p-6 rounded-2xl">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-slate-900/60 border border-amber-500/20 p-6 rounded-2xl">
                 <div>
                     <h2 id="categoryTitle" class="text-2xl font-black text-white">Offers</h2>
                     <p class="text-xs text-slate-400 mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
                 </div>
 
                 <!-- Column Switcher Tabs -->
-                <div class="flex bg-slate-900 border border-slate-700/60 p-1.5 rounded-xl self-start">
-                    <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-emerald-600 text-white shadow-md">
+                <div class="flex bg-slate-950 border border-amber-500/30 p-1.5 rounded-xl self-start">
+                    <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md">
                         <i class="fa-solid fa-headset mr-1.5"></i> Live Transfers (WT)
                     </button>
                     <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white">
@@ -98,13 +120,13 @@
 
     <!-- Application Modal Popup -->
     <div id="applyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-base p-2 bg-slate-800/80 rounded-full w-9 h-9 flex items-center justify-center transition">
+        <div class="bg-slate-900 border border-amber-500/30 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-base p-2 bg-slate-950 rounded-full w-9 h-9 flex items-center justify-center transition border border-slate-800">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6">
-                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Live Transfer</span>
+                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">Live Transfer</span>
                 <h3 id="modalOfferTitle" class="text-xl font-bold text-white mt-3">Apply for Offer</h3>
                 <p class="text-xs text-slate-400 mt-1">Provide your corporate credentials and compliance files for verification.</p>
             </div>
@@ -115,25 +137,25 @@
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">1. Company Name *</label>
                     <input type="text" id="company_name" name="company_name" required placeholder="e.g. Apex Media LLC" 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 transition">
+                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-amber-500 transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">2. Company Email *</label>
                     <input type="email" id="company_email" name="company_email" required placeholder="buyer@company.com" 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-emerald-500 transition">
+                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-amber-500 transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">3. Data Sample Upload (CSV, XLSX, PDF) *</label>
                     <input type="file" id="data_sample" name="data_sample" accept=".csv, .xlsx, .pdf" required 
-                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emerald-500/10 file:text-emerald-400 hover:file:bg-emerald-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-400 hover:file:bg-amber-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">4. 3 Call Recordings Upload (MP3, WAV) *</label>
                     <input type="file" id="call_recordings" name="call_recordings" accept=".mp3, .wav" multiple required 
-                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emerald-500/10 file:text-emerald-400 hover:file:bg-emerald-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-400 hover:file:bg-amber-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
                 </div>
 
                 <div>
@@ -143,7 +165,7 @@
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" id="submitBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 transition text-xs flex items-center justify-center space-x-2">
+                    <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span id="submitBtnText">Submit Application</span>
                     </button>
@@ -153,8 +175,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-12">
-        &copy; 2026 Elijay Marketing Solutions. All rights reserved. Secure Partner Portal.
+    <footer class="bg-slate-900 border-t border-amber-500/20 py-6 text-center text-xs text-slate-500 mt-12">
+        &copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.
     </footer>
 
     <!-- JavaScript Data and Logic -->
@@ -164,17 +186,17 @@
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
                 wt: [
-                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Spanish Speaking, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA SPANISH RTB ok", payout: "$25-40 / 90-180 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Spanish Speaking, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA-EN-WT-CPL-MN10-RTB-NEARSHORE ONLY", payout: "$25-35 / 90-120 sec", payTerm: "Weekly Net 10", states: "Nearshore Only", hours: "6AM-4PM PST Mon-Fri | 9AM-2PM PST Sat", cap: "20/Day During Testing", cc: "None", qualifiers: "U64, Income under 20k, Interested in Healthcare Plan, Must be employed, Nearshore only" },
-                    { name: "ACA-EN-WT-CPL-WN10-AP-5States (CG)", payout: "$15 / 180 sec", payTerm: "Weekly Net 10", states: "Texas, Ohio, Arizona, Missouri, Indiana", hours: "Mon-Fri | 9AM-7:30PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in Healthcare Plan" }
+                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA SPANISH RTB ok", payout: "$25-40 / 90-180 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-MN10-RTB-NEARSHORE ONLY", payout: "$25-35 / 90-120 sec", payTerm: "Weekly Net 10", states: "Nearshore Only", hours: "6AM-4PM PST Mon-Fri | 9AM-2PM PST Sat", cap: "20/Day During Testing", cc: "None", qualifiers: "U64, Income under 20k, Must be employed, Nearshore only", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-WN10-AP-5States (CG)", payout: "$15 / 180 sec", payTerm: "Weekly Net 10", states: "Texas, Ohio, Arizona, Missouri, Indiana", hours: "Mon-Fri | 9AM-7:30PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in Healthcare Plan", status: "Active" }
                 ],
                 ib: [
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T2", payout: "$7-15 Bid (Raw 25s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST (Lunch: 1-2 PM)", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY" },
-                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST (Lunch: 1-2 PM)", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY" }
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T2", payout: "$7-15 Bid (Raw 25s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
                 ]
             },
             "MEDICARE OFFERS": {
@@ -182,23 +204,34 @@
                 description: "High-intent senior Medicare Advantage and supplement inbound calls.",
                 wt: [],
                 ib: [
-                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Ages 65-85, Inbounds only, No Flex Card Ads, All creatives must be submitted" },
-                    { name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", payout: "$8-15 / 60-90 sec", payTerm: "Monthly Net 30", states: "Nationwide (SEP Zip Codes)", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Any age/creative angle, Inbounds only" },
-                    { name: "MED-EN-IB-CPA-MN30-AP", payout: "$175 / CPA", payTerm: "Monthly Net 30", states: "44 States Available", hours: "M-F 9:30am-6pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Inbounds only" }
+                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Ages 65-85, Inbounds only", status: "Active" },
+                    { 
+                        name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", 
+                        payout: "$8-15 / 60-90 sec", 
+                        payTerm: "Monthly Net 30", 
+                        states: "Nationwide (SEP Zip Codes)", 
+                        hours: "M-F 9am-9pm EST", 
+                        cap: "None", 
+                        cc: "None", 
+                        qualifiers: "Has Medicare Part A & B, Plan review, Any age/creative angle", 
+                        status: "Active",
+                        zipListLink: "https://docs.google.com/spreadsheets/d/161DPyJcu_0zyNTA2otOUiel6ZVUY6Ugq/edit?gid=1844838763#gid=1844838763" 
+                    },
+                    { name: "MED-EN-IB-CPA-MN30-AP", payout: "$175 / CPA", payTerm: "Monthly Net 30", states: "44 States Available", hours: "M-F 9:30am-6pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Inbounds only", status: "Active" }
                 ]
             },
             "FINAL EXPENSE OFFERS": {
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy" },
-                    { name: "FE-EN-WT-CPL-WN20-RTB", payout: "$12 / 120 sec", payTerm: "Weekly Net 20", states: "All States Except NYC", hours: "M-F 11AM-9PM EST (Lunch: 3-4 PM)", cap: "Limited Capacity 4-5 PM", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy" }
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" },
+                    { name: "FE-EN-WT-CPL-WN20-RTB", payout: "$12 / 120 sec", payTerm: "Weekly Net 20", states: "All States Except NYC", hours: "M-F 11AM-9PM EST", cap: "Limited Capacity", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
                 ],
                 ib: [
-                    { name: "FE-EN-IB-CPL-WN15-SD-RTB", payout: "$10-18 / 10-25 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-8pm EST", cap: "None", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy, No Free Govt/Misleading Ads" },
-                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle" },
-                    { name: "FE-SP-IB-CPL-BWM15-RTB", payout: "$24-35 / 90-120 sec", payTerm: "Bi-Monthly 15", states: "38 States Available", hours: "9:00 AM - 7:00 PM", cap: "None", cc: "None", qualifiers: "Inbound Spanish Only, No Free angle, 50-80 Ages, Active checking account" },
-                    { name: "FE-EN-CTV-IB-CPL-BWN20", payout: "$45 / 60 sec", payTerm: "Bi-Weekly Net 20", states: "All States Except NYC", hours: "9am-8pm EST", cap: "None", cc: "None", qualifiers: "API tracking available via Retreaver" }
+                    { name: "FE-EN-IB-CPL-WN15-SD-RTB", payout: "$10-18 / 10-25 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-8pm EST", cap: "None", cc: "None", qualifiers: "50-80 Ages, Active checking, No Free Govt/Misleading Ads", status: "Active" },
+                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" },
+                    { name: "FE-SP-IB-CPL-BWM15-RTB", payout: "$24-35 / 90-120 sec", payTerm: "Bi-Monthly 15", states: "38 States Available", hours: "9:00 AM - 7:00 PM", cap: "None", cc: "None", qualifiers: "Inbound Spanish Only, No Free angle, 50-80 Ages", status: "Active" },
+                    { name: "FE-EN-CTV-IB-CPL-BWN20", payout: "$45 / 60 sec", payTerm: "Bi-Weekly Net 20", states: "All States Except NYC", hours: "9am-8pm EST", cap: "None", cc: "None", qualifiers: "API tracking available via Retreaver", status: "Active" }
                 ]
             },
             "AUTO OFFERS": {
@@ -212,14 +245,14 @@
                 description: "Homeowners looking for property coverage quotes.",
                 wt: [],
                 ib: [
-                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST | Sat 12PM-5PM", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes" }
+                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
                 ]
             },
             "SSDI OFFERS": {
                 icon: "fa-scale-balanced",
                 description: "Social Security Disability Insurance representation leads.",
                 wt: [
-                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. American Samoa, CA, Micronesia, Guam, Marshall Islands, Northern Mariana Islands, Virgin Islands)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only (payout reduced to cover frontier cost), Data pass required" }
+                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. Territories)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only, Data pass required", status: "Active" }
                 ],
                 ib: []
             },
@@ -227,17 +260,17 @@
                 icon: "fa-file-invoice-dollar",
                 description: "Debt relief and unsecured debt consolidation services.",
                 wt: [
-                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Interested in debt relief, Min $250 monthly payment capability" }
+                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
                 ],
                 ib: [
-                    { name: "DEBT-EN-IB-CPA-BMN15", payout: "$300-350 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Interested in debt relief, Min $250 monthly payment capability" }
+                    { name: "DEBT-EN-IB-CPA-BMN15", payout: "$300-350 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
                 ]
             },
             "HOSPITAL INDEMNITY OFFERS": {
                 icon: "fa-hospital",
                 description: "Hospital indemnity coverage policy transfers.",
                 wt: [
-                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI (Better pickup: AL, GA, LA, NC, PA, SC, TX, TN)", hours: "M-F 9:30AM-7PM | Sat-Sun 9AM-5:30PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification" }
+                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification", status: "Active" }
                 ],
                 ib: []
             }
@@ -249,17 +282,17 @@
                 const v = verticalsData[key];
                 const totalOffers = v.wt.length + v.ib.length;
                 return `
-                    <div onclick="selectVertical('${key}')" class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-emerald-500/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
+                    <div onclick="selectVertical('${key}')" class="bg-slate-900/60 border border-amber-500/20 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-amber-400/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-emerald-400 flex items-center justify-center text-lg mb-4 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-500 transition-all shadow-md">
+                            <div class="w-12 h-12 rounded-xl bg-slate-950 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-md">
                                 <i class="fa-solid ${v.icon}"></i>
                             </div>
-                            <h3 class="text-sm font-bold text-white group-hover:text-emerald-400 transition mb-1">${key}</h3>
+                            <h3 class="text-sm font-bold text-white group-hover:text-amber-300 transition mb-1">${key}</h3>
                             <p class="text-[11px] text-slate-400 leading-relaxed mb-4 line-clamp-2">${v.description}</p>
                         </div>
-                        <div class="flex items-center justify-between text-[11px] font-semibold text-emerald-400 pt-3 border-t border-slate-700/60">
+                        <div class="flex items-center justify-between text-[11px] font-semibold text-amber-400 pt-3 border-t border-slate-800">
                             <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition text-slate-400 group-hover:text-emerald-400"></i>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition text-slate-500 group-hover:text-amber-400"></i>
                         </div>
                     </div>
                 `;
@@ -287,38 +320,61 @@
             if (vertical.wt.length > 0) {
                 wtContainer.innerHTML = vertical.wt.map(offer => renderOfferCard(offer, 'Live Transfer')).join('');
             } else {
-                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-800/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Live Transfer offers listed under this vertical.</div>`;
+                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Live Transfer offers listed under this vertical.</div>`;
             }
 
             if (vertical.ib.length > 0) {
                 ibContainer.innerHTML = vertical.ib.map(offer => renderOfferCard(offer, 'Inbound Call')).join('');
             } else {
-                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-800/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Inbound Call offers listed under this vertical.</div>`;
+                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Inbound Call offers listed under this vertical.</div>`;
             }
         }
 
         function renderOfferCard(offer, typeLabel) {
+            const isActive = offer.status === 'Active';
+            const statusBadge = isActive 
+                ? `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
+                : `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
+
+            let zipListBtn = '';
+            if (offer.zipListLink) {
+                zipListBtn = `
+                    <div class="mt-3">
+                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>View Approved Zip Code List (Google Sheet)</span>
+                        </a>
+                    </div>
+                `;
+            }
+
             return `
-                <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-md hover:border-slate-600 transition flex flex-col justify-between">
+                <div class="bg-slate-900/80 border border-amber-500/20 rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-teal-500/10 text-teal-300 border border-teal-500/20' : 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20'}">${typeLabel}</span>
-                            <span class="text-emerald-400 font-mono font-bold text-xs bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">${offer.payout}</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20' : 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20'}">${typeLabel}</span>
+                                ${statusBadge}
+                            </div>
+                            <span class="text-amber-400 font-mono font-bold text-xs bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">${offer.payout}</span>
                         </div>
                         <h3 class="text-xs sm:text-sm font-bold text-white mb-3 tracking-wide">${offer.name}</h3>
                         
-                        <div class="space-y-1.5 mb-5 text-[11px] text-slate-300 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+                        <div class="space-y-1.5 mb-4 text-[11px] text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800">
                             <div><strong class="text-slate-400">Pay Term:</strong> ${offer.payTerm}</div>
                             <div><strong class="text-slate-400">States:</strong> ${offer.states}</div>
                             <div><strong class="text-slate-400">Hours:</strong> ${offer.hours}</div>
                             <div><strong class="text-slate-400">Cap / CC:</strong> Cap: ${offer.cap} | CC: ${offer.cc}</div>
                             <div><strong class="text-slate-400">Qualifiers:</strong> ${offer.qualifiers}</div>
                         </div>
+                        ${zipListBtn}
                     </div>
-                    <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full bg-slate-900 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border border-slate-700 hover:border-emerald-500">
-                        <span>Apply Now</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
+                    <div class="pt-4">
+                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full bg-slate-950 hover:bg-amber-500 text-white hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border border-slate-700 hover:border-amber-500">
+                            <span>Apply Now</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
                 </div>
             `;
         }
@@ -330,12 +386,12 @@
             const ibCont = document.getElementById('ibContainer');
 
             if (tabType === 'wt') {
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-emerald-600 text-white shadow-md";
+                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md";
                 ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white";
                 wtCont.classList.remove('hidden');
                 ibCont.classList.add('hidden');
             } else {
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-emerald-600 text-white shadow-md";
+                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md";
                 wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white";
                 ibCont.classList.remove('hidden');
                 wtCont.classList.add('hidden');
