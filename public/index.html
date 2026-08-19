@@ -102,7 +102,7 @@
                             <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Happy Publishers</div>
                         </div>
                         <div class="theme-box-sub border p-3 rounded-xl text-center">
-                            <div class="text-amber-400 font-black text-base sm:text-lg">9+</div>
+                            <div class="text-amber-400 font-black text-base sm:text-lg">8+</div>
                             <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Core Verticals</div>
                         </div>
                         <div class="col-span-2 sm:col-span-1 theme-box-sub border p-3 rounded-xl text-center">
@@ -329,7 +329,7 @@
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Payout *</label>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Payout / Bid Range *</label>
                         <input type="text" id="newOfferPayout" required placeholder="$50 / CPA" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                     </div>
                     <div>
@@ -356,7 +356,7 @@
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Qualifiers *</label>
-                    <input type="text" id="newOfferQualifiers" required placeholder="Homeowner, repair needed..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="text" id="newOfferQualifiers" required placeholder="U64, Income under 20k..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                 </div>
 
                 <div>
@@ -470,7 +470,6 @@
                         <option value="SSDI OFFERS">SSDI Offers (Inbounds & Live Transfers)</option>
                         <option value="DEBT OFFERS">Debt Offers (Inbounds & Live Transfers)</option>
                         <option value="HOSPITAL INDEMNITY OFFERS">Hospital Indemnity Offers (Inbounds & Live Transfers)</option>
-                        <option value="GARAGE DOOR OFFERS">Garage Door Offers (Inbounds & Live Transfers)</option>
                     </select>
                 </div>
 
@@ -513,13 +512,17 @@
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
                 wt: [
-                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
-                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
-                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking, NO STIMULIS OR PROMISES", status: "Active" }
+                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11/120", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
+                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25/90 sec duration", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Incomer 20k, Interested in healthcare plan, Spanish Speaking, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-MN10-RTB-NEARSHORE ONLY", payout: "$25-35/90-120 Sec Duration", payTerm: "Net 10", states: "Nearshore Only", hours: "6AM-4PM (PST), Mon-Fri | 9AM-2PM (PST), Sat", cap: "20/Day During Testing", cc: "None", qualifiers: "U64, Incomer 20k, Interested in Healthcare Plan, Must be employed, Nearshore only", status: "Active" },
+                    { name: "ACA-EN-WT- CPL-WN10-AP-5States (CG)", payout: "$15/180", payTerm: "Weekly N10", states: "Texas, Ohio, Arizona, Missouri, Indiana", hours: "Mon-Fri | 9AM-7:30PM EST", cap: "None", cc: "None", qualifiers: "U64, Incomer 20k, Interested in Healthcare Plan", status: "Active" }
                 ],
                 ib: [
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
-                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 on 15-30 sec duration", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BMN20-RTB-SD-T2", payout: "$7-$15 on Raw- 25 sec duration", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST | Lunch: 1AM-2PM", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-$30 on Raw- 120 sec duration", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST | Lunch: 1AM-2PM", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA SPANISH RTB ok", payout: "$25-40 on 90-180 sec duration", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Incomer 20k, Interested in healthcare plan, Spanish Speaking", status: "Active" }
                 ]
             },
             "MEDICARE OFFERS": {
@@ -527,29 +530,34 @@
                 description: "High-intent senior Medicare Advantage and supplement inbound calls.",
                 wt: [],
                 ib: [
-                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Ages 65-85, Inbounds only", status: "Active" },
+                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-$30/90-240 sec. duration", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Ages 65-85, Inbounds only, No Flex Card Ads", status: "Active" },
                     { 
                         name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", 
-                        payout: "$8-15 / 60-90 sec", 
+                        payout: "$8-$15/60-90 sec. duration", 
                         payTerm: "Monthly Net 30", 
-                        states: "Nationwide (SEP Zip Codes)", 
+                        states: "Nationwide (SEP ZIP CODE TARGETING)", 
                         hours: "M-F 9am-9pm EST", 
                         cap: "None", 
                         cc: "None", 
-                        qualifiers: "Has Medicare Part A & B, Plan review, Any age/creative angle", 
+                        qualifiers: "Has Medicare Part A & B, Interested in a plan review, Overflow line accepts any ages", 
                         status: "Active",
                         zipListLink: "https://docs.google.com/spreadsheets/d/161DPyJcu_0zyNTA2otOUiel6ZVUY6Ugq/edit?gid=1844838763#gid=1844838763" 
-                    }
+                    },
+                    { name: "MED-EN-IB-CPA-MN30-AP", payout: "175 CPA", payTerm: "Monthly Net 30", states: "AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, ME, MI, MN, MO, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY", hours: "M-F 9:30am-6pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Inbounds only", status: "Active" }
                 ]
             },
             "FINAL EXPENSE OFFERS": {
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly net 20", states: "Texas, Florida, Ohio, North Carolina, Georgia, Pennsylvania", hours: "M-F", cap: "NA", cc: "4", qualifiers: "50-80 Ages, Has an active checking account, Interested in FE Policy", status: "Active" },
+                    { name: "FE-EN-WT-CPL-WN20-RTB", payout: "12/120sec. duration", payTerm: "Weekly net 20", states: "ALL STATES EXCEPT NYC", hours: "M-F 11AM-9PM EST (Lunch: 3pm-4pm)", cap: "None", cc: "None", qualifiers: "50-80 Ages, Has an active checking account, Interested in FE Policy", status: "Active" }
                 ],
                 ib: [
-                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" }
+                    { name: "FE-EN-IB-CPL-WN15-SD-RTB", payout: "$10-18/10-25 sec. duration", payTerm: "Weekly net 15", states: "ALL STATES EXCEPT NYC", hours: "M-F 9am-8pm EST", cap: "None", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy, No free govt or misleading ads, No transfers", status: "Active" },
+                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec. duration", payTerm: "Weekly net 15", states: "ALL STATES EXCEPT NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" },
+                    { name: "FE-SP-IB-CPL-BWM15-RTB", payout: "$24-35/90-120 sec. duration", payTerm: "Bi-Monthly 15", states: "AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY", hours: "9:00 AM - 7:00 PM EST", cap: "None", cc: "None", qualifiers: "Inbound Spanish only, No Free angle of SSA benefit angle, 50-80 Ages, Active checking account", status: "Active" },
+                    { name: "FE-EN-CTV-IB-CPL-BWN20", payout: "$45/60 secs", payTerm: "BI Weekly net 20", states: "ALL STATES EXCEPT NYC", hours: "9am-8pm EST", cap: "None", cc: "None", qualifiers: "CTV Inbound calls, Active checking account, Interested in FE Policy", status: "Active" }
                 ]
             },
             "AUTO OFFERS": {
@@ -563,14 +571,14 @@
                 description: "Homeowners looking for property coverage quotes.",
                 wt: [],
                 ib: [
-                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
+                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70/60-120 secs duration", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9:00 AM–7:00 PM EST | Sat: 12 PM-5 PM", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
                 ]
             },
             "SSDI OFFERS": {
                 icon: "fa-scale-balanced",
                 description: "Social Security Disability Insurance representation leads.",
                 wt: [
-                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. Territories)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only, Data pass required", status: "Active" }
+                    { name: "SSDI CPA", payout: "$175", payTerm: "Weekly net 7", states: "Nationwide / EXCEPT American Samoa, California, Micronesia, Guam, Marshall Islands, Northern Mariana Islands, Virgin Islands", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore ONLY, Data pass required", status: "Active" }
                 ],
                 ib: []
             },
@@ -578,27 +586,19 @@
                 icon: "fa-file-invoice-dollar",
                 description: "Debt relief and unsecured debt consolidation services.",
                 wt: [
-                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
+                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250", payTerm: "Bi Monthly 15", states: "ALL STATES EXCEPT CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "15k Unsecured Debt, Interested in debt relief services, Min $250 monthly payment capability", status: "Active" }
                 ],
-                ib: []
+                ib: [
+                    { name: "DEBT-EN-IB-CPA-BMN15", payout: "$300-350", payTerm: "Bi Monthly 15", states: "ALL STATES EXCEPT CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "15k Unsecured Debt, Interested in debt relief services, Min $250 monthly payment capability", status: "Active" }
+                ]
             },
             "HOSPITAL INDEMNITY OFFERS": {
                 icon: "fa-hospital",
                 description: "Hospital indemnity coverage policy transfers.",
                 wt: [
-                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification", status: "Active" }
+                    { name: "HI-EN-WT-CPA-WN7", payout: "$45", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30 AM–7:00 PM | Sat-Sun: 9 AM-5:30 PM", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification (Better pickup: AL, GA, LA, NC, PA, SC, TX, TN)", status: "Active" }
                 ],
                 ib: []
-            },
-            "GARAGE DOOR OFFERS": {
-                icon: "fa-wrench",
-                description: "Emergency garage door repair, installation, and spring replacement live transfers & inbound calls.",
-                wt: [
-                    { name: "GD-EN-WT-CPA-WN7", payout: "$35 / CPA", payTerm: "Weekly Net 7", states: "Nationwide", hours: "8:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "Homeowner, immediate garage door repair or spring replacement needed", status: "Active" }
-                ],
-                ib: [
-                    { name: "GD-EN-IB-CPL-RTB-WN7", payout: "$15-25 / 90 sec", payTerm: "Weekly Net 7", states: "Nationwide", hours: "24/7 Availability", cap: "None", cc: "None", qualifiers: "Looking for local garage door service or emergency repair", status: "Active" }
-                ]
             }
         };
 
@@ -694,7 +694,7 @@
                     cardFooterHtml = `
                         <div class="pt-3 border-t border-amber-500/15 flex flex-col space-y-2">
                             <span class="text-[11px] font-bold text-amber-400 bg-amber-500/10 py-1.5 px-2.5 rounded-lg border border-amber-500/20 text-center">
-                                📞 Inbounds & Live Transfers Available — Contact Us for Pricing
+                                📞 Inbounds & Live Transfers Available
                             </span>
                             <button onclick="event.stopPropagation(); openBuyerContactModalForVertical('${key}')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-xl text-[11px] transition shadow-md flex items-center justify-center space-x-1.5 cursor-pointer">
                                 <i class="fa-solid fa-paper-plane text-[10px]"></i>
@@ -749,13 +749,11 @@
             const wtContainer = document.getElementById('wtContainer');
             const ibContainer = document.getElementById('ibContainer');
 
-            // Render WT list (if not admin, hide paused items)
             const wtCards = vertical.wt.map((offer, index) => {
                 if (!isAdminLoggedIn && offer.status !== 'Active') return '';
                 return renderOfferCard(offer, 'Live Transfer', 'wt', index);
             }).filter(Boolean);
 
-            // Render IB list (if not admin, hide paused items)
             const ibCards = vertical.ib.map((offer, index) => {
                 if (!isAdminLoggedIn && offer.status !== 'Active') return '';
                 return renderOfferCard(offer, 'Inbound Call', 'ib', index);
@@ -909,7 +907,7 @@
             document.getElementById('newOfferPayTerm').value = "";
             document.getElementById('newOfferStates').value = "";
             document.getElementById('newOfferHours').value = "";
-            document.getElementById('newOfferCapCc').value = "Cap: None | CC: None";
+            document.getElementById('newOfferCapCc').value = "None";
             document.getElementById('newOfferQualifiers').value = "";
             document.getElementById('newOfferZipLink').value = "";
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
@@ -929,7 +927,7 @@
             document.getElementById('newOfferPayTerm').value = offer.payTerm;
             document.getElementById('newOfferStates').value = offer.states;
             document.getElementById('newOfferHours').value = offer.hours;
-            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap} | CC: ${offer.cc}`;
+            document.getElementById('newOfferCapCc').value = offer.cap || "None";
             document.getElementById('newOfferQualifiers').value = offer.qualifiers;
             document.getElementById('newOfferZipLink').value = offer.zipListLink || "";
 
@@ -955,7 +953,7 @@
 
             const editIndex = parseInt(document.getElementById('editItemIndex').value);
             const oldType = document.getElementById('editItemType').value;
-            const newType = document.getElementById('newOfferType').value; // 'wt' or 'ib'
+            const newType = document.getElementById('newOfferType').value;
             
             const offerData = {
                 name: document.getElementById('newOfferName').value,
@@ -963,7 +961,7 @@
                 payTerm: document.getElementById('newOfferPayTerm').value,
                 states: document.getElementById('newOfferStates').value,
                 hours: document.getElementById('newOfferHours').value,
-                cap: "None",
+                cap: document.getElementById('newOfferCapCc').value || "None",
                 cc: "None",
                 qualifiers: document.getElementById('newOfferQualifiers').value,
                 status: document.getElementById('newOfferStatus').value,
@@ -971,11 +969,9 @@
             };
 
             if (editIndex > -1) {
-                // Remove from previous position/type array
                 if (verticalsData[activeCategoryKey][oldType][editIndex]) {
                     verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
                 }
-                // Push to new target type array
                 verticalsData[activeCategoryKey][newType].push(offerData);
             } else {
                 verticalsData[activeCategoryKey][newType].push(offerData);
