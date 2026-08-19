@@ -303,6 +303,7 @@
 
             <form onsubmit="saveOfferData(event)" class="space-y-4">
                 <input type="hidden" id="editItemIndex" value="-1">
+                <input type="hidden" id="editItemType" value="wt">
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -315,8 +316,8 @@
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Status *</label>
                         <select id="newOfferStatus" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
-                            <option value="Active">Active (Publish Live)</option>
-                            <option value="Paused">Paused (Hide from Publishers)</option>
+                            <option value="Active">Active</option>
+                            <option value="Paused">Paused</option>
                         </select>
                     </div>
                 </div>
@@ -668,13 +669,12 @@
                 
                 let cardFooterHtml = '';
                 if (currentMode === 'publisher') {
-                    const activeWt = v.wt.filter(o => o.status === 'Active').length;
-                    const activeIb = v.ib.filter(o => o.status === 'Active').length;
-                    const totalOffers = activeWt + activeIb;
+                    // Count total offers (both active and paused so publisher sees accurate stats)
+                    const totalOffers = v.wt.length + v.ib.length;
                     
                     cardFooterHtml = `
                         <div class="flex items-center justify-between text-[11px] font-semibold text-amber-500 pt-3 border-t border-amber-500/10">
-                            <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
+                            <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Offer(s) Available'}</span>
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition theme-text-muted group-hover:text-amber-500"></i>
                         </div>
                     `;
@@ -725,42 +725,43 @@
             document.getElementById('categoryTitle').textContent = categoryKey;
             document.getElementById('selectedCategoryBadge').textContent = categoryKey;
 
-            populateOffersLists(vertical);
+            renderActiveOffers();
             switchTab('wt');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function populateOffersLists(vertical) {
+        function renderActiveOffers() {
+            const vertical = verticalsData[activeCategoryKey];
+            if (!vertical) return;
+
             const wtContainer = document.getElementById('wtContainer');
             const ibContainer = document.getElementById('ibContainer');
 
-            // Render WT list filtering out paused offers if not admin
+            // Render ALL Live Transfer offers (both Active and Paused)
             const wtCards = vertical.wt.map((offer, index) => {
-                if (!isAdminLoggedIn && offer.status !== 'Active') return '';
                 return renderOfferCard(offer, 'Live Transfer', 'wt', index);
-            }).filter(Boolean);
+            });
 
-            // Render IB list filtering out paused offers if not admin
+            // Render ALL Inbound Call offers (both Active and Paused)
             const ibCards = vertical.ib.map((offer, index) => {
-                if (!isAdminLoggedIn && offer.status !== 'Active') return '';
                 return renderOfferCard(offer, 'Inbound Call', 'ib', index);
-            }).filter(Boolean);
+            });
 
             if (wtCards.length > 0) {
                 wtContainer.innerHTML = wtCards.join('');
             } else {
-                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
+                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No Live Transfer offers listed under this vertical.</div>`;
             }
 
             if (ibCards.length > 0) {
                 ibContainer.innerHTML = ibCards.join('');
             } else {
-                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
+                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No Inbound Call offers listed under this vertical.</div>`;
             }
         }
 
         function renderOfferCard(offer, typeLabel, typeKey, index) {
-            const isActive = offer.status === 'Active';
+            const isActive = (offer.status || 'Active') === 'Active';
             const statusBadge = isActive 
                 ? `<span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
                 : `<span class="bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
@@ -872,7 +873,7 @@
                 document.getElementById('adminAddOfferBtn').classList.remove('hidden');
                 document.getElementById('adminBtnText').textContent = "Admin (Logged In)";
                 if (activeCategoryKey) {
-                    selectVertical(activeCategoryKey);
+                    renderActiveOffers();
                 }
             } else {
                 alert("Invalid username or password! Use username: admin, password: elija2026");
@@ -903,6 +904,7 @@
         function openAdminEditModal(typeKey, index) {
             const offer = verticalsData[activeCategoryKey][typeKey][index];
             document.getElementById('editItemIndex').value = index;
+            document.getElementById('editItemType').value = typeKey;
             document.getElementById('newOfferType').value = typeKey;
             document.getElementById('newOfferStatus').value = offer.status || "Active";
             document.getElementById('adminModalTitle').textContent = "Edit Offer: " + offer.name;
@@ -926,8 +928,8 @@
 
         function toggleOfferStatus(typeKey, index) {
             const offer = verticalsData[activeCategoryKey][typeKey][index];
-            offer.status = offer.status === 'Active' ? 'Paused' : 'Active';
-            selectVertical(activeCategoryKey);
+            offer.status = (offer.status === 'Active') ? 'Paused' : 'Active';
+            renderActiveOffers();
         }
 
         function saveOfferData(e) {
@@ -938,7 +940,8 @@
             }
 
             const editIndex = parseInt(document.getElementById('editItemIndex').value);
-            const type = document.getElementById('newOfferType').value; // 'wt' or 'ib'
+            const oldType = document.getElementById('editItemType').value;
+            const newType = document.getElementById('newOfferType').value; // 'wt' or 'ib'
             
             const offerData = {
                 name: document.getElementById('newOfferName').value,
@@ -954,19 +957,19 @@
             };
 
             if (editIndex > -1) {
-                // If type changed during edit, remove from old array and push to new array
-                const oldType = type === 'wt' ? 'ib' : 'wt';
-                if (verticalsData[activeCategoryKey][oldType][editIndex]) {
+                // Remove from previous position/type array if it exists
+                if (verticalsData[activeCategoryKey][oldType] && verticalsData[activeCategoryKey][oldType][editIndex]) {
                     verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
                 }
-                verticalsData[activeCategoryKey][type].push(offerData);
+                // Push to new target type array in real-time
+                verticalsData[activeCategoryKey][newType].push(offerData);
             } else {
-                verticalsData[activeCategoryKey][type].push(offerData);
+                verticalsData[activeCategoryKey][newType].push(offerData);
             }
 
             alert(editIndex > -1 ? "Offer updated and saved successfully!" : "New offer saved and published live!");
             closeAdminAddOfferModal();
-            selectVertical(activeCategoryKey);
+            renderActiveOffers();
         }
 
         function openModal(offerName, offerType) {
