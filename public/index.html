@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +14,31 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gold-border {
-            border-color: rgba(234, 179, 8, 0.3);
-        }
+        /* Light mode overrides when html has class 'light' */
+        html.light body { background-color: #f8fafc !important; color: #0f172a !important; }
+        html.light header { background-color: rgba(255, 255, 255, 0.9) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
+        html.light .theme-card { background-color: #ffffff !important; border-color: rgba(202, 138, 4, 0.2) !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        html.light .theme-box-sub { background-color: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #334155 !important; }
+        html.light .theme-text-muted { color: #64748b !important; }
+        html.light .theme-heading { color: #0f172a !important; }
+        html.light .theme-modal { background-color: #ffffff !important; }
+        html.light .theme-input { background-color: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
+        
+        /* Dark mode defaults */
+        html.dark body { background-color: #030712 !important; color: #f1f5f9 !important; }
+        html.dark header { background-color: rgba(15, 23, 42, 0.9) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
+        html.dark .theme-card { background-color: rgba(15, 23, 42, 0.6) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
+        html.dark .theme-box-sub { background-color: #090d16 !important; border-color: #1e293b !important; color: #cbd5e1 !important; }
+        html.dark .theme-text-muted { color: #94a3b8 !important; }
+        html.dark .theme-heading { color: #ffffff !important; }
+        html.dark .theme-modal { background-color: #0f172a !important; }
+        html.dark .theme-input { background-color: #030712 !important; border-color: #1e293b !important; color: #f1f5f9 !important; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
 
     <!-- Top Navigation Header -->
-    <header class="bg-slate-900/90 backdrop-blur-md border-b border-amber-500/20 sticky top-0 z-40 py-4 px-6">
+    <header class="backdrop-blur-md border-b sticky top-0 z-40 py-4 px-6 transition-colors duration-300">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="goBackToVerticals()">
                 <!-- Logo Box -->
@@ -30,12 +46,19 @@
                     <span class="text-xs tracking-widest">EJ</span>
                 </div>
                 <div>
-                    <h1 class="text-xs sm:text-sm font-extrabold tracking-widest text-white uppercase">Elijay</h1>
+                    <h1 class="text-xs sm:text-sm font-extrabold tracking-widest uppercase theme-heading">Elijay</h1>
                     <p class="text-[9px] gold-gradient-text font-bold tracking-widest uppercase">Performance Partners</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-2">
-                <span class="hidden sm:inline-flex text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+            
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="theme-box-sub border px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer hover:border-amber-500">
+                    <i id="themeIcon" class="fa-solid fa-moon text-amber-400"></i>
+                    <span id="themeText" class="hidden sm:inline">Dark</span>
+                </button>
+
+                <span class="hidden sm:inline-flex text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-3 py-1.5 rounded-full">
                     <span class="w-2 h-2 inline-block rounded-full bg-emerald-500 animate-pulse mr-1.5"></span> Direct Media Buyers Only
                 </span>
             </div>
@@ -51,15 +74,15 @@
                 <i class="fa-solid fa-shield-halved text-lg"></i>
             </div>
             <div>
-                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
-                <p class="text-xs text-slate-300 mt-0.5 leading-relaxed">Our payments are always on time. If you run high-quality compliant traffic, let's scale—we have zero tolerance for fraudulent or incentivized activities.</p>
+                <h4 class="text-xs font-bold text-amber-500 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
+                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Our payments are always on time. If you run high-quality compliant traffic, let's scale—we have zero tolerance for fraudulent or incentivized activities.</p>
             </div>
         </div>
 
         <!-- STEP 1: VERTICALS VIEW -->
         <div id="verticalsView" class="space-y-6">
             <!-- Hero Welcome Card -->
-            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-amber-500/30 text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl">
                     <!-- Logo Badge in Hero -->
@@ -67,13 +90,13 @@
                         <span class="text-amber-400 font-black text-xs tracking-widest">EJ</span>
                         <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight text-white">Select a Campaign Vertical</h2>
-                    <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">Access direct buyer allocations, real-time payouts, and verified geo-sheets. Choose your vertical below to submit compliance and request routing.</p>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Select a Campaign Vertical</h2>
+                    <p class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct buyer allocations, real-time payouts, and verified geo-sheets. Choose your vertical below to submit compliance and request routing.</p>
                 </div>
             </div>
 
             <div class="flex items-center justify-between pt-2">
-                <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center">
+                <h3 class="text-sm font-bold theme-text-muted uppercase tracking-wider flex items-center">
                     <i class="fa-solid fa-layer-group text-amber-400 mr-2"></i> Available Operating Verticals
                 </h3>
             </div>
@@ -87,25 +110,25 @@
         <!-- STEP 2: OFFERS VIEW (Hidden by default) -->
         <div id="offersView" class="hidden space-y-6">
             <div class="flex items-center justify-between">
-                <button onclick="goBackToVerticals()" class="text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm">
+                <button onclick="goBackToVerticals()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Verticals</span>
                 </button>
-                <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg bg-slate-900 text-amber-400 border border-amber-500/30">Category</span>
+                <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Category</span>
             </div>
 
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-slate-900/60 border border-amber-500/20 p-6 rounded-2xl">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 theme-card border p-6 rounded-2xl">
                 <div>
-                    <h2 id="categoryTitle" class="text-2xl font-black text-white">Offers</h2>
-                    <p class="text-xs text-slate-400 mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
+                    <h2 id="categoryTitle" class="text-2xl font-black theme-heading">Offers</h2>
+                    <p class="text-xs theme-text-muted mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
                 </div>
 
                 <!-- Column Switcher Tabs -->
-                <div class="flex bg-slate-950 border border-amber-500/30 p-1.5 rounded-xl self-start">
-                    <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md">
+                <div class="flex theme-box-sub border p-1.5 rounded-xl self-start">
+                    <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer">
                         <i class="fa-solid fa-headset mr-1.5"></i> Live Transfers (WT)
                     </button>
-                    <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white">
+                    <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer">
                         <i class="fa-solid fa-phone-volume mr-1.5"></i> Inbound Calls (IB)
                     </button>
                 </div>
@@ -120,52 +143,52 @@
 
     <!-- Application Modal Popup -->
     <div id="applyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-slate-900 border border-amber-500/30 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-base p-2 bg-slate-950 rounded-full w-9 h-9 flex items-center justify-center transition border border-slate-800">
+        <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6">
-                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">Live Transfer</span>
-                <h3 id="modalOfferTitle" class="text-xl font-bold text-white mt-3">Apply for Offer</h3>
-                <p class="text-xs text-slate-400 mt-1">Provide your corporate credentials and compliance files for verification.</p>
+                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Live Transfer</span>
+                <h3 id="modalOfferTitle" class="text-xl font-bold theme-heading mt-3">Apply for Offer</h3>
+                <p class="text-xs theme-text-muted mt-1">Provide your corporate credentials and compliance files for verification.</p>
             </div>
 
             <form id="applicationForm" class="space-y-4" onsubmit="submitApplication(event)">
                 <input type="hidden" id="offerNameInput" name="offer_name">
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">1. Company Name *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">1. Company Name *</label>
                     <input type="text" id="company_name" name="company_name" required placeholder="e.g. Apex Media LLC" 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">2. Company Email *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Company Email *</label>
                     <input type="email" id="company_email" name="company_email" required placeholder="buyer@company.com" 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-xs text-slate-200 focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">3. Data Sample Upload (CSV, XLSX, PDF) *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Data Sample Upload (CSV, XLSX, PDF) *</label>
                     <input type="file" id="data_sample" name="data_sample" accept=".csv, .xlsx, .pdf" required 
-                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-400 hover:file:bg-amber-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">4. 3 Call Recordings Upload (MP3, WAV) *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. 3 Call Recordings Upload (MP3, WAV) *</label>
                     <input type="file" id="call_recordings" name="call_recordings" accept=".mp3, .wav" multiple required 
-                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-400 hover:file:bg-amber-500/20 border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">5. Script Upload (PDF, DOCX) — <span class="text-slate-500 font-normal">Optional</span></label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">5. Script Upload (PDF, DOCX) — <span class="text-slate-500 font-normal">Optional</span></label>
                     <input type="file" id="script_file" name="script_file" accept=".pdf, .docx" 
-                        class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-slate-800 file:text-slate-300 hover:file:bg-slate-700 border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2">
+                    <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span id="submitBtnText">Submit Compliance & Apply</span>
                     </button>
@@ -175,12 +198,52 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-amber-500/20 py-6 text-center text-xs text-slate-500 mt-12">
+    <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
         &copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.
     </footer>
 
     <!-- JavaScript Data and Logic -->
     <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                themeText.textContent = "Light";
+                localStorage.setItem('elija_theme', 'light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-moon text-amber-400";
+                themeText.textContent = "Dark";
+                localStorage.setItem('elija_theme', 'dark');
+            }
+        }
+
+        // Initialize Theme from Storage
+        (function() {
+            const savedTheme = localStorage.getItem('elija_theme') || 'dark';
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            html.classList.remove('dark', 'light');
+            html.classList.add(savedTheme);
+
+            if (savedTheme === 'light') {
+                if(themeIcon) themeIcon.className = "fa-solid fa-sun text-amber-500";
+                if(themeText) themeText.textContent = "Light";
+            } else {
+                if(themeIcon) themeIcon.className = "fa-solid fa-moon text-amber-400";
+                if(themeText) themeText.textContent = "Dark";
+            }
+        })();
+
         const verticalsData = {
             "ACA OFFERS": {
                 icon: "fa-notes-medical",
@@ -282,17 +345,17 @@
                 const v = verticalsData[key];
                 const totalOffers = v.wt.length + v.ib.length;
                 return `
-                    <div onclick="selectVertical('${key}')" class="bg-slate-900/60 border border-amber-500/20 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-amber-400/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
+                    <div onclick="selectVertical('${key}')" class="theme-card border rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-amber-400/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-950 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-md">
+                            <div class="w-12 h-12 rounded-xl theme-box-sub border border-amber-500/30 text-amber-500 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-md">
                                 <i class="fa-solid ${v.icon}"></i>
                             </div>
-                            <h3 class="text-sm font-bold text-white group-hover:text-amber-300 transition mb-1">${key}</h3>
-                            <p class="text-[11px] text-slate-400 leading-relaxed mb-4 line-clamp-2">${v.description}</p>
+                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-500 transition mb-1">${key}</h3>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4 line-clamp-2">${v.description}</p>
                         </div>
-                        <div class="flex items-center justify-between text-[11px] font-semibold text-amber-400 pt-3 border-t border-slate-800">
+                        <div class="flex items-center justify-between text-[11px] font-semibold text-amber-500 pt-3 border-t border-amber-500/10">
                             <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition text-slate-500 group-hover:text-amber-400"></i>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition theme-text-muted group-hover:text-amber-500"></i>
                         </div>
                     </div>
                 `;
@@ -320,27 +383,27 @@
             if (vertical.wt.length > 0) {
                 wtContainer.innerHTML = vertical.wt.map(offer => renderOfferCard(offer, 'Live Transfer')).join('');
             } else {
-                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Live Transfer offers listed under this vertical.</div>`;
+                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
             }
 
             if (vertical.ib.length > 0) {
                 ibContainer.innerHTML = vertical.ib.map(offer => renderOfferCard(offer, 'Inbound Call')).join('');
             } else {
-                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">No active Inbound Call offers listed under this vertical.</div>`;
+                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
             }
         }
 
         function renderOfferCard(offer, typeLabel) {
             const isActive = offer.status === 'Active';
             const statusBadge = isActive 
-                ? `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
-                : `<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
+                ? `<span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
+                : `<span class="bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
 
             let zipListBtn = '';
             if (offer.zipListLink) {
                 zipListBtn = `
                     <div class="mt-3">
-                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
+                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-500 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-map-location-dot"></i>
                             <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
                         </a>
@@ -349,28 +412,28 @@
             }
 
             return `
-                <div class="bg-slate-900/80 border border-amber-500/20 rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
+                <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center space-x-2">
-                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20' : 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20'}">${typeLabel}</span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' : 'bg-indigo-500/10 text-indigo-500 border border-indigo-500/20'}">${typeLabel}</span>
                                 ${statusBadge}
                             </div>
-                            <span class="text-amber-400 font-mono font-bold text-xs bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">${offer.payout}</span>
+                            <span class="text-amber-500 font-mono font-bold text-xs bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">${offer.payout}</span>
                         </div>
-                        <h3 class="text-xs sm:text-sm font-bold text-white mb-3 tracking-wide">${offer.name}</h3>
+                        <h3 class="text-xs sm:text-sm font-bold theme-heading mb-3 tracking-wide">${offer.name}</h3>
                         
-                        <div class="space-y-1.5 mb-4 text-[11px] text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800">
-                            <div><strong class="text-slate-400">Pay Term:</strong> ${offer.payTerm}</div>
-                            <div><strong class="text-slate-400">States:</strong> ${offer.states}</div>
-                            <div><strong class="text-slate-400">Hours:</strong> ${offer.hours}</div>
-                            <div><strong class="text-slate-400">Cap / CC:</strong> Cap: ${offer.cap} | CC: ${offer.cc}</div>
-                            <div><strong class="text-slate-400">Qualifiers:</strong> ${offer.qualifiers}</div>
+                        <div class="space-y-1.5 mb-4 text-[11px] theme-box-sub p-3.5 rounded-xl border">
+                            <div><strong class="theme-text-muted">Pay Term:</strong> ${offer.payTerm}</div>
+                            <div><strong class="theme-text-muted">States:</strong> ${offer.states}</div>
+                            <div><strong class="theme-text-muted">Hours:</strong> ${offer.hours}</div>
+                            <div><strong class="theme-text-muted">Cap / CC:</strong> Cap: ${offer.cap} | CC: ${offer.cc}</div>
+                            <div><strong class="theme-text-muted">Qualifiers:</strong> ${offer.qualifiers}</div>
                         </div>
                         ${zipListBtn}
                     </div>
                     <div class="pt-4">
-                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full bg-slate-950 hover:bg-amber-500 text-white hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border border-slate-700 hover:border-amber-500">
+                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
                             <span>Submit Compliance & Apply</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
@@ -386,13 +449,13 @@
             const ibCont = document.getElementById('ibContainer');
 
             if (tabType === 'wt') {
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md";
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white";
+                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer";
+                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer";
                 wtCont.classList.remove('hidden');
                 ibCont.classList.add('hidden');
             } else {
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md";
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition text-slate-400 hover:text-white";
+                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer";
+                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer";
                 ibCont.classList.remove('hidden');
                 wtCont.classList.add('hidden');
             }
