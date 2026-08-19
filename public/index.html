@@ -298,18 +298,27 @@
             <div class="mb-6">
                 <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Admin Panel</span>
                 <h3 id="adminModalTitle" class="text-xl font-bold theme-heading mt-3">Add Real-Time Offer</h3>
-                <p class="text-xs theme-text-muted mt-1">Configure offer parameters to publish or update instantly on the portal.</p>
+                <p class="text-xs theme-text-muted mt-1">Configure offer parameters and status to publish or update instantly on the portal.</p>
             </div>
 
             <form onsubmit="saveOfferData(event)" class="space-y-4">
                 <input type="hidden" id="editItemIndex" value="-1">
                 
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
-                    <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
-                        <option value="wt">Live Transfer (WT)</option>
-                        <option value="ib">Inbound Call (IB)</option>
-                    </select>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
+                        <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                            <option value="wt">Live Transfer (WT)</option>
+                            <option value="ib">Inbound Call (IB)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Status *</label>
+                        <select id="newOfferStatus" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                            <option value="Active">Active (Publish Live)</option>
+                            <option value="Paused">Paused (Hide from Publishers)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div>
@@ -354,9 +363,12 @@
                     <input type="url" id="newOfferZipLink" placeholder="https://docs.google.com/spreadsheets/..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                 </div>
 
-                <div class="pt-4">
-                    <button type="submit" id="adminModalSubmitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
-                        Publish Offer Real-Time
+                <div class="pt-4 flex space-x-3">
+                    <button type="button" onclick="closeAdminAddOfferModal()" class="w-1/3 theme-box-sub border hover:border-amber-500 font-bold py-3 px-4 rounded-xl transition text-xs cursor-pointer">
+                        Cancel
+                    </button>
+                    <button type="submit" id="adminModalSubmitBtn" class="w-2/3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                        Save & Publish
                     </button>
                 </div>
             </form>
@@ -449,14 +461,14 @@
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Select Vertical of Interest *</label>
                     <select id="buyer_vertical" name="buyer_vertical" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
                         <option value="">Select Vertical</option>
-                        <option value="ACA Offers">ACA Offers (Inbounds & Live Transfers)</option>
-                        <option value="Medicare Offers">Medicare Offers (Inbounds & Live Transfers)</option>
-                        <option value="Final Expense Offers">Final Expense Offers (Inbounds & Live Transfers)</option>
-                        <option value="Auto Offers">Auto Offers (Inbounds & Live Transfers)</option>
-                        <option value="Home Insurance Offers">Home Insurance Offers (Inbounds & Live Transfers)</option>
-                        <option value="SSDI Offers">SSDI Offers (Inbounds & Live Transfers)</option>
-                        <option value="Debt Offers">Debt Offers (Inbounds & Live Transfers)</option>
-                        <option value="Hospital Indemnity Offers">Hospital Indemnity Offers (Inbounds & Live Transfers)</option>
+                        <option value="ACA OFFERS">ACA Offers (Inbounds & Live Transfers)</option>
+                        <option value="MEDICARE OFFERS">Medicare Offers (Inbounds & Live Transfers)</option>
+                        <option value="FINAL EXPENSE OFFERS">Final Expense Offers (Inbounds & Live Transfers)</option>
+                        <option value="AUTO OFFERS">Auto Offers (Inbounds & Live Transfers)</option>
+                        <option value="HOME INSURANCE OFFERS">Home Insurance Offers (Inbounds & Live Transfers)</option>
+                        <option value="SSDI OFFERS">SSDI Offers (Inbounds & Live Transfers)</option>
+                        <option value="DEBT OFFERS">Debt Offers (Inbounds & Live Transfers)</option>
+                        <option value="HOSPITAL INDEMNITY OFFERS">Hospital Indemnity Offers (Inbounds & Live Transfers)</option>
                     </select>
                 </div>
 
@@ -656,7 +668,6 @@
                 
                 let cardFooterHtml = '';
                 if (currentMode === 'publisher') {
-                    // Count only active offers for publishers view
                     const activeWt = v.wt.filter(o => o.status === 'Active').length;
                     const activeIb = v.ib.filter(o => o.status === 'Active').length;
                     const totalOffers = activeWt + activeIb;
@@ -723,26 +734,26 @@
             const wtContainer = document.getElementById('wtContainer');
             const ibContainer = document.getElementById('ibContainer');
 
-            // Filter offers if not logged in as admin (Publishers only see active offers, Admins see both active & paused)
-            const wtFiltered = isAdminLoggedIn ? vertical.wt : vertical.wt.filter(o => o.status === 'Active');
-            const ibFiltered = isAdminLoggedIn ? vertical.ib : vertical.ib.filter(o => o.status === 'Active');
+            // Render WT list filtering out paused offers if not admin
+            const wtCards = vertical.wt.map((offer, index) => {
+                if (!isAdminLoggedIn && offer.status !== 'Active') return '';
+                return renderOfferCard(offer, 'Live Transfer', 'wt', index);
+            }).filter(Boolean);
 
-            if (wtFiltered.length > 0) {
-                wtContainer.innerHTML = vertical.wt.map((offer, index) => {
-                    // If regular publisher and offer is paused, skip rendering it
-                    if (!isAdminLoggedIn && offer.status !== 'Active') return '';
-                    return renderOfferCard(offer, 'Live Transfer', 'wt', index);
-                }).join('');
+            // Render IB list filtering out paused offers if not admin
+            const ibCards = vertical.ib.map((offer, index) => {
+                if (!isAdminLoggedIn && offer.status !== 'Active') return '';
+                return renderOfferCard(offer, 'Inbound Call', 'ib', index);
+            }).filter(Boolean);
+
+            if (wtCards.length > 0) {
+                wtContainer.innerHTML = wtCards.join('');
             } else {
                 wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
             }
 
-            if (ibFiltered.length > 0) {
-                ibContainer.innerHTML = vertical.ib.map((offer, index) => {
-                    // If regular publisher and offer is paused, skip rendering it
-                    if (!isAdminLoggedIn && offer.status !== 'Active') return '';
-                    return renderOfferCard(offer, 'Inbound Call', 'ib', index);
-                }).join('');
+            if (ibCards.length > 0) {
+                ibContainer.innerHTML = ibCards.join('');
             } else {
                 ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
             }
@@ -766,7 +777,6 @@
                 `;
             }
 
-            // Admin edit controls toolbar inside card if logged in
             let adminControls = '';
             if (isAdminLoggedIn) {
                 adminControls = `
@@ -777,15 +787,12 @@
                                 ${isActive ? '⏸️ Pause' : '🟢 Activate'}
                             </button>
                             <button onclick="openAdminEditModal('${typeKey}', ${index})" class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg text-[10px] font-bold transition hover:bg-amber-400 cursor-pointer">
-                                ✏️ Edit
+                                ✏️ Edit & Save
                             </button>
                         </div>
                     </div>
                 `;
             }
-
-            // If card is paused and viewed by a publisher, don't display it
-            if (!isAdminLoggedIn && !isActive) return '';
 
             return `
                 <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
@@ -879,8 +886,9 @@
             }
             document.getElementById('editItemIndex').value = "-1";
             document.getElementById('adminModalTitle').textContent = "Add Real-Time Offer";
-            document.getElementById('adminModalSubmitBtn').textContent = "Publish Offer Real-Time";
+            document.getElementById('adminModalSubmitBtn').textContent = "Save & Publish Live";
             document.getElementById('newOfferType').value = "wt";
+            document.getElementById('newOfferStatus').value = "Active";
             document.getElementById('newOfferName').value = "";
             document.getElementById('newOfferPayout').value = "";
             document.getElementById('newOfferPayTerm').value = "";
@@ -896,6 +904,7 @@
             const offer = verticalsData[activeCategoryKey][typeKey][index];
             document.getElementById('editItemIndex').value = index;
             document.getElementById('newOfferType').value = typeKey;
+            document.getElementById('newOfferStatus').value = offer.status || "Active";
             document.getElementById('adminModalTitle').textContent = "Edit Offer: " + offer.name;
             document.getElementById('adminModalSubmitBtn').textContent = "Save Changes Real-Time";
             
@@ -940,20 +949,22 @@
                 cap: "None",
                 cc: "None",
                 qualifiers: document.getElementById('newOfferQualifiers').value,
-                status: "Active",
+                status: document.getElementById('newOfferStatus').value,
                 zipListLink: document.getElementById('newOfferZipLink').value || ""
             };
 
             if (editIndex > -1) {
-                // If editing existing item, preserve its current status and replace at index
-                offerData.status = verticalsData[activeCategoryKey][type][editIndex] ? verticalsData[activeCategoryKey][type][editIndex].status : "Active";
-                verticalsData[activeCategoryKey][type][editIndex] = offerData;
+                // If type changed during edit, remove from old array and push to new array
+                const oldType = type === 'wt' ? 'ib' : 'wt';
+                if (verticalsData[activeCategoryKey][oldType][editIndex]) {
+                    verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
+                }
+                verticalsData[activeCategoryKey][type].push(offerData);
             } else {
-                // Adding a brand new offer
                 verticalsData[activeCategoryKey][type].push(offerData);
             }
 
-            alert(editIndex > -1 ? "Offer updated successfully!" : "Offer successfully published live!");
+            alert(editIndex > -1 ? "Offer updated and saved successfully!" : "New offer saved and published live!");
             closeAdminAddOfferModal();
             selectVertical(activeCategoryKey);
         }
@@ -977,7 +988,7 @@
         function openBuyerContactModalForVertical(verticalName) {
             const selectEl = document.getElementById('buyer_vertical');
             for (let i = 0; i < selectEl.options.length; i++) {
-                if (selectEl.options[i].text.toLowerCase().includes(verticalName.toLowerCase())) {
+                if (selectEl.options[i].value.toLowerCase() === verticalName.toLowerCase() || selectEl.options[i].text.toLowerCase().includes(verticalName.toLowerCase())) {
                     selectEl.selectedIndex = i;
                     break;
                 }
