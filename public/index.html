@@ -507,7 +507,7 @@
         let isAdminLoggedIn = false;
         let activeCategoryKey = '';
 
-        const verticalsData = {
+        const defaultVerticalsData = {
             "ACA OFFERS": {
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
@@ -590,6 +590,13 @@
                 ib: []
             }
         };
+
+        // Load data from localStorage or use defaults
+        let verticalsData = JSON.parse(localStorage.getItem('elija_verticals_data')) || defaultVerticalsData;
+
+        function saveToLocalStorage() {
+            localStorage.setItem('elija_verticals_data', JSON.stringify(verticalsData));
+        }
 
         function selectRole(role) {
             currentMode = role;
@@ -926,6 +933,7 @@
         function toggleOfferStatus(typeKey, index) {
             const offer = verticalsData[activeCategoryKey][typeKey][index];
             offer.status = (offer.status === 'Active') ? 'Paused' : 'Active';
+            saveToLocalStorage();
             renderActiveOffers();
         }
 
@@ -962,6 +970,7 @@
                 verticalsData[activeCategoryKey][newType].push(offerData);
             }
 
+            saveToLocalStorage();
             alert(editIndex > -1 ? "Offer updated and saved successfully!" : "New offer saved and published live!");
             closeAdminAddOfferModal();
             renderActiveOffers();
