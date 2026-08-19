@@ -507,7 +507,7 @@
         let isAdminLoggedIn = false;
         let activeCategoryKey = '';
 
-        let verticalsData = {
+        const verticalsData = {
             "ACA OFFERS": {
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
@@ -590,36 +590,6 @@
                 ib: []
             }
         };
-
-        async function loadOffersData() {
-            try {
-                const response = await fetch('/api/offers', { cache: 'no-store', credentials: 'include' });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || 'Failed to load offers');
-                verticalsData = data;
-                renderVerticals();
-                if (activeCategoryKey && verticalsData[activeCategoryKey]) renderActiveOffers();
-            } catch (err) {
-                console.error('Offer load error:', err);
-                // Keep bundled offers visible if the API is temporarily unavailable.
-                renderVerticals();
-            }
-        }
-
-        async function persistOffers() {
-            const response = await fetch('/api/offers', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify(verticalsData)
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result.error || 'Failed to save offers');
-            verticalsData = result.offers || verticalsData;
-        }
-
-        // Load the authoritative offer list from Google Sheets on every page load.
-        window.addEventListener('DOMContentLoaded', () => loadOffersData());
 
         function selectRole(role) {
             currentMode = role;
@@ -894,134 +864,127 @@
             document.getElementById('adminLoginModal').classList.add('hidden');
         }
 
-        async function handleAdminLogin(e) {
+        function handleAdminLogin(e) {
             e.preventDefault();
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
-            try {
-                const response = await fetch('/api/admin-login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify({ username: user, password: pass })
-                });
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error || 'Login failed');
+
+            if (user === 'admin' && pass === 'elija2026') {
                 isAdminLoggedIn = true;
                 closeAdminLoginModal();
                 alert("Admin Authentication Successful! You can now add, edit, or toggle status of offers in real time.");
                 document.getElementById('adminAddOfferBtn').classList.remove('hidden');
                 document.getElementById('adminBtnText').textContent = "Admin (Logged In)";
                 renderVerticals();
-                if (activeCategoryKey) renderActiveOffers();
-            } catch (err) {
-                alert("Login error: " + err.message);
+                if (activeCategoryKey) {
+                    renderActiveOffers();
+                }
+            } else {
+                alert("Invalid username or password! Use username: admin, password: elija2026");
             }
         }
 
+        function saveOffersToStorage() {
+            try {
+                localStorage.setItem('elija_verticals_data', JSON.stringify(verticalsData));
+            } catch (err) { console.error(err); }
+        }
+
+        function loadOffersFromStorage() {
+            try {
+                const saved = localStorage.getItem('elija_verticals_data');
+                if (!saved) return;
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    if (!verticalsData[key]) return;
+                    if (Array.isArray(data[key].wt)) verticalsData[key].wt = data[key].wt;
+                    if (Array.isArray(data[key].ib)) verticalsData[key].ib = data[key].ib;
+                });
+            } catch (err) { console.error(err); }
+        }
+
+        function parseCapCc(value) {
+            const text = value || '';
+            const cap = (text.match(/Cap\s*:\s*([^|]+)/i) || [,'None'])[1].trim();
+            const cc = (text.match(/CC\s*:\s*(.+)$/i) || [,'None'])[1].trim();
+            return { cap: cap || 'None', cc: cc || 'None' };
+        }
+
+        loadOffersFromStorage();
+
         function openAdminAddOfferModal() {
-            if (!isAdminLoggedIn) {
-                openAdminLoginModal();
-                return;
-            }
-            document.getElementById('editItemIndex').value = "-1";
-            document.getElementById('adminModalTitle').textContent = "Add Real-Time Offer";
-            document.getElementById('adminModalSubmitBtn').textContent = "Save & Publish Live";
-            document.getElementById('newOfferType').value = "wt";
-            document.getElementById('newOfferStatus').value = "Active";
-            document.getElementById('newOfferName').value = "";
-            document.getElementById('newOfferPayout').value = "";
-            document.getElementById('newOfferPayTerm').value = "";
-            document.getElementById('newOfferStates').value = "";
-            document.getElementById('newOfferHours').value = "";
-            document.getElementById('newOfferCapCc').value = "Cap: None | CC: None";
-            document.getElementById('newOfferQualifiers').value = "";
-            document.getElementById('newOfferZipLink').value = "";
+            if (!isAdminLoggedIn) return openAdminLoginModal();
+            document.getElementById('editItemIndex').value = '-1';
+            document.getElementById('editItemType').value = 'wt';
+            document.getElementById('adminModalTitle').textContent = 'Add Real-Time Offer';
+            document.getElementById('adminModalSubmitBtn').textContent = 'Save & Publish Live';
+            document.getElementById('newOfferType').value = 'wt';
+            document.getElementById('newOfferStatus').value = 'Active';
+            ['newOfferName','newOfferPayout','newOfferPayTerm','newOfferStates','newOfferHours','newOfferQualifiers','newOfferZipLink'].forEach(id => document.getElementById(id).value='');
+            document.getElementById('newOfferCapCc').value='Cap: None | CC: None';
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
 
         function openAdminEditModal(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey][typeKey][index];
-            document.getElementById('editItemIndex').value = index;
+            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
+            if (!offer) return alert('Offer not found. Please refresh the page.');
+            document.getElementById('editItemIndex').value = String(index);
             document.getElementById('editItemType').value = typeKey;
             document.getElementById('newOfferType').value = typeKey;
-            document.getElementById('newOfferStatus').value = offer.status || "Active";
-            document.getElementById('adminModalTitle').textContent = "Edit Offer: " + offer.name;
-            document.getElementById('adminModalSubmitBtn').textContent = "Save Changes Real-Time";
-            
-            document.getElementById('newOfferName').value = offer.name;
-            document.getElementById('newOfferPayout').value = offer.payout;
-            document.getElementById('newOfferPayTerm').value = offer.payTerm;
-            document.getElementById('newOfferStates').value = offer.states;
-            document.getElementById('newOfferHours').value = offer.hours;
-            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap} | CC: ${offer.cc}`;
-            document.getElementById('newOfferQualifiers').value = offer.qualifiers;
-            document.getElementById('newOfferZipLink').value = offer.zipListLink || "";
-
+            document.getElementById('newOfferStatus').value = offer.status || 'Active';
+            document.getElementById('adminModalTitle').textContent = 'Edit Offer: ' + (offer.name || 'Offer');
+            document.getElementById('adminModalSubmitBtn').textContent = 'Save Changes Real-Time';
+            document.getElementById('newOfferName').value = offer.name || '';
+            document.getElementById('newOfferPayout').value = offer.payout || '';
+            document.getElementById('newOfferPayTerm').value = offer.payTerm || '';
+            document.getElementById('newOfferStates').value = offer.states || '';
+            document.getElementById('newOfferHours').value = offer.hours || '';
+            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap || 'None'} | CC: ${offer.cc || 'None'}`;
+            document.getElementById('newOfferQualifiers').value = offer.qualifiers || '';
+            document.getElementById('newOfferZipLink').value = offer.zipListLink || '';
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
 
-        function closeAdminAddOfferModal() {
-            document.getElementById('adminAddOfferModal').classList.add('hidden');
-        }
+        function closeAdminAddOfferModal() { document.getElementById('adminAddOfferModal').classList.add('hidden'); }
 
-        async function toggleOfferStatus(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey][typeKey][index];
+        function toggleOfferStatus(typeKey, index) {
+            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
             if (!offer) return;
-            const previous = offer.status;
             offer.status = offer.status === 'Active' ? 'Paused' : 'Active';
-            try {
-                await persistOffers();
-                renderVerticals();
-                renderActiveOffers();
-            } catch (err) {
-                offer.status = previous;
-                alert("Could not save offer status: " + err.message);
-            }
+            saveOffersToStorage();
+            renderActiveOffers();
         }
 
-        async function saveOfferData(e) {
+        function saveOfferData(e) {
             e.preventDefault();
-            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) {
-                alert("Please select a vertical first!");
-                return;
-            }
-
-            const editIndex = parseInt(document.getElementById('editItemIndex').value);
-            const oldType = document.getElementById('editItemType').value;
-            const newType = document.getElementById('newOfferType').value;
-            const capCcRaw = document.getElementById('newOfferCapCc').value || '';
-            const capMatch = capCcRaw.match(/Cap:\s*([^|]*)/i);
-            const ccMatch = capCcRaw.match(/CC:\s*(.*)$/i);
+            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) return alert('Please select a vertical first!');
+            const editIndex = Number(document.getElementById('editItemIndex').value);
+            const oldType = document.getElementById('editItemType').value || 'wt';
+            const newType = document.getElementById('newOfferType').value || 'wt';
+            const capCc = parseCapCc(document.getElementById('newOfferCapCc').value);
             const offerData = {
                 name: document.getElementById('newOfferName').value.trim(),
                 payout: document.getElementById('newOfferPayout').value.trim(),
                 payTerm: document.getElementById('newOfferPayTerm').value.trim(),
                 states: document.getElementById('newOfferStates').value.trim(),
                 hours: document.getElementById('newOfferHours').value.trim(),
-                cap: capMatch ? capMatch[1].trim() : 'None',
-                cc: ccMatch ? ccMatch[1].trim() : 'None',
+                cap: capCc.cap, cc: capCc.cc,
                 qualifiers: document.getElementById('newOfferQualifiers').value.trim(),
                 status: document.getElementById('newOfferStatus').value,
                 zipListLink: document.getElementById('newOfferZipLink').value.trim()
             };
-
-            if (editIndex > -1 && verticalsData[activeCategoryKey][oldType]?.[editIndex]) {
-                verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
-            }
-            verticalsData[activeCategoryKey][newType].push(offerData);
-
-            try {
-                await persistOffers();
-                alert(editIndex > -1 ? "Offer updated and published live!" : "New offer saved and published live!");
-                closeAdminAddOfferModal();
-                renderVerticals();
-                renderActiveOffers();
-            } catch (err) {
-                alert("Could not save offer: " + err.message);
-                // Reload authoritative data from server after a failed save.
-                await loadOffersData();
-            }
+            const category = verticalsData[activeCategoryKey];
+            if (editIndex >= 0 && category[oldType]?.[editIndex]) {
+                if (oldType === newType) category[oldType][editIndex] = { ...category[oldType][editIndex], ...offerData };
+                else { const old = category[oldType].splice(editIndex,1)[0]; category[newType].push({ ...old, ...offerData }); }
+            } else { category[newType].push(offerData); }
+            saveOffersToStorage();
+            document.getElementById('editItemIndex').value='-1';
+            document.getElementById('editItemType').value='wt';
+            closeAdminAddOfferModal();
+            renderVerticals();
+            renderActiveOffers();
+            alert(editIndex >= 0 ? 'Offer updated and saved successfully!' : 'New offer saved and published live!');
         }
 
         function openModal(offerName, offerType) {
