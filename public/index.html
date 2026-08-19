@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijay Marketing Solutions - Portal</title>
+    <title>Elijay Marketing Solutions - Partner Network Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta+Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .gold-gradient-text {
             background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
             -webkit-background-clip: text;
@@ -59,7 +59,7 @@
                 <!-- Admin Access Button -->
                 <button onclick="openAdminLoginModal()" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-lock text-[10px]"></i>
-                    <span>Admin Login</span>
+                    <span id="adminBtnText">Admin Login</span>
                 </button>
 
                 <span class="hidden md:inline-flex text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full">
@@ -79,12 +79,12 @@
             </div>
             <div>
                 <h4 class="text-xs font-bold text-amber-500 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
-                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under leadership of Natalia Pacheco & Victor Pacheco.</p>
+                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under executive leadership of Natalia Pacheco & Victor Pacheco.</p>
             </div>
         </div>
 
         <!-- INTRO ROLE SELECTOR VIEW -->
-        <div id="introView" class="space-y-6 py-4">
+        <div id="introView" class="space-y-6 py-2">
             <div class="theme-card border text-white p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden text-center max-w-4xl mx-auto">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10">
@@ -93,20 +93,63 @@
                         <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Marketing Solutions</span>
                     </div>
                     <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
-                    <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Please select your primary objective below to proceed.</p>
+                    <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Connecting top-tier publishers and performance buyers with verified high-intent live transfers and inbound call campaigns.</p>
                 
-                    <!-- Leadership Quick Links -->
-                    <div class="flex flex-wrap justify-center items-center gap-4 mt-6 text-xs">
-                        <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="theme-box-sub border px-3 py-1.5 rounded-lg hover:border-amber-500 transition flex items-center space-x-2">
-                            <i class="fa-brands fa-linkedin text-amber-400"></i>
-                            <span class="theme-heading font-bold">Natalia Pacheco</span> <span class="theme-text-muted">(CEO)</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="theme-box-sub border px-3 py-1.5 rounded-lg hover:border-amber-500 transition flex items-center space-x-2">
-                            <i class="fa-brands fa-linkedin text-amber-400"></i>
-                            <span class="theme-heading font-bold">Victor Pacheco</span> <span class="theme-text-muted">(Co-Founder)</span>
-                        </a>
+                    <!-- Stats Badge Row -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6 max-w-xl mx-auto">
+                        <div class="theme-box-sub border p-3 rounded-xl text-center">
+                            <div class="text-amber-400 font-black text-base sm:text-lg">300+</div>
+                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Happy Publishers</div>
+                        </div>
+                        <div class="theme-box-sub border p-3 rounded-xl text-center">
+                            <div class="text-amber-400 font-black text-base sm:text-lg">8+</div>
+                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Core Verticals</div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 theme-box-sub border p-3 rounded-xl text-center">
+                            <div class="text-amber-400 font-black text-base sm:text-lg">100%</div>
+                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Verified Compliant</div>
+                        </div>
                     </div>
 
+                    <!-- Wonderful Founders Section -->
+                    <div class="mt-8 pt-6 border-t border-amber-500/20 text-left">
+                        <div class="text-center mb-4">
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Executive Leadership</span>
+                            <h3 class="text-sm sm:text-base font-bold theme-heading mt-2">Meet Our Wonderful Founders</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Natalia Pacheco -->
+                            <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-black text-lg shrink-0">
+                                    NP
+                                </div>
+                                <div class="flex-grow min-w-0">
+                                    <h4 class="text-xs font-bold theme-heading truncate">Natalia Pacheco</h4>
+                                    <p class="text-[10px] text-amber-500 font-semibold">Chief Executive Officer (CEO)</p>
+                                    <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="inline-flex items-center text-[10px] text-amber-400 hover:underline mt-1">
+                                        <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Victor Pacheco -->
+                            <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-black text-lg shrink-0">
+                                    VP
+                                </div>
+                                <div class="flex-grow min-w-0">
+                                    <h4 class="text-xs font-bold theme-heading truncate">Victor Pacheco</h4>
+                                    <p class="text-[10px] text-amber-500 font-semibold">Co-Founder & Operations</p>
+                                    <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="inline-flex items-center text-[10px] text-amber-400 hover:underline mt-1">
+                                        <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Selector Options -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 text-left">
                         <!-- Publisher Option -->
                         <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-amber-500/50 hover:border-amber-400 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
@@ -114,7 +157,7 @@
                                 <i class="fa-solid fa-headset"></i>
                             </div>
                             <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a publisher looking to sell calls?</h3>
-                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Here are our active offers and direct payouts tailored for high-volume publishing networks.</p>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Explore our active offers, direct payouts, and real-time campaign specifications.</p>
                             <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
                                 View Active Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                             </span>
@@ -126,7 +169,7 @@
                                 <i class="fa-solid fa-chart-pie"></i>
                             </div>
                             <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a buyer looking to buy calls?</h3>
-                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Here are the verticals we have calls for. Contact us for pricing and custom routing.</p>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Review our vertical capabilities and submit your target pricing and routing requirements.</p>
                             <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
                                 View Verticals Overview <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                             </span>
@@ -141,7 +184,7 @@
             <div class="flex items-center justify-between flex-wrap gap-3">
                 <button onclick="resetPortal()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to Role Selection</span>
+                    <span>Back to Home / Role Selection</span>
                 </button>
                 <div class="flex items-center space-x-3">
                     <span id="roleBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Portal</span>
@@ -224,7 +267,7 @@
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <h3 class="text-lg font-bold theme-heading">Admin Portal Login</h3>
-                <p class="text-xs theme-text-muted mt-1">Enter credentials to manage offers in real-time.</p>
+                <p class="text-xs theme-text-muted mt-1">Enter credentials to manage and edit offers in real-time.</p>
             </div>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
@@ -245,7 +288,7 @@
         </div>
     </div>
 
-    <!-- Admin Add Offer Modal -->
+    <!-- Admin Add / Edit Offer Modal -->
     <div id="adminAddOfferModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="closeAdminAddOfferModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
@@ -255,10 +298,12 @@
             <div class="mb-6">
                 <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Admin Panel</span>
                 <h3 id="adminModalTitle" class="text-xl font-bold theme-heading mt-3">Add Real-Time Offer</h3>
-                <p class="text-xs theme-text-muted mt-1">Configure offer parameters to publish instantly on the portal.</p>
+                <p class="text-xs theme-text-muted mt-1">Configure offer parameters to publish or update instantly on the portal.</p>
             </div>
 
-            <form onsubmit="saveNewOffer(event)" class="space-y-4">
+            <form onsubmit="saveOfferData(event)" class="space-y-4">
+                <input type="hidden" id="editItemIndex" value="-1">
+                
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
                     <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
@@ -310,7 +355,7 @@
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                    <button type="submit" id="adminModalSubmitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
                         Publish Offer Real-Time
                     </button>
                 </div>
@@ -487,7 +532,7 @@
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
                 ],
                 ib: [
                     { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" }
@@ -545,7 +590,7 @@
 
             if (role === 'publisher') {
                 mainHeadingTitle.textContent = "Active Publishing Offers";
-                mainHeadingDesc.textContent = "Here are our active offers and direct payouts tailored for high-volume publishing networks. Select a vertical below to review.";
+                mainHeadingDesc.textContent = "Here are our active offers and direct payouts tailored for our 300+ publishing networks. Select a vertical below to review.";
                 roleBadge.textContent = "Publishers Portal";
                 buyerContactHeaderBtn.classList.add('hidden');
             } else {
@@ -675,19 +720,19 @@
             const ibContainer = document.getElementById('ibContainer');
 
             if (vertical.wt.length > 0) {
-                wtContainer.innerHTML = vertical.wt.map(offer => renderOfferCard(offer, 'Live Transfer')).join('');
+                wtContainer.innerHTML = vertical.wt.map((offer, index) => renderOfferCard(offer, 'Live Transfer', 'wt', index)).join('');
             } else {
                 wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
             }
 
             if (vertical.ib.length > 0) {
-                ibContainer.innerHTML = vertical.ib.map(offer => renderOfferCard(offer, 'Inbound Call')).join('');
+                ibContainer.innerHTML = vertical.ib.map((offer, index) => renderOfferCard(offer, 'Inbound Call', 'ib', index)).join('');
             } else {
                 ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
             }
         }
 
-        function renderOfferCard(offer, typeLabel) {
+        function renderOfferCard(offer, typeLabel, typeKey, index) {
             const isActive = offer.status === 'Active';
             const statusBadge = isActive 
                 ? `<span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
@@ -701,6 +746,24 @@
                             <i class="fa-solid fa-map-location-dot"></i>
                             <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
                         </a>
+                    </div>
+                `;
+            }
+
+            // Admin edit controls toolbar inside card if logged in
+            let adminControls = '';
+            if (isAdminLoggedIn) {
+                adminControls = `
+                    <div class="mt-4 pt-3 border-t border-amber-500/20 flex items-center justify-between gap-2 bg-amber-500/5 p-2.5 rounded-xl">
+                        <span class="text-[10px] font-bold text-amber-500 uppercase">Admin Control:</span>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="toggleOfferStatus('${typeKey}', ${index})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition ${isActive ? 'bg-amber-500/20 text-amber-400 hover:bg-amber-500/30' : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30'} cursor-pointer">
+                                ${isActive ? '⏸️ Pause' : '🟢 Activate'}
+                            </button>
+                            <button onclick="openAdminEditModal('${typeKey}', ${index})" class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg text-[10px] font-bold transition hover:bg-amber-400 cursor-pointer">
+                                ✏️ Edit
+                            </button>
+                        </div>
                     </div>
                 `;
             }
@@ -725,6 +788,7 @@
                             <div><strong class="theme-text-muted">Qualifiers:</strong> ${offer.qualifiers}</div>
                         </div>
                         ${zipListBtn}
+                        ${adminControls}
                     </div>
                     <div class="pt-4">
                         <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
@@ -775,12 +839,15 @@
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
 
-            // Default Credentials check
             if (user === 'admin' && pass === 'elija2026') {
                 isAdminLoggedIn = true;
                 closeAdminLoginModal();
-                alert("Admin Authentication Successful! You can now add/update offers in real time.");
+                alert("Admin Authentication Successful! You can now add, edit, or toggle status of offers in real time.");
                 document.getElementById('adminAddOfferBtn').classList.remove('hidden');
+                document.getElementById('adminBtnText').textContent = "Admin (Logged In)";
+                if (activeCategoryKey) {
+                    selectVertical(activeCategoryKey);
+                }
             } else {
                 alert("Invalid username or password! Use username: admin, password: elija2026");
             }
@@ -791,6 +858,37 @@
                 openAdminLoginModal();
                 return;
             }
+            document.getElementById('editItemIndex').value = "-1";
+            document.getElementById('adminModalTitle').textContent = "Add Real-Time Offer";
+            document.getElementById('adminModalSubmitBtn').textContent = "Publish Offer Real-Time";
+            document.getElementById('newOfferType').value = "wt";
+            document.getElementById('newOfferName').value = "";
+            document.getElementById('newOfferPayout').value = "";
+            document.getElementById('newOfferPayTerm').value = "";
+            document.getElementById('newOfferStates').value = "";
+            document.getElementById('newOfferHours').value = "";
+            document.getElementById('newOfferCapCc').value = "Cap: None | CC: None";
+            document.getElementById('newOfferQualifiers').value = "";
+            document.getElementById('newOfferZipLink').value = "";
+            document.getElementById('adminAddOfferModal').classList.remove('hidden');
+        }
+
+        function openAdminEditModal(typeKey, index) {
+            const offer = verticalsData[activeCategoryKey][typeKey][index];
+            document.getElementById('editItemIndex').value = index;
+            document.getElementById('newOfferType').value = typeKey;
+            document.getElementById('adminModalTitle').textContent = "Edit Offer: " + offer.name;
+            document.getElementById('adminModalSubmitBtn').textContent = "Save Changes Real-Time";
+            
+            document.getElementById('newOfferName').value = offer.name;
+            document.getElementById('newOfferPayout').value = offer.payout;
+            document.getElementById('newOfferPayTerm').value = offer.payTerm;
+            document.getElementById('newOfferStates').value = offer.states;
+            document.getElementById('newOfferHours').value = offer.hours;
+            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap} | CC: ${offer.cc}`;
+            document.getElementById('newOfferQualifiers').value = offer.qualifiers;
+            document.getElementById('newOfferZipLink').value = offer.zipListLink || "";
+
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
 
@@ -798,15 +896,25 @@
             document.getElementById('adminAddOfferModal').classList.add('hidden');
         }
 
-        function saveNewOffer(e) {
+        function toggleOfferStatus(typeKey, index) {
+            const offer = verticalsData[activeCategoryKey][typeKey][index];
+            offer.status = offer.status === 'Active' ? 'Paused' : 'Active';
+            selectVertical(activeCategoryKey);
+        }
+
+        function saveOfferData(e) {
             e.preventDefault();
             if (!activeCategoryKey || !verticalsData[activeCategoryKey]) {
                 alert("Please select a vertical first!");
                 return;
             }
 
+            const editIndex = parseInt(document.getElementById('editItemIndex').value);
             const type = document.getElementById('newOfferType').value; // 'wt' or 'ib'
-            const newOffer = {
+            
+            const capCcRaw = document.getElementById('newOfferCapCc').value;
+
+            const offerData = {
                 name: document.getElementById('newOfferName').value,
                 payout: document.getElementById('newOfferPayout').value,
                 payTerm: document.getElementById('newOfferPayTerm').value,
@@ -819,17 +927,19 @@
                 zipListLink: document.getElementById('newOfferZipLink').value || ""
             };
 
-            // Push to memory array
-            if (type === 'wt') {
-                verticalsData[activeCategoryKey].wt.push(newOffer);
-            } else {
-                verticalsData[activeCategoryKey].ib.push(newOffer);
+            if (editIndex >= -1) {
+                // If editing existing item
+                if (editIndex > -1) {
+                    // Keep existing status
+                    offerData.status = verticalsData[activeCategoryKey][type][editIndex].status;
+                    // Remove from old array if type changed, or update in place
+                    verticalsData[activeCategoryKey][type].splice(editIndex, 1);
+                }
+                verticalsData[activeCategoryKey][type].push(offerData);
             }
 
-            alert("Offer successfully published live!");
+            alert(editIndex > -1 ? "Offer updated successfully!" : "Offer successfully published live!");
             closeAdminAddOfferModal();
-            
-            // Refresh view
             selectVertical(activeCategoryKey);
         }
 
@@ -907,7 +1017,7 @@
             const formData = {
                 buyer_name: document.getElementById('buyer_name').value,
                 buyer_email: document.getElementById('buyer_email').value,
-                buyer_vertical: document.getElementById('buyer_vertical', value).value,
+                buyer_vertical: document.getElementById('buyer_vertical').value,
                 buyer_details: document.getElementById('buyer_details').value
             };
 
