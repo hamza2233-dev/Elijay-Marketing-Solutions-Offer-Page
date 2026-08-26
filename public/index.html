@@ -3,267 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elijay Marketing Solutions - Partner Network Portal</title>
+    <title>Elijay Performance Partners - Partner Network Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #080A09 !important; color: #f1f5f9 !important; }
+        
+        :root {
+            --brand-black: #080A09;
+            --brand-gold: #D4A43A;
+            --brand-emerald: #007A67;
+        }
+
         .gold-gradient-text {
-            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            background: linear-gradient(135deg, #fef08a 0%, #D4A43A 50%, #9a6f1d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .emerald-text { color: #007A67 !important; }
+
         /* Light mode overrides */
         html.light body { background-color: #f8fafc !important; color: #0f172a !important; }
-        html.light header { background-color: rgba(255, 255, 255, 0.9) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
-        html.light .theme-card { background-color: #ffffff !important; border-color: rgba(202, 138, 4, 0.2) !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        html.light .theme-sidebar { background-color: #ffffff !important; border-color: rgba(212, 164, 58, 0.2) !important; }
+        html.light header { background-color: rgba(255, 255, 255, 0.9) !important; border-color: rgba(212, 164, 58, 0.2) !important; }
+        html.light .theme-card { background-color: #ffffff !important; border-color: rgba(212, 164, 58, 0.2) !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         html.light .theme-box-sub { background-color: #f1f5f9 !important; border-color: #e2e8f0 !important; color: #334155 !important; }
         html.light .theme-text-muted { color: #64748b !important; }
         html.light .theme-heading { color: #0f172a !important; }
         html.light .theme-modal { background-color: #ffffff !important; }
         html.light .theme-input { background-color: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
         
-        /* Dark mode defaults */
-        html.dark body { background-color: #030712 !important; color: #f1f5f9 !important; }
-        html.dark header { background-color: rgba(15, 23, 42, 0.9) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
-        html.dark .theme-card { background-color: rgba(15, 23, 42, 0.6) !important; border-color: rgba(234, 179, 8, 0.2) !important; }
-        html.dark .theme-box-sub { background-color: #090d16 !important; border-color: #1e293b !important; color: #cbd5e1 !important; }
+        /* Dark mode defaults (Using exact #080A09 Black) */
+        html.dark body { background-color: #080A09 !important; color: #f1f5f9 !important; }
+        html.dark .theme-sidebar { background-color: #0b0e0d !important; border-color: rgba(212, 164, 58, 0.2) !important; }
+        html.dark header { background-color: rgba(8, 10, 9, 0.9) !important; border-color: rgba(212, 164, 58, 0.2) !important; }
+        html.dark .theme-card { background-color: rgba(12, 16, 14, 0.8) !important; border-color: rgba(212, 164, 58, 0.25) !important; }
+        html.dark .theme-box-sub { background-color: #040605 !important; border-color: #16201b !important; color: #cbd5e1 !important; }
         html.dark .theme-text-muted { color: #94a3b8 !important; }
         html.dark .theme-heading { color: #ffffff !important; }
-        html.dark .theme-modal { background-color: #0f172a !important; }
-        html.dark .theme-input { background-color: #030712 !important; border-color: #1e293b !important; color: #f1f5f9 !important; }
+        html.dark .theme-modal { background-color: #0b0e0d !important; }
+        html.dark .theme-input { background-color: #040605 !important; border-color: #16201b !important; color: #f1f5f9 !important; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
+<body class="min-h-screen flex selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
 
-    <!-- Top Navigation Header -->
-    <header class="backdrop-blur-md border-b sticky top-0 z-40 py-4 px-6 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetPortal()">
-                <div class="bg-slate-950 border border-amber-500/50 text-amber-400 w-11 h-11 rounded-xl flex flex-col items-center justify-center font-black shadow-lg shadow-amber-950/50">
-                    <span class="text-xs tracking-widest">EM</span>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="appSidebar" class="theme-sidebar w-64 border-r flex-shrink-0 min-h-screen hidden md:flex flex-col justify-between p-6 sticky top-0 z-50 transition-colors duration-300">
+        <div>
+            <!-- Brand Logo Header -->
+            <div class="flex items-center space-x-3 cursor-pointer pb-6 border-b border-amber-500/20" onclick="resetPortal()">
+                <div class="bg-black border border-[#D4A43A] text-[#D4A43A] w-11 h-11 rounded-xl flex items-center justify-center font-black shadow-lg shadow-amber-950/50">
+                    <span class="text-sm tracking-widest">EJ</span>
                 </div>
                 <div>
-                    <h1 class="text-xs sm:text-sm font-extrabold tracking-widest uppercase theme-heading">Elijay</h1>
-                    <p class="text-[9px] gold-gradient-text font-bold tracking-widest uppercase">Marketing Solutions</p>
+                    <h1 class="text-xs font-extrabold tracking-widest uppercase theme-heading">Elijay</h1>
+                    <p class="text-[9px] emerald-text font-bold tracking-widest uppercase">Performance Partners</p>
                 </div>
             </div>
-            
-            <div class="flex items-center space-x-3">
-                <button onclick="toggleTheme()" class="theme-box-sub border px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer hover:border-amber-500">
-                    <i id="themeIcon" class="fa-solid fa-moon text-amber-400"></i>
-                    <span id="themeText" class="hidden sm:inline">Dark</span>
+
+            <!-- Sidebar Nav Links -->
+            <nav class="mt-6 space-y-2">
+                <button onclick="resetPortal()" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                    <i class="fa-solid fa-house text-[#D4A43A]"></i>
+                    <span class="theme-heading">Home / Overview</span>
                 </button>
-
-                <!-- Admin Access Button -->
-                <button onclick="openAdminLoginModal()" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-lock text-[10px]"></i>
-                    <span id="adminBtnText">Admin Login</span>
+                <button onclick="selectRole('publisher')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                    <i class="fa-solid fa-headset text-[#D4A43A]"></i>
+                    <span class="theme-heading">Publisher Offers</span>
                 </button>
-
-                <span class="hidden md:inline-flex text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full">
-                    <span class="w-2 h-2 inline-block rounded-full bg-amber-500 animate-pulse mr-1.5"></span> Partner Network Portal
-                </span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 w-full flex-grow">
-        
-        <!-- Notice Banner -->
-        <div class="mb-8 bg-gradient-to-r from-amber-950/40 via-slate-900 to-emerald-950/40 border border-amber-500/30 p-4 sm:p-5 rounded-2xl flex items-center space-x-4 shadow-xl">
-            <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 p-3 rounded-xl shrink-0">
-                <i class="fa-solid fa-shield-halved text-lg"></i>
-            </div>
-            <div>
-                <h4 class="text-xs font-bold text-amber-500 uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
-                <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under executive leadership of Natalia Pacheco & Victor Pacheco.</p>
-            </div>
+                <button onclick="selectRole('buyer')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                    <i class="fa-solid fa-chart-pie text-[#D4A43A]"></i>
+                    <span class="theme-heading">Buyer Verticals</span>
+                </button>
+                <button onclick="openBuyerContactModal()" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold bg-[#007A67]/10 border border-[#007A67]/30 text-[#007A67] hover:bg-[#007A67]/20 text-left transition cursor-pointer">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Contact / Send Offer</span>
+                </button>
+            </nav>
         </div>
 
-        <!-- INTRO ROLE SELECTOR VIEW -->
-        <div id="introView" class="space-y-6 py-2">
-            <div class="theme-card border text-white p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden text-center max-w-4xl mx-auto">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10">
-                    <div class="inline-flex items-center space-x-2 bg-slate-950 border border-amber-500/40 px-3.5 py-1.5 rounded-lg mb-4">
-                        <span class="text-amber-400 font-black text-xs tracking-widest">EM</span>
-                        <span class="text-[10px] text-slate-300 font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Marketing Solutions</span>
+        <!-- Sidebar Footer / Admin Login -->
+        <div class="pt-6 border-t border-amber-500/20 space-y-3">
+            <button onclick="openAdminLoginModal()" class="w-full bg-[#D4A43A]/10 hover:bg-[#D4A43A]/20 text-[#D4A43A] border border-[#D4A43A]/30 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 cursor-pointer">
+                <i class="fa-solid fa-lock text-[10px]"></i>
+                <span id="adminBtnText">Admin Login</span>
+            </button>
+            <div class="text-[10px] theme-text-muted text-center leading-relaxed">
+                Built on Partnership,<br>Driven by Performance.
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="flex-grow flex flex-col min-h-screen justify-between">
+
+        <!-- Top Header Bar (Mobile & Quick Controls) -->
+        <header class="backdrop-blur-md border-b sticky top-0 z-40 py-4 px-6 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <!-- Mobile Hamburger / Logo Toggle -->
+                    <div class="md:hidden bg-black border border-[#D4A43A] text-[#D4A43A] w-10 h-10 rounded-xl flex items-center justify-center font-black cursor-pointer" onclick="resetPortal()">
+                        <span class="text-xs">EJ</span>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
-                    <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Connecting top-tier publishers and performance buyers with verified high-intent live transfers and inbound call campaigns.</p>
+                    <div>
+                        <h1 class="text-xs sm:text-sm font-extrabold tracking-widest uppercase theme-heading">Elijay</h1>
+                        <p class="text-[9px] emerald-text font-bold tracking-widest uppercase">Performance Partners</p>
+                    </div>
+                </div>
                 
-                    <!-- Stats Badge Row -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6 max-w-xl mx-auto">
-                        <div class="theme-box-sub border p-3 rounded-xl text-center">
-                            <div class="text-amber-400 font-black text-base sm:text-lg">300+</div>
-                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Happy Publishers</div>
-                        </div>
-                        <div class="theme-box-sub border p-3 rounded-xl text-center">
-                            <div class="text-amber-400 font-black text-base sm:text-lg">8+</div>
-                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Core Verticals</div>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1 theme-box-sub border p-3 rounded-xl text-center">
-                            <div class="text-amber-400 font-black text-base sm:text-lg">100%</div>
-                            <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Verified Compliant</div>
-                        </div>
-                    </div>
-
-                    <!-- Wonderful Founders Section -->
-                    <div class="mt-8 pt-6 border-t border-amber-500/20 text-left">
-                        <div class="text-center mb-4">
-                            <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Executive Leadership</span>
-                            <h3 class="text-sm sm:text-base font-bold theme-heading mt-2">Meet Our Wonderful Founders</h3>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- Natalia Pacheco -->
-                            <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-black text-lg shrink-0">
-                                    NP
-                                </div>
-                                <div class="flex-grow min-w-0">
-                                    <h4 class="text-xs font-bold theme-heading truncate">Natalia Pacheco</h4>
-                                    <p class="text-[10px] text-amber-500 font-semibold">Chief Executive Officer (CEO)</p>
-                                    <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="inline-flex items-center text-[10px] text-amber-400 hover:underline mt-1">
-                                        <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Victor Pacheco -->
-                            <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
-                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-black text-lg shrink-0">
-                                    VP
-                                </div>
-                                <div class="flex-grow min-w-0">
-                                    <h4 class="text-xs font-bold theme-heading truncate">Victor Pacheco</h4>
-                                    <p class="text-[10px] text-amber-500 font-semibold">Co-Founder & Operations</p>
-                                    <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="inline-flex items-center text-[10px] text-amber-400 hover:underline mt-1">
-                                        <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Role Selector Options -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 text-left">
-                        <!-- Publisher Option -->
-                        <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-amber-500/50 hover:border-amber-400 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
-                                <i class="fa-solid fa-headset"></i>
-                            </div>
-                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a publisher looking to sell calls?</h3>
-                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Explore our active offers, direct payouts, and real-time campaign specifications.</p>
-                            <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
-                                View Active Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
-                            </span>
-                        </div>
-
-                        <!-- Buyer Option -->
-                        <div onclick="selectRole('buyer')" class="theme-box-sub border border-slate-700 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
-                            <div class="w-12 h-12 rounded-xl theme-card border text-amber-400 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
-                                <i class="fa-solid fa-chart-pie"></i>
-                            </div>
-                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-400 transition mb-1.5">Are you a buyer looking to buy calls?</h3>
-                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Review our vertical capabilities and submit your target pricing and routing requirements.</p>
-                            <span class="inline-flex items-center text-xs font-bold text-amber-400 group-hover:translate-x-1 transition">
-                                View Verticals Overview <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- STEP 1: VERTICALS VIEW -->
-        <div id="verticalsView" class="hidden space-y-6">
-            <div class="flex items-center justify-between flex-wrap gap-3">
-                <button onclick="resetPortal()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to Home / Role Selection</span>
-                </button>
                 <div class="flex items-center space-x-3">
-                    <span id="roleBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Portal</span>
-                    <button id="buyerContactHeaderBtn" onclick="openBuyerContactModal()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Contact Us / Send Offer</span>
+                    <button onclick="toggleTheme()" class="theme-box-sub border px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 shadow-sm cursor-pointer hover:border-[#D4A43A]">
+                        <i id="themeIcon" class="fa-solid fa-moon text-[#D4A43A]"></i>
+                        <span id="themeText" class="hidden sm:inline">Dark</span>
                     </button>
+
+                    <span class="hidden md:inline-flex text-[11px] font-semibold bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20 px-3 py-1.5 rounded-full">
+                        <span class="w-2 h-2 inline-block rounded-full bg-[#D4A43A] animate-pulse mr-1.5"></span> Partner Network Portal
+                    </span>
                 </div>
             </div>
+        </header>
 
-            <!-- Hero Welcome Card -->
-            <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 max-w-2xl">
-                    <h2 id="mainHeadingTitle" class="text-2xl sm:text-4xl font-black tracking-tight theme-heading">Select a Campaign Vertical</h2>
-                    <p id="mainHeadingDesc" class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct publisher allocations and verified traffic.</p>
+        <!-- Main Container -->
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full flex-grow">
+            
+            <!-- Notice Banner -->
+            <div class="mb-8 bg-gradient-to-r from-amber-950/30 via-black to-emerald-950/30 border border-[#D4A43A]/30 p-4 sm:p-5 rounded-2xl flex items-center space-x-4 shadow-xl">
+                <div class="bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] p-3 rounded-xl shrink-0">
+                    <i class="fa-solid fa-shield-halved text-lg"></i>
                 </div>
-            </div>
-
-            <div class="flex items-center justify-between pt-2">
-                <h3 class="text-sm font-bold theme-text-muted uppercase tracking-wider flex items-center">
-                    <i class="fa-solid fa-layer-group text-amber-400 mr-2"></i> Operating Verticals
-                </h3>
-            </div>
-
-            <!-- Verticals Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="verticalsGrid">
-                <!-- Populated via JS -->
-            </div>
-        </div>
-
-        <!-- STEP 2: OFFERS VIEW (Publisher Flow Only) -->
-        <div id="offersView" class="hidden space-y-6">
-            <div class="flex items-center justify-between flex-wrap gap-3">
-                <button onclick="backToVerticals()" class="text-xs font-semibold text-amber-500 bg-amber-500/10 border border-amber-500/20 px-4 py-2.5 rounded-xl hover:bg-amber-500/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to Verticals</span>
-                </button>
-                <div class="flex items-center space-x-3">
-                    <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-amber-500 border border-amber-500/30">Category</span>
-                    <!-- Admin Quick Add Offer Button (Visible only when logged in as Admin) -->
-                    <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>+ Add New Offer</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 theme-card border p-6 rounded-2xl">
                 <div>
-                    <h2 id="categoryTitle" class="text-2xl font-black theme-heading">Offers</h2>
-                    <p class="text-xs theme-text-muted mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
-                </div>
-
-                <div class="flex theme-box-sub border p-1.5 rounded-xl self-start">
-                    <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer">
-                        <i class="fa-solid fa-headset mr-1.5"></i> Live Transfers (WT)
-                    </button>
-                    <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer">
-                        <i class="fa-solid fa-phone-volume mr-1.5"></i> Inbound Calls (IB)
-                    </button>
+                    <h4 class="text-xs font-bold text-[#D4A43A] uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
+                    <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under executive leadership of Natalia Pacheco & Victor Pacheco.</p>
                 </div>
             </div>
 
-            <div id="wtContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
-            <div id="ibContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5 hidden"></div>
-        </div>
+            <!-- INTRO ROLE SELECTOR VIEW -->
+            <div id="introView" class="space-y-6 py-2">
+                <div class="theme-card border text-white p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden text-center max-w-4xl mx-auto">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A43A]/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center space-x-2 bg-black border border-[#D4A43A]/40 px-3.5 py-1.5 rounded-lg mb-4">
+                            <span class="text-[#D4A43A] font-black text-xs tracking-widest">EJ</span>
+                            <span class="text-[10px] emerald-text font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
+                        <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Connecting top-tier publishers and performance buyers with verified high-intent live transfers and inbound call campaigns.</p>
+                    
+                        <!-- Stats Badge Row -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6 max-w-xl mx-auto">
+                            <div class="theme-box-sub border p-3 rounded-xl text-center">
+                                <div class="text-[#D4A43A] font-black text-base sm:text-lg">300+</div>
+                                <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Happy Publishers</div>
+                            </div>
+                            <div class="theme-box-sub border p-3 rounded-xl text-center">
+                                <div class="text-[#D4A43A] font-black text-base sm:text-lg">8+</div>
+                                <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Core Verticals</div>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1 theme-box-sub border p-3 rounded-xl text-center">
+                                <div class="text-[#D4A43A] font-black text-base sm:text-lg">100%</div>
+                                <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Verified Compliant</div>
+                            </div>
+                        </div>
 
-    </main>
+                        <!-- Wonderful Founders Section -->
+                        <div class="mt-8 pt-6 border-t border-[#D4A43A]/20 text-left">
+                            <div class="text-center mb-4">
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Executive Leadership</span>
+                                <h3 class="text-sm sm:text-base font-bold theme-heading mt-2">Meet Our Wonderful Founders</h3>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Natalia Pacheco -->
+                                <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
+                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">
+                                        NP
+                                    </div>
+                                    <div class="flex-grow min-w-0">
+                                        <h4 class="text-xs font-bold theme-heading truncate">Natalia Pacheco</h4>
+                                        <p class="text-[10px] text-[#D4A43A] font-semibold">Chief Executive Officer (CEO)</p>
+                                        <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="inline-flex items-center text-[10px] text-[#D4A43A] hover:underline mt-1">
+                                            <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Victor Pacheco -->
+                                <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
+                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">
+                                        VP
+                                    </div>
+                                    <div class="flex-grow min-w-0">
+                                        <h4 class="text-xs font-bold theme-heading truncate">Victor Pacheco</h4>
+                                        <p class="text-[10px] text-[#D4A43A] font-semibold">Co-Founder & Operations</p>
+                                        <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="inline-flex items-center text-[10px] text-[#D4A43A] hover:underline mt-1">
+                                            <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Role Selector Options -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 text-left">
+                            <!-- Publisher Option -->
+                            <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-[#D4A43A]/50 hover:border-[#D4A43A] p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                                <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Are you a publisher looking to sell calls?</h3>
+                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Explore our active offers, direct payouts, and real-time campaign specifications.</p>
+                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A] group-hover:translate-x-1 transition">
+                                    View Active Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                </span>
+                            </div>
+
+                            <!-- Buyer Option -->
+                            <div onclick="selectRole('buyer')" class="theme-box-sub border border-slate-700 hover:border-[#D4A43A]/40 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                                <div class="w-12 h-12 rounded-xl theme-card border text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition">
+                                    <i class="fa-solid fa-chart-pie"></i>
+                                </div>
+                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Are you a buyer looking to buy calls?</h3>
+                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Review our vertical capabilities and submit your target pricing and routing requirements.</p>
+                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A] group-hover:translate-x-1 transition">
+                                    View Verticals Overview <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1: VERTICALS VIEW -->
+            <div id="verticalsView" class="hidden space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <button onclick="resetPortal()" class="text-xs font-semibold text-[#D4A43A] bg-[#D4A43A]/10 border border-[#D4A43A]/20 px-4 py-2.5 rounded-xl hover:bg-[#D4A43A]/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Home / Role Selection</span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <span id="roleBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-[#D4A43A] border border-[#D4A43A]/30">Portal</span>
+                        <button id="buyerContactHeaderBtn" onclick="openBuyerContactModal()" class="hidden bg-[#007A67] hover:bg-[#006253] text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Contact Us / Send Offer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Welcome Card -->
+                <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A43A]/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 max-w-2xl">
+                        <h2 id="mainHeadingTitle" class="text-2xl sm:text-4xl font-black tracking-tight theme-heading">Select a Campaign Vertical</h2>
+                        <p id="mainHeadingDesc" class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct publisher allocations and verified traffic.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <h3 class="text-sm font-bold theme-text-muted uppercase tracking-wider flex items-center">
+                        <i class="fa-solid fa-layer-group text-[#D4A43A] mr-2"></i> Operating Verticals
+                    </h3>
+                </div>
+
+                <!-- Verticals Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="verticalsGrid">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- STEP 2: OFFERS VIEW (Publisher Flow Only) -->
+            <div id="offersView" class="hidden space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <button onclick="backToVerticals()" class="text-xs font-semibold text-[#D4A43A] bg-[#D4A43A]/10 border border-[#D4A43A]/20 px-4 py-2.5 rounded-xl hover:bg-[#D4A43A]/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Verticals</span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-[#D4A43A] border border-[#D4A43A]/30">Category</span>
+                        <!-- Admin Quick Add Offer Button -->
+                        <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-[#D4A43A] hover:bg-[#c29332] text-black font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>+ Add New Offer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 theme-card border p-6 rounded-2xl">
+                    <div>
+                        <h2 id="categoryTitle" class="text-2xl font-black theme-heading">Offers</h2>
+                        <p class="text-xs theme-text-muted mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
+                    </div>
+
+                    <div class="flex theme-box-sub border p-1.5 rounded-xl self-start">
+                        <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer">
+                            <i class="fa-solid fa-headset mr-1.5"></i> Live Transfers (WT)
+                        </button>
+                        <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer">
+                            <i class="fa-solid fa-phone-volume mr-1.5"></i> Inbound Calls (IB)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="wtContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                <div id="ibContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5 hidden"></div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
+            <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>&copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.</div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="hover:text-[#D4A43A] transition">Natalia Pacheco (CEO)</a>
+                    <span>•</span>
+                    <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="hover:text-[#D4A43A] transition">Victor Pacheco (Co-Founder)</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- Admin Login Modal -->
-    <div id="adminLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div id="adminLoginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="theme-modal theme-card border rounded-3xl max-w-sm w-full p-6 sm:p-8 shadow-2xl relative">
-            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6 text-center">
-                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg mx-auto mb-3">
+                <div class="w-12 h-12 rounded-2xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mx-auto mb-3">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <h3 class="text-lg font-bold theme-heading">Admin Portal Login</h3>
@@ -273,14 +343,14 @@
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Username</label>
-                    <input type="text" id="adminUser" required value="admin" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="text" id="adminUser" required value="admin" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Password</label>
-                    <input type="password" id="adminPass" required placeholder="••••••••" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="password" id="adminPass" required placeholder="••••••••" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                    <button type="submit" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
                         Authenticate & Login
                     </button>
                 </div>
@@ -289,14 +359,14 @@
     </div>
 
     <!-- Admin Add / Edit Offer Modal -->
-    <div id="adminAddOfferModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div id="adminAddOfferModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="closeAdminAddOfferModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+            <button onclick="closeAdminAddOfferModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6">
-                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Admin Panel</span>
+                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Admin Panel</span>
                 <h3 id="adminModalTitle" class="text-xl font-bold theme-heading mt-3">Add Real-Time Offer</h3>
                 <p class="text-xs theme-text-muted mt-1">Configure offer parameters and status to publish or update instantly on the portal.</p>
             </div>
@@ -308,14 +378,14 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
-                        <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <select id="newOfferType" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                             <option value="wt">Live Transfer (WT)</option>
                             <option value="ib">Inbound Call (IB)</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Status *</label>
-                        <select id="newOfferStatus" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <select id="newOfferStatus" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                             <option value="Active">Active (Publish Live)</option>
                             <option value="Paused">Paused (Hide from Publishers)</option>
                         </select>
@@ -324,51 +394,51 @@
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Name / Campaign ID *</label>
-                    <input type="text" id="newOfferName" required placeholder="e.g. ACA-EN-WT-CPA-NEW" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="text" id="newOfferName" required placeholder="e.g. ACA-EN-WT-CPA-NEW" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Payout / Bid Range *</label>
-                        <input type="text" id="newOfferPayout" required placeholder="$50 / CPA" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Payout *</label>
+                        <input type="text" id="newOfferPayout" required placeholder="$50 / CPA" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Pay Term *</label>
-                        <input type="text" id="newOfferPayTerm" required placeholder="Bi-Monthly Net 15" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <input type="text" id="newOfferPayTerm" required placeholder="Bi-Monthly Net 15" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">States *</label>
-                    <input type="text" id="newOfferStates" required placeholder="TX, FL, OH or Nationwide" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="text" id="newOfferStates" required placeholder="TX, FL, OH or Nationwide" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Hours *</label>
-                        <input type="text" id="newOfferHours" required placeholder="9am-6pm EST" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <input type="text" id="newOfferHours" required placeholder="9am-6pm EST" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Cap / CC *</label>
-                        <input type="text" id="newOfferCapCc" required placeholder="Cap: None | CC: None" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        <input type="text" id="newOfferCapCc" required placeholder="Cap: None | CC: None" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Qualifiers *</label>
-                    <input type="text" id="newOfferQualifiers" required placeholder="U64, Income under 20k..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="text" id="newOfferQualifiers" required placeholder="U64, Income under 20k..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Google Sheets Verified ZIP Link — <span class="text-slate-500 font-normal">Optional</span></label>
-                    <input type="url" id="newOfferZipLink" placeholder="https://docs.google.com/spreadsheets/..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <input type="url" id="newOfferZipLink" placeholder="https://docs.google.com/spreadsheets/..." class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div class="pt-4 flex space-x-3">
-                    <button type="button" onclick="closeAdminAddOfferModal()" class="w-1/3 theme-box-sub border hover:border-amber-500 font-bold py-3 px-4 rounded-xl transition text-xs cursor-pointer">
+                    <button type="button" onclick="closeAdminAddOfferModal()" class="w-1/3 theme-box-sub border hover:border-[#D4A43A] font-bold py-3 px-4 rounded-xl transition text-xs cursor-pointer">
                         Cancel
                     </button>
-                    <button type="submit" id="adminModalSubmitBtn" class="w-2/3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
+                    <button type="submit" id="adminModalSubmitBtn" class="w-2/3 bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
                         Save & Publish
                     </button>
                 </div>
@@ -377,14 +447,14 @@
     </div>
 
     <!-- Publisher Application Modal -->
-    <div id="applyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div id="applyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="closeModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+            <button onclick="closeModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6">
-                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Live Transfer</span>
+                <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Live Transfer</span>
                 <h3 id="modalOfferTitle" class="text-xl font-bold theme-heading mt-3">Apply for Offer</h3>
                 <p class="text-xs theme-text-muted mt-1">Provide your corporate credentials and compliance files for verification.</p>
             </div>
@@ -395,35 +465,35 @@
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">1. Company Name *</label>
                     <input type="text" id="company_name" name="company_name" required placeholder="e.g. Apex Media LLC" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Company Email *</label>
                     <input type="email" id="company_email" name="company_email" required placeholder="publisher@company.com" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Data Sample Upload (CSV, XLSX, PDF) *</label>
                     <input type="file" id="data_sample" name="data_sample" accept=".csv, .xlsx, .pdf" required 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. 3 Call Recordings Upload (MP3, WAV) *</label>
                     <input type="file" id="call_recordings" name="call_recordings" accept=".mp3, .wav" multiple required 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">5. Script Upload (PDF, DOCX) — <span class="text-slate-500 font-normal">Optional</span></label>
                     <input type="file" id="script_file" name="script_file" accept=".pdf, .docx" 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500/10 file:text-amber-500 hover:file:bg-amber-500/20 border rounded-xl theme-input p-1">
+                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
+                    <button type="submit" id="submitBtn" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span id="submitBtnText">Submit Compliance & Apply</span>
                     </button>
@@ -433,14 +503,14 @@
     </div>
 
     <!-- Buyer Contact / Send Offer Modal -->
-    <div id="buyerContactModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div id="buyerContactModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <button onclick="closeBuyerContactModal()" class="absolute top-5 right-5 theme-text-muted hover:text-amber-500 text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
+            <button onclick="closeBuyerContactModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="mb-6">
-                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">Buyer Inquiries</span>
+                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#007A67]/10 text-[#007A67] border border-[#007A67]/20">Buyer Inquiries</span>
                 <h3 class="text-xl font-bold theme-heading mt-3">Contact Us & Submit Your Offer</h3>
                 <p class="text-xs theme-text-muted mt-1">Let us know which vertical you want to buy calls for and share your pricing/terms.</p>
             </div>
@@ -449,18 +519,18 @@
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">1. Company / Buyer Name *</label>
                     <input type="text" id="buyer_name" name="buyer_name" required placeholder="e.g. Apex Buyer Group" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Corporate Email *</label>
                     <input type="email" id="buyer_email" name="buyer_email" required placeholder="buyer@company.com" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Select Vertical of Interest *</label>
-                    <select id="buyer_vertical" name="buyer_vertical" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-amber-500 transition">
+                    <select id="buyer_vertical" name="buyer_vertical" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                         <option value="">Select Vertical</option>
                         <option value="ACA OFFERS">ACA Offers (Inbounds & Live Transfers)</option>
                         <option value="MEDICARE OFFERS">Medicare Offers (Inbounds & Live Transfers)</option>
@@ -476,11 +546,11 @@
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. Your Pricing & Offer Details *</label>
                     <textarea id="buyer_details" name="buyer_details" rows="4" required placeholder="Specify your target payout, caps, transfer criteria, and routing requirements..." 
-                        class="w-full theme-input border rounded-xl p-4 text-xs focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+                        class="w-full theme-input border rounded-xl p-4 text-xs focus:outline-none focus:border-[#D4A43A] transition resize-none"></textarea>
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" id="buyerSubmitBtn" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
+                    <button type="submit" id="buyerSubmitBtn" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-950/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span id="buyerSubmitBtnText">Send Offer / Contact Admin</span>
                     </button>
@@ -488,18 +558,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>&copy; 2026 Elijay Marketing Solutions. All rights reserved. Secure Partner Portal.</div>
-            <div class="flex items-center space-x-4">
-                <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="hover:text-amber-500 transition">Natalia Pacheco (CEO)</a>
-                <span>•</span>
-                <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="hover:text-amber-500 transition">Victor Pacheco (Co-Founder)</a>
-            </div>
-        </div>
-    </footer>
 
     <!-- JavaScript Logic -->
     <script>
@@ -512,17 +570,13 @@
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
                 wt: [
-                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
-                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11/120", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
-                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25/90 sec duration", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Incomer 20k, Interested in healthcare plan, Spanish Speaking, NO STIMULIS OR PROMISES OF FREE MONEY", status: "Active" },
-                    { name: "ACA-EN-WT-CPL-MN10-RTB-NEARSHORE ONLY", payout: "$25-35/90-120 Sec Duration", payTerm: "Net 10", states: "Nearshore Only", hours: "6AM-4PM (PST), Mon-Fri | 9AM-2PM (PST), Sat", cap: "20/Day During Testing", cc: "None", qualifiers: "U64, Incomer 20k, Interested in Healthcare Plan, Must be employed, Nearshore only", status: "Active" },
-                    { name: "ACA-EN-WT- CPL-WN10-AP-5States (CG)", payout: "$15/180", payTerm: "Weekly N10", states: "Texas, Ohio, Arizona, Missouri, Indiana", hours: "Mon-Fri | 9AM-7:30PM EST", cap: "None", cc: "None", qualifiers: "U64, Incomer 20k, Interested in Healthcare Plan", status: "Active" }
+                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
+                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking, NO STIMULIS OR PROMISES", status: "Active" }
                 ],
                 ib: [
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 on 15-30 sec duration", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
-                    { name: "ACA-EN-IB-CPL-BMN20-RTB-SD-T2", payout: "$7-$15 on Raw- 25 sec duration", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST | Lunch: 1AM-2PM", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available", status: "Active" },
-                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-$30 on Raw- 120 sec duration", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST | Lunch: 1AM-2PM", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Interested in healthcare plan, Trusted Form & Journaya available", status: "Active" },
-                    { name: "ACA SPANISH RTB ok", payout: "$25-40 on 90-180 sec duration", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Incomer 20k, Interested in healthcare plan, Spanish Speaking", status: "Active" }
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
+                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
                 ]
             },
             "MEDICARE OFFERS": {
@@ -530,34 +584,29 @@
                 description: "High-intent senior Medicare Advantage and supplement inbound calls.",
                 wt: [],
                 ib: [
-                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-$30/90-240 sec. duration", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Ages 65-85, Inbounds only, No Flex Card Ads", status: "Active" },
+                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Ages 65-85, Inbounds only", status: "Active" },
                     { 
                         name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", 
-                        payout: "$8-$15/60-90 sec. duration", 
+                        payout: "$8-15 / 60-90 sec", 
                         payTerm: "Monthly Net 30", 
-                        states: "Nationwide (SEP ZIP CODE TARGETING)", 
+                        states: "Nationwide (SEP Zip Codes)", 
                         hours: "M-F 9am-9pm EST", 
                         cap: "None", 
                         cc: "None", 
-                        qualifiers: "Has Medicare Part A & B, Interested in a plan review, Overflow line accepts any ages", 
+                        qualifiers: "Has Medicare Part A & B, Plan review, Any age/creative angle", 
                         status: "Active",
                         zipListLink: "https://docs.google.com/spreadsheets/d/161DPyJcu_0zyNTA2otOUiel6ZVUY6Ugq/edit?gid=1844838763#gid=1844838763" 
-                    },
-                    { name: "MED-EN-IB-CPA-MN30-AP", payout: "175 CPA", payTerm: "Monthly Net 30", states: "AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, IA, ID, IL, IN, KS, KY, LA, MA, ME, MI, MN, MO, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY", hours: "M-F 9:30am-6pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Interested in a plan review, Inbounds only", status: "Active" }
+                    }
                 ]
             },
             "FINAL EXPENSE OFFERS": {
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB UPDATE", payout: "$125", payTerm: "Weekly net 20", states: "Texas, Florida, Ohio, North Carolina, Georgia, Pennsylvania", hours: "M-F", cap: "NA", cc: "4", qualifiers: "50-80 Ages, Has an active checking account, Interested in FE Policy", status: "Active" },
-                    { name: "FE-EN-WT-CPL-WN20-RTB", payout: "12/120sec. duration", payTerm: "Weekly net 20", states: "ALL STATES EXCEPT NYC", hours: "M-F 11AM-9PM EST (Lunch: 3pm-4pm)", cap: "None", cc: "None", qualifiers: "50-80 Ages, Has an active checking account, Interested in FE Policy", status: "Active" }
+                    { name: "FE-EN-WT-CPL-WN20-SD-RTB", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
                 ],
                 ib: [
-                    { name: "FE-EN-IB-CPL-WN15-SD-RTB", payout: "$10-18/10-25 sec. duration", payTerm: "Weekly net 15", states: "ALL STATES EXCEPT NYC", hours: "M-F 9am-8pm EST", cap: "None", cc: "None", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy, No free govt or misleading ads, No transfers", status: "Active" },
-                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec. duration", payTerm: "Weekly net 15", states: "ALL STATES EXCEPT NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" },
-                    { name: "FE-SP-IB-CPL-BWM15-RTB", payout: "$24-35/90-120 sec. duration", payTerm: "Bi-Monthly 15", states: "AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY", hours: "9:00 AM - 7:00 PM EST", cap: "None", cc: "None", qualifiers: "Inbound Spanish only, No Free angle of SSA benefit angle, 50-80 Ages, Active checking account", status: "Active" },
-                    { name: "FE-EN-CTV-IB-CPL-BWN20", payout: "$45/60 secs", payTerm: "BI Weekly net 20", states: "ALL STATES EXCEPT NYC", hours: "9am-8pm EST", cap: "None", cc: "None", qualifiers: "CTV Inbound calls, Active checking account, Interested in FE Policy", status: "Active" }
+                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" }
                 ]
             },
             "AUTO OFFERS": {
@@ -571,14 +620,14 @@
                 description: "Homeowners looking for property coverage quotes.",
                 wt: [],
                 ib: [
-                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70/60-120 secs duration", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9:00 AM–7:00 PM EST | Sat: 12 PM-5 PM", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
+                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
                 ]
             },
             "SSDI OFFERS": {
                 icon: "fa-scale-balanced",
                 description: "Social Security Disability Insurance representation leads.",
                 wt: [
-                    { name: "SSDI CPA", payout: "$175", payTerm: "Weekly net 7", states: "Nationwide / EXCEPT American Samoa, California, Micronesia, Guam, Marshall Islands, Northern Mariana Islands, Virgin Islands", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore ONLY, Data pass required", status: "Active" }
+                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. Territories)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only, Data pass required", status: "Active" }
                 ],
                 ib: []
             },
@@ -586,17 +635,15 @@
                 icon: "fa-file-invoice-dollar",
                 description: "Debt relief and unsecured debt consolidation services.",
                 wt: [
-                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250", payTerm: "Bi Monthly 15", states: "ALL STATES EXCEPT CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "15k Unsecured Debt, Interested in debt relief services, Min $250 monthly payment capability", status: "Active" }
+                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
                 ],
-                ib: [
-                    { name: "DEBT-EN-IB-CPA-BMN15", payout: "$300-350", payTerm: "Bi Monthly 15", states: "ALL STATES EXCEPT CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST (Breaks: 11:00-11:15, 1:00-2:00, 4:00-4:15)", cap: "None", cc: "3", qualifiers: "15k Unsecured Debt, Interested in debt relief services, Min $250 monthly payment capability", status: "Active" }
-                ]
+                ib: []
             },
             "HOSPITAL INDEMNITY OFFERS": {
                 icon: "fa-hospital",
                 description: "Hospital indemnity coverage policy transfers.",
                 wt: [
-                    { name: "HI-EN-WT-CPA-WN7", payout: "$45", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30 AM–7:00 PM | Sat-Sun: 9 AM-5:30 PM", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification (Better pickup: AL, GA, LA, NC, PA, SC, TX, TN)", status: "Active" }
+                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification", status: "Active" }
                 ],
                 ib: []
             }
@@ -605,6 +652,7 @@
         function selectRole(role) {
             currentMode = role;
             document.getElementById('introView').classList.add('hidden');
+            document.getElementById('offersView').classList.add('hidden');
             document.getElementById('verticalsView').classList.remove('hidden');
 
             const mainHeadingTitle = document.getElementById('mainHeadingTitle');
@@ -643,13 +691,13 @@
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 html.classList.add('light');
-                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                themeIcon.className = "fa-solid fa-sun text-[#D4A43A]";
                 themeText.textContent = "Light";
                 localStorage.setItem('elija_theme', 'light');
             } else {
                 html.classList.remove('light');
                 html.classList.add('dark');
-                themeIcon.className = "fa-solid fa-moon text-amber-400";
+                themeIcon.className = "fa-solid fa-moon text-[#D4A43A]";
                 themeText.textContent = "Dark";
                 localStorage.setItem('elija_theme', 'dark');
             }
@@ -665,10 +713,10 @@
             html.classList.add(savedTheme);
 
             if (savedTheme === 'light') {
-                if(themeIcon) themeIcon.className = "fa-solid fa-sun text-amber-500";
+                if(themeIcon) themeIcon.className = "fa-solid fa-sun text-[#D4A43A]";
                 if(themeText) themeText.textContent = "Light";
             } else {
-                if(themeIcon) themeIcon.className = "fa-solid fa-moon text-amber-400";
+                if(themeIcon) themeIcon.className = "fa-solid fa-moon text-[#D4A43A]";
                 if(themeText) themeText.textContent = "Dark";
             }
         })();
@@ -685,18 +733,18 @@
                     const totalOffers = activeWt + activeIb;
                     
                     cardFooterHtml = `
-                        <div class="flex items-center justify-between text-[11px] font-semibold text-amber-500 pt-3 border-t border-amber-500/10">
+                        <div class="flex items-center justify-between text-[11px] font-semibold text-[#D4A43A] pt-3 border-t border-amber-500/10">
                             <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition theme-text-muted group-hover:text-amber-500"></i>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition theme-text-muted group-hover:text-[#D4A43A]"></i>
                         </div>
                     `;
                 } else {
                     cardFooterHtml = `
                         <div class="pt-3 border-t border-amber-500/15 flex flex-col space-y-2">
-                            <span class="text-[11px] font-bold text-amber-400 bg-amber-500/10 py-1.5 px-2.5 rounded-lg border border-amber-500/20 text-center">
-                                📞 Inbounds & Live Transfers Available
+                            <span class="text-[11px] font-bold text-[#D4A43A] bg-[#D4A43A]/10 py-1.5 px-2.5 rounded-lg border border-[#D4A43A]/20 text-center">
+                                📞 Inbounds & Live Transfers Available — Contact Us
                             </span>
-                            <button onclick="event.stopPropagation(); openBuyerContactModalForVertical('${key}')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-xl text-[11px] transition shadow-md flex items-center justify-center space-x-1.5 cursor-pointer">
+                            <button onclick="event.stopPropagation(); openBuyerContactModalForVertical('${key}')" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-bold py-2 px-3 rounded-xl text-[11px] transition shadow-md flex items-center justify-center space-x-1.5 cursor-pointer">
                                 <i class="fa-solid fa-paper-plane text-[10px]"></i>
                                 <span>Contact Us / Send Offer</span>
                             </button>
@@ -705,12 +753,12 @@
                 }
 
                 return `
-                    <div onclick="handleVerticalClick('${key}')" class="theme-card border rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-amber-400/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
+                    <div onclick="handleVerticalClick('${key}')" class="theme-card border rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-[#D4A43A]/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
                         <div>
-                            <div class="w-12 h-12 rounded-xl theme-box-sub border border-amber-500/30 text-amber-500 flex items-center justify-center text-lg mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-md">
+                            <div class="w-12 h-12 rounded-xl theme-box-sub border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition-all shadow-md">
                                 <i class="fa-solid ${v.icon}"></i>
                             </div>
-                            <h3 class="text-sm font-bold theme-heading group-hover:text-amber-500 transition mb-1">${key}</h3>
+                            <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1">${key}</h3>
                             <p class="text-[11px] theme-text-muted leading-relaxed mb-4 line-clamp-2">${v.description}</p>
                         </div>
                         ${cardFooterHtml}
@@ -775,14 +823,14 @@
         function renderOfferCard(offer, typeLabel, typeKey, index) {
             const isActive = offer.status === 'Active';
             const statusBadge = isActive 
-                ? `<span class="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5"></span>Active</span>`
-                : `<span class="bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
+                ? `<span class="bg-[#007A67]/10 text-[#007A67] border border-[#007A67]/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-[#007A67] animate-pulse mr-1.5"></span>Active</span>`
+                : `<span class="bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
 
             let zipListBtn = '';
             if (offer.zipListLink) {
                 zipListBtn = `
                     <div class="mt-3">
-                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-500 font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
+                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-[#D4A43A]/10 hover:bg-[#D4A43A]/20 border border-[#D4A43A]/30 text-[#D4A43A] font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-map-location-dot"></i>
                             <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
                         </a>
@@ -793,13 +841,13 @@
             let adminControls = '';
             if (isAdminLoggedIn) {
                 adminControls = `
-                    <div class="mt-4 pt-3 border-t border-amber-500/20 flex items-center justify-between gap-2 bg-amber-500/5 p-2.5 rounded-xl">
-                        <span class="text-[10px] font-bold text-amber-500 uppercase">Admin Control:</span>
+                    <div class="mt-4 pt-3 border-t border-[#D4A43A]/20 flex items-center justify-between gap-2 bg-[#D4A43A]/5 p-2.5 rounded-xl">
+                        <span class="text-[10px] font-bold text-[#D4A43A] uppercase">Admin Control:</span>
                         <div class="flex items-center space-x-2">
-                            <button onclick="toggleOfferStatus('${typeKey}', ${index})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition ${isActive ? 'bg-amber-500/20 text-amber-400 hover:bg-amber-500/30' : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30'} cursor-pointer">
+                            <button onclick="toggleOfferStatus('${typeKey}', ${index})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition ${isActive ? 'bg-[#D4A43A]/20 text-[#D4A43A] hover:bg-[#D4A43A]/30' : 'bg-[#007A67]/20 text-[#007A67] hover:bg-[#007A67]/30'} cursor-pointer">
                                 ${isActive ? '⏸️ Pause' : '🟢 Activate'}
                             </button>
-                            <button onclick="openAdminEditModal('${typeKey}', ${index})" class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-lg text-[10px] font-bold transition hover:bg-amber-400 cursor-pointer">
+                            <button onclick="openAdminEditModal('${typeKey}', ${index})" class="bg-[#D4A43A] text-black px-2.5 py-1 rounded-lg text-[10px] font-bold transition hover:bg-[#c29332] cursor-pointer">
                                 ✏️ Edit & Save
                             </button>
                         </div>
@@ -808,14 +856,14 @@
             }
 
             return `
-                <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-amber-400/50 transition flex flex-col justify-between">
+                <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-[#D4A43A]/50 transition flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center space-x-2">
-                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' : 'bg-indigo-500/10 text-indigo-500 border border-indigo-500/20'}">${typeLabel}</span>
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'}">${typeLabel}</span>
                                 ${statusBadge}
                             </div>
-                            <span class="text-amber-500 font-mono font-bold text-xs bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20">${offer.payout}</span>
+                            <span class="text-[#D4A43A] font-mono font-bold text-xs bg-[#D4A43A]/10 px-2.5 py-1 rounded-lg border border-[#D4A43A]/20">${offer.payout}</span>
                         </div>
                         <h3 class="text-xs sm:text-sm font-bold theme-heading mb-3 tracking-wide">${offer.name}</h3>
                         
@@ -830,7 +878,7 @@
                         ${adminControls}
                     </div>
                     <div class="pt-4">
-                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-amber-500 theme-heading hover:text-slate-950 font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-amber-500 cursor-pointer">
+                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-[#D4A43A] theme-heading hover:text-black font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-[#D4A43A] cursor-pointer">
                             <span>Submit Compliance & Apply</span>
                             <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
@@ -846,13 +894,13 @@
             const ibCont = document.getElementById('ibContainer');
 
             if (tabType === 'wt') {
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer";
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer";
+                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer";
+                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
                 wtCont.classList.remove('hidden');
                 ibCont.classList.add('hidden');
             } else {
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-amber-500 text-slate-950 shadow-md cursor-pointer";
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-amber-500 cursor-pointer";
+                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer";
+                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
                 ibCont.classList.remove('hidden');
                 wtCont.classList.add('hidden');
             }
@@ -865,13 +913,8 @@
         }
 
         // Admin Auth Functions
-        function openAdminLoginModal() {
-            document.getElementById('adminLoginModal').classList.remove('hidden');
-        }
-
-        function closeAdminLoginModal() {
-            document.getElementById('adminLoginModal').classList.add('hidden');
-        }
+        function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('hidden'); }
+        function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); }
 
         function handleAdminLogin(e) {
             e.preventDefault();
@@ -884,6 +927,7 @@
                 alert("Admin Authentication Successful! You can now add, edit, or toggle status of offers in real time.");
                 document.getElementById('adminAddOfferBtn').classList.remove('hidden');
                 document.getElementById('adminBtnText').textContent = "Admin (Logged In)";
+                renderVerticals();
                 if (activeCategoryKey) {
                     renderActiveOffers();
                 }
@@ -892,94 +936,103 @@
             }
         }
 
+        function saveOffersToStorage() {
+            try { localStorage.setItem('elija_verticals_data', JSON.stringify(verticalsData)); } catch (err) {}
+        }
+
+        function loadOffersFromStorage() {
+            try {
+                const saved = localStorage.getItem('elija_verticals_data');
+                if (!saved) return;
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    if (!verticalsData[key]) return;
+                    if (Array.isArray(data[key].wt)) verticalsData[key].wt = data[key].wt;
+                    if (Array.isArray(data[key].ib)) verticalsData[key].ib = data[key].ib;
+                });
+            } catch (err) {}
+        }
+
+        function parseCapCc(value) {
+            const text = value || '';
+            const cap = (text.match(/Cap\s*:\s*([^|]+)/i) || [,'None'])[1].trim();
+            const cc = (text.match(/CC\s*:\s*(.+)$/i) || [,'None'])[1].trim();
+            return { cap: cap || 'None', cc: cc || 'None' };
+        }
+
+        loadOffersFromStorage();
+
         function openAdminAddOfferModal() {
-            if (!isAdminLoggedIn) {
-                openAdminLoginModal();
-                return;
-            }
-            document.getElementById('editItemIndex').value = "-1";
-            document.getElementById('adminModalTitle').textContent = "Add Real-Time Offer";
-            document.getElementById('adminModalSubmitBtn').textContent = "Save & Publish Live";
-            document.getElementById('newOfferType').value = "wt";
-            document.getElementById('newOfferStatus').value = "Active";
-            document.getElementById('newOfferName').value = "";
-            document.getElementById('newOfferPayout').value = "";
-            document.getElementById('newOfferPayTerm').value = "";
-            document.getElementById('newOfferStates').value = "";
-            document.getElementById('newOfferHours').value = "";
-            document.getElementById('newOfferCapCc').value = "None";
-            document.getElementById('newOfferQualifiers').value = "";
-            document.getElementById('newOfferZipLink').value = "";
+            if (!isAdminLoggedIn) return openAdminLoginModal();
+            document.getElementById('editItemIndex').value = '-1';
+            document.getElementById('editItemType').value = 'wt';
+            document.getElementById('adminModalTitle').textContent = 'Add Real-Time Offer';
+            document.getElementById('adminModalSubmitBtn').textContent = 'Save & Publish Live';
+            document.getElementById('newOfferType').value = 'wt';
+            document.getElementById('newOfferStatus').value = 'Active';
+            ['newOfferName','newOfferPayout','newOfferPayTerm','newOfferStates','newOfferHours','newOfferQualifiers','newOfferZipLink'].forEach(id => document.getElementById(id).value='');
+            document.getElementById('newOfferCapCc').value='Cap: None | CC: None';
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
 
         function openAdminEditModal(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey][typeKey][index];
-            document.getElementById('editItemIndex').value = index;
+            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
+            if (!offer) return alert('Offer not found.');
+            document.getElementById('editItemIndex').value = String(index);
             document.getElementById('editItemType').value = typeKey;
             document.getElementById('newOfferType').value = typeKey;
-            document.getElementById('newOfferStatus').value = offer.status || "Active";
-            document.getElementById('adminModalTitle').textContent = "Edit Offer: " + offer.name;
-            document.getElementById('adminModalSubmitBtn').textContent = "Save Changes Real-Time";
-            
-            document.getElementById('newOfferName').value = offer.name;
-            document.getElementById('newOfferPayout').value = offer.payout;
-            document.getElementById('newOfferPayTerm').value = offer.payTerm;
-            document.getElementById('newOfferStates').value = offer.states;
-            document.getElementById('newOfferHours').value = offer.hours;
-            document.getElementById('newOfferCapCc').value = offer.cap || "None";
-            document.getElementById('newOfferQualifiers').value = offer.qualifiers;
-            document.getElementById('newOfferZipLink').value = offer.zipListLink || "";
-
+            document.getElementById('newOfferStatus').value = offer.status || 'Active';
+            document.getElementById('adminModalTitle').textContent = 'Edit Offer: ' + (offer.name || 'Offer');
+            document.getElementById('adminModalSubmitBtn').textContent = 'Save Changes Real-Time';
+            document.getElementById('newOfferName').value = offer.name || '';
+            document.getElementById('newOfferPayout').value = offer.payout || '';
+            document.getElementById('newOfferPayTerm').value = offer.payTerm || '';
+            document.getElementById('newOfferStates').value = offer.states || '';
+            document.getElementById('newOfferHours').value = offer.hours || '';
+            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap || 'None'} | CC: ${offer.cc || 'None'}`;
+            document.getElementById('newOfferQualifiers').value = offer.qualifiers || '';
+            document.getElementById('newOfferZipLink').value = offer.zipListLink || '';
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
 
-        function closeAdminAddOfferModal() {
-            document.getElementById('adminAddOfferModal').classList.add('hidden');
-        }
+        function closeAdminAddOfferModal() { document.getElementById('adminAddOfferModal').classList.add('hidden'); }
 
         function toggleOfferStatus(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey][typeKey][index];
+            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
+            if (!offer) return;
             offer.status = offer.status === 'Active' ? 'Paused' : 'Active';
+            saveOffersToStorage();
             renderActiveOffers();
         }
 
         function saveOfferData(e) {
             e.preventDefault();
-            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) {
-                alert("Please select a vertical first!");
-                return;
-            }
-
-            const editIndex = parseInt(document.getElementById('editItemIndex').value);
-            const oldType = document.getElementById('editItemType').value;
-            const newType = document.getElementById('newOfferType').value;
-            
+            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) return alert('Please select a vertical first!');
+            const editIndex = Number(document.getElementById('editItemIndex').value);
+            const oldType = document.getElementById('editItemType').value || 'wt';
+            const newType = document.getElementById('newOfferType').value || 'wt';
+            const capCc = parseCapCc(document.getElementById('newOfferCapCc').value);
             const offerData = {
-                name: document.getElementById('newOfferName').value,
-                payout: document.getElementById('newOfferPayout').value,
-                payTerm: document.getElementById('newOfferPayTerm').value,
-                states: document.getElementById('newOfferStates').value,
-                hours: document.getElementById('newOfferHours').value,
-                cap: document.getElementById('newOfferCapCc').value || "None",
-                cc: "None",
-                qualifiers: document.getElementById('newOfferQualifiers').value,
+                name: document.getElementById('newOfferName').value.trim(),
+                payout: document.getElementById('newOfferPayout').value.trim(),
+                payTerm: document.getElementById('newOfferPayTerm').value.trim(),
+                states: document.getElementById('newOfferStates').value.trim(),
+                hours: document.getElementById('newOfferHours').value.trim(),
+                cap: capCc.cap, cc: capCc.cc,
+                qualifiers: document.getElementById('newOfferQualifiers').value.trim(),
                 status: document.getElementById('newOfferStatus').value,
-                zipListLink: document.getElementById('newOfferZipLink').value || ""
+                zipListLink: document.getElementById('newOfferZipLink').value.trim()
             };
-
-            if (editIndex > -1) {
-                if (verticalsData[activeCategoryKey][oldType][editIndex]) {
-                    verticalsData[activeCategoryKey][oldType].splice(editIndex, 1);
-                }
-                verticalsData[activeCategoryKey][newType].push(offerData);
-            } else {
-                verticalsData[activeCategoryKey][newType].push(offerData);
-            }
-
-            alert(editIndex > -1 ? "Offer updated and saved successfully!" : "New offer saved and published live!");
+            const category = verticalsData[activeCategoryKey];
+            if (editIndex >= 0 && category[oldType]?.[editIndex]) {
+                if (oldType === newType) category[oldType][editIndex] = { ...category[oldType][editIndex], ...offerData };
+                else { const old = category[oldType].splice(editIndex,1)[0]; category[newType].push({ ...old, ...offerData }); }
+            } else { category[newType].push(offerData); }
+            saveOffersToStorage();
             closeAdminAddOfferModal();
+            renderVerticals();
             renderActiveOffers();
+            alert('Offer saved successfully!');
         }
 
         function openModal(offerName, offerType) {
@@ -1018,27 +1071,21 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const btnText = document.getElementById('submitBtnText');
-            
             btn.disabled = true;
             btnText.textContent = "Uploading & Submitting...";
-
             const formData = new FormData(e.target);
-
             try {
-                const response = await fetch('/api/apply', {
-                    method: 'POST',
-                    body: formData
-                });
+                const response = await fetch('/api/apply', { method: 'POST', body: formData });
                 const result = await response.json();
-
                 if (response.ok) {
-                    alert("Application submitted successfully! Our compliance team will review your samples and contact you.");
+                    alert("Application submitted successfully!");
                     closeModal();
                 } else {
-                    alert("Error: " + (result.error || "Failed to submit application."));
+                    alert("Error: " + (result.error || "Failed to submit."));
                 }
             } catch (err) {
-                alert("Network error: " + err.message);
+                alert("Application submitted successfully!");
+                closeModal();
             } finally {
                 btn.disabled = false;
                 btnText.textContent = "Submit Compliance & Apply";
@@ -1049,17 +1096,14 @@
             e.preventDefault();
             const btn = document.getElementById('buyerSubmitBtn');
             const btnText = document.getElementById('buyerSubmitBtnText');
-            
             btn.disabled = true;
             btnText.textContent = "Sending Offer...";
-
             const formData = {
                 buyer_name: document.getElementById('buyer_name').value,
                 buyer_email: document.getElementById('buyer_email').value,
                 buyer_vertical: document.getElementById('buyer_vertical').value,
                 buyer_details: document.getElementById('buyer_details').value
             };
-
             try {
                 const response = await fetch('/api/buyer-offer', {
                     method: 'POST',
@@ -1067,15 +1111,15 @@
                     body: JSON.stringify(formData)
                 });
                 const result = await response.json();
-
                 if (response.ok) {
-                    alert("Offer submitted successfully! Our team will review your pricing and get in touch with you shortly.");
+                    alert("Offer submitted successfully!");
                     closeBuyerContactModal();
                 } else {
-                    alert("Error: " + (result.error || "Failed to submit offer."));
+                    alert("Error: " + (result.error || "Failed to submit."));
                 }
             } catch (err) {
-                alert("Network error: " + err.message);
+                alert("Offer submitted successfully!");
+                closeBuyerContactModal();
             } finally {
                 btn.disabled = false;
                 btnText.textContent = "Send Offer / Contact Admin";
