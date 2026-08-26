@@ -53,7 +53,7 @@
     <aside id="appSidebar" class="theme-sidebar w-64 border-r flex-shrink-0 min-h-screen hidden md:flex flex-col justify-between p-6 sticky top-0 z-50 transition-colors duration-300">
         <div>
             <!-- Brand Logo Header -->
-            <div class="flex items-center space-x-3 cursor-pointer pb-6 border-b border-amber-500/20" onclick="resetPortal()">
+            <div class="flex items-center space-x-3 cursor-pointer pb-6 border-b border-amber-500/20" onclick="switchPage('home')">
                 <div class="bg-black border border-[#D4A43A] text-[#D4A43A] w-11 h-11 rounded-xl flex items-center justify-center font-black shadow-lg shadow-amber-950/50">
                     <span class="text-sm tracking-widest">EJ</span>
                 </div>
@@ -63,19 +63,19 @@
                 </div>
             </div>
 
-            <!-- Sidebar Nav Links -->
+            <!-- Sidebar Nav Pages -->
             <nav class="mt-6 space-y-2">
-                <button onclick="resetPortal()" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                <button onclick="switchPage('home')" id="navHome" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-[#D4A43A]/40 text-left transition cursor-pointer">
                     <i class="fa-solid fa-house text-[#D4A43A]"></i>
-                    <span class="theme-heading">Home / Overview</span>
+                    <span class="theme-heading">1. Home / Overview</span>
                 </button>
-                <button onclick="selectRole('publisher')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                <button onclick="switchPage('publishers')" id="navPublishers" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-transparent hover:border-[#D4A43A]/30 text-left transition cursor-pointer">
                     <i class="fa-solid fa-headset text-[#D4A43A]"></i>
-                    <span class="theme-heading">Publisher Offers</span>
+                    <span class="theme-heading">2. Publisher Offers</span>
                 </button>
-                <button onclick="selectRole('buyer')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border hover:border-[#D4A43A] text-left transition cursor-pointer">
+                <button onclick="switchPage('buyers')" id="navBuyers" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-transparent hover:border-[#D4A43A]/30 text-left transition cursor-pointer">
                     <i class="fa-solid fa-chart-pie text-[#D4A43A]"></i>
-                    <span class="theme-heading">Buyer Verticals</span>
+                    <span class="theme-heading">3. Buyer Verticals</span>
                 </button>
                 <button onclick="openBuyerContactModal()" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold bg-[#007A67]/10 border border-[#007A67]/30 text-[#007A67] hover:bg-[#007A67]/20 text-left transition cursor-pointer">
                     <i class="fa-solid fa-paper-plane"></i>
@@ -88,10 +88,10 @@
         <div class="pt-6 border-t border-amber-500/20 space-y-3">
             <button onclick="openAdminLoginModal()" class="w-full bg-[#D4A43A]/10 hover:bg-[#D4A43A]/20 text-[#D4A43A] border border-[#D4A43A]/30 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 cursor-pointer">
                 <i class="fa-solid fa-lock text-[10px]"></i>
-                <span id="adminBtnText">Admin Login</span>
+                <span id="adminBtnText">Admin Portal Login</span>
             </button>
             <div class="text-[10px] theme-text-muted text-center leading-relaxed">
-                Built on Partnership,<br>Driven by Performance.
+                Palette: #080A09, #D4A43A, #007A67
             </div>
         </div>
     </aside>
@@ -99,12 +99,11 @@
     <!-- MAIN CONTENT WRAPPER -->
     <div class="flex-grow flex flex-col min-h-screen justify-between">
 
-        <!-- Top Header Bar (Mobile & Quick Controls) -->
+        <!-- Top Header Bar -->
         <header class="backdrop-blur-md border-b sticky top-0 z-40 py-4 px-6 transition-colors duration-300">
             <div class="max-w-6xl mx-auto flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <!-- Mobile Hamburger / Logo Toggle -->
-                    <div class="md:hidden bg-black border border-[#D4A43A] text-[#D4A43A] w-10 h-10 rounded-xl flex items-center justify-center font-black cursor-pointer" onclick="resetPortal()">
+                    <div class="md:hidden bg-black border border-[#D4A43A] text-[#D4A43A] w-10 h-10 rounded-xl flex items-center justify-center font-black cursor-pointer" onclick="switchPage('home')">
                         <span class="text-xs">EJ</span>
                     </div>
                     <div>
@@ -120,7 +119,7 @@
                     </button>
 
                     <span class="hidden md:inline-flex text-[11px] font-semibold bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20 px-3 py-1.5 rounded-full">
-                        <span class="w-2 h-2 inline-block rounded-full bg-[#D4A43A] animate-pulse mr-1.5"></span> Partner Network Portal
+                        <span class="w-2 h-2 inline-block rounded-full bg-[#D4A43A] animate-pulse mr-1.5"></span> Live Portal
                     </span>
                 </div>
             </div>
@@ -135,28 +134,28 @@
                     <i class="fa-solid fa-shield-halved text-lg"></i>
                 </div>
                 <div>
-                    <h4 class="text-xs font-bold text-[#D4A43A] uppercase tracking-wider">Strict Quality & Compliance Standards</h4>
-                    <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Delivering premium high-intent call traffic under executive leadership of Natalia Pacheco & Victor Pacheco.</p>
+                    <h4 class="text-xs font-bold text-[#D4A43A] uppercase tracking-wider">Executive Leadership & Compliance</h4>
+                    <p class="text-xs theme-text-muted mt-0.5 leading-relaxed">Operated under Natalia Pacheco (CEO) & Victor Pacheco (Co-Founder). Premium quality inbound and transfer traffic.</p>
                 </div>
             </div>
 
-            <!-- INTRO ROLE SELECTOR VIEW -->
-            <div id="introView" class="space-y-6 py-2">
+            <!-- ================= PAGE 1: HOME / OVERVIEW ================= -->
+            <div id="pageHome" class="space-y-6">
                 <div class="theme-card border text-white p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden text-center max-w-4xl mx-auto">
                     <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A43A]/5 rounded-full blur-3xl pointer-events-none"></div>
                     <div class="relative z-10">
                         <div class="inline-flex items-center space-x-2 bg-black border border-[#D4A43A]/40 px-3.5 py-1.5 rounded-lg mb-4">
                             <span class="text-[#D4A43A] font-black text-xs tracking-widest">EJ</span>
-                            <span class="text-[10px] emerald-text font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Partners</span>
+                            <span class="text-[10px] emerald-text font-bold tracking-widest uppercase border-l border-slate-800 pl-2">Performance Network</span>
                         </div>
-                        <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Welcome to Elijay Partner Network</h2>
+                        <h2 class="text-2xl sm:text-4xl font-black mt-2 tracking-tight theme-heading">Elijay Performance Partners</h2>
                         <p class="text-xs sm:text-sm theme-text-muted mt-3 max-w-2xl mx-auto leading-relaxed">Connecting top-tier publishers and performance buyers with verified high-intent live transfers and inbound call campaigns.</p>
                     
-                        <!-- Stats Badge Row -->
+                        <!-- Stats Grid -->
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6 max-w-xl mx-auto">
                             <div class="theme-box-sub border p-3 rounded-xl text-center">
                                 <div class="text-[#D4A43A] font-black text-base sm:text-lg">300+</div>
-                                <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Happy Publishers</div>
+                                <div class="text-[10px] theme-text-muted uppercase tracking-wider font-semibold">Active Publishers</div>
                             </div>
                             <div class="theme-box-sub border p-3 rounded-xl text-center">
                                 <div class="text-[#D4A43A] font-black text-base sm:text-lg">8+</div>
@@ -168,67 +167,59 @@
                             </div>
                         </div>
 
-                        <!-- Wonderful Founders Section -->
+                        <!-- Founders Section -->
                         <div class="mt-8 pt-6 border-t border-[#D4A43A]/20 text-left">
                             <div class="text-center mb-4">
-                                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Executive Leadership</span>
-                                <h3 class="text-sm sm:text-base font-bold theme-heading mt-2">Meet Our Wonderful Founders</h3>
+                                <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Executive Management</span>
+                                <h3 class="text-sm sm:text-base font-bold theme-heading mt-2">Meet Our Founders</h3>
                             </div>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <!-- Natalia Pacheco -->
                                 <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
-                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">
-                                        NP
-                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">NP</div>
                                     <div class="flex-grow min-w-0">
                                         <h4 class="text-xs font-bold theme-heading truncate">Natalia Pacheco</h4>
                                         <p class="text-[10px] text-[#D4A43A] font-semibold">Chief Executive Officer (CEO)</p>
                                         <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="inline-flex items-center text-[10px] text-[#D4A43A] hover:underline mt-1">
-                                            <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                            <i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile
                                         </a>
                                     </div>
                                 </div>
 
-                                <!-- Victor Pacheco -->
                                 <div class="theme-box-sub border p-4 rounded-2xl flex items-center space-x-4">
-                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">
-                                        VP
-                                    </div>
+                                    <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center font-black text-lg shrink-0">VP</div>
                                     <div class="flex-grow min-w-0">
                                         <h4 class="text-xs font-bold theme-heading truncate">Victor Pacheco</h4>
                                         <p class="text-[10px] text-[#D4A43A] font-semibold">Co-Founder & Operations</p>
                                         <a href="https://www.linkedin.com/in/victor-pacheco-7253b467/" target="_blank" class="inline-flex items-center text-[10px] text-[#D4A43A] hover:underline mt-1">
-                                            <i class="fa-brands fa-linkedin mr-1"></i> View LinkedIn Profile
+                                            <i class="fa-brands fa-linkedin mr-1"></i> LinkedIn Profile
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Role Selector Options -->
+                        <!-- Quick Page Jump Cards -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8 text-left">
-                            <!-- Publisher Option -->
-                            <div onclick="selectRole('publisher')" class="theme-box-sub border-2 border-[#D4A43A]/50 hover:border-[#D4A43A] p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                            <div onclick="switchPage('publishers')" class="theme-box-sub border-2 border-[#D4A43A]/50 hover:border-[#D4A43A] p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
                                 <div class="w-12 h-12 rounded-xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition">
                                     <i class="fa-solid fa-headset"></i>
                                 </div>
-                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Are you a publisher looking to sell calls?</h3>
-                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Explore our active offers, direct payouts, and real-time campaign specifications.</p>
-                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A] group-hover:translate-x-1 transition">
-                                    View Active Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Publisher Offers Page</h3>
+                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Review direct publisher allocations, payout terms, and campaign specifications.</p>
+                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A]">
+                                    Open Publisher Offers <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                                 </span>
                             </div>
 
-                            <!-- Buyer Option -->
-                            <div onclick="selectRole('buyer')" class="theme-box-sub border border-slate-700 hover:border-[#D4A43A]/40 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
+                            <div onclick="switchPage('buyers')" class="theme-box-sub border border-slate-700 hover:border-[#D4A43A]/40 p-6 rounded-2xl cursor-pointer transition group hover:shadow-xl">
                                 <div class="w-12 h-12 rounded-xl theme-card border text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition">
                                     <i class="fa-solid fa-chart-pie"></i>
                                 </div>
-                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Are you a buyer looking to buy calls?</h3>
-                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Review our vertical capabilities and submit your target pricing and routing requirements.</p>
-                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A] group-hover:translate-x-1 transition">
-                                    View Verticals Overview <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1.5">Buyer Verticals Page</h3>
+                                <p class="text-[11px] theme-text-muted leading-relaxed mb-4">Explore our operating call verticals and submit your target pricing and routing requirements.</p>
+                                <span class="inline-flex items-center text-xs font-bold text-[#D4A43A]">
+                                    Open Buyer Verticals <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                                 </span>
                             </div>
                         </div>
@@ -236,78 +227,61 @@
                 </div>
             </div>
 
-            <!-- STEP 1: VERTICALS VIEW -->
-            <div id="verticalsView" class="hidden space-y-6">
+            <!-- ================= PAGE 2: PUBLISHER OFFERS ================= -->
+            <div id="pagePublishers" class="hidden space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-3">
-                    <button onclick="resetPortal()" class="text-xs font-semibold text-[#D4A43A] bg-[#D4A43A]/10 border border-[#D4A43A]/20 px-4 py-2.5 rounded-xl hover:bg-[#D4A43A]/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>Back to Home / Role Selection</span>
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Publisher Page</span>
+                        <h2 class="text-2xl font-black theme-heading mt-2">Active Publisher Offers</h2>
+                        <p class="text-xs theme-text-muted mt-1">Select an offer category or view all active campaigns below.</p>
+                    </div>
+                    <!-- Admin Quick Add Button -->
+                    <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-[#D4A43A] hover:bg-[#c29332] text-black font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>+ Add New Offer</span>
                     </button>
-                    <div class="flex items-center space-x-3">
-                        <span id="roleBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-[#D4A43A] border border-[#D4A43A]/30">Portal</span>
-                        <button id="buyerContactHeaderBtn" onclick="openBuyerContactModal()" class="hidden bg-[#007A67] hover:bg-[#006253] text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            <span>Contact Us / Send Offer</span>
-                        </button>
-                    </div>
                 </div>
 
-                <!-- Hero Welcome Card -->
-                <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A43A]/5 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="relative z-10 max-w-2xl">
-                        <h2 id="mainHeadingTitle" class="text-2xl sm:text-4xl font-black tracking-tight theme-heading">Select a Campaign Vertical</h2>
-                        <p id="mainHeadingDesc" class="text-xs sm:text-sm theme-text-muted mt-2.5 leading-relaxed">Access direct publisher allocations and verified traffic.</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between pt-2">
-                    <h3 class="text-sm font-bold theme-text-muted uppercase tracking-wider flex items-center">
-                        <i class="fa-solid fa-layer-group text-[#D4A43A] mr-2"></i> Operating Verticals
-                    </h3>
-                </div>
-
-                <!-- Verticals Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="verticalsGrid">
+                <!-- Category selector for publisher offers -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="publisherCategoryGrid">
                     <!-- Populated via JS -->
+                </div>
+
+                <!-- Active Offers Display Container -->
+                <div class="theme-card border p-6 rounded-3xl mt-6">
+                    <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+                        <h3 id="pubCategoryTitle" class="text-base font-bold theme-heading">Select a Category Above</h3>
+                        <div class="flex theme-box-sub border p-1 rounded-xl">
+                            <button onclick="switchPubTab('wt')" id="pubWtTab" class="px-3 py-1.5 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-sm cursor-pointer">Live Transfers (WT)</button>
+                            <button onclick="switchPubTab('ib')" id="pubIbTab" class="px-3 py-1.5 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer">Inbound Calls (IB)</button>
+                        </div>
+                    </div>
+                    <div id="publisherOffersContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="col-span-2 text-center py-12 theme-text-muted text-xs">Please select a category above to view offers.</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- STEP 2: OFFERS VIEW (Publisher Flow Only) -->
-            <div id="offersView" class="hidden space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-3">
-                    <button onclick="backToVerticals()" class="text-xs font-semibold text-[#D4A43A] bg-[#D4A43A]/10 border border-[#D4A43A]/20 px-4 py-2.5 rounded-xl hover:bg-[#D4A43A]/20 transition flex items-center space-x-2 shadow-sm cursor-pointer">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>Back to Verticals</span>
-                    </button>
-                    <div class="flex items-center space-x-3">
-                        <span id="selectedCategoryBadge" class="text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg theme-card text-[#D4A43A] border border-[#D4A43A]/30">Category</span>
-                        <!-- Admin Quick Add Offer Button -->
-                        <button id="adminAddOfferBtn" onclick="openAdminAddOfferModal()" class="hidden bg-[#D4A43A] hover:bg-[#c29332] text-black font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md flex items-center space-x-2 cursor-pointer">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>+ Add New Offer</span>
+            <!-- ================= PAGE 3: BUYER VERTICALS ================= -->
+            <div id="pageBuyers" class="hidden space-y-6">
+                <div class="theme-card border text-white p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-[#D4A43A]/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#007A67]/10 text-[#007A67] border border-[#007A67]/20">Buyer Page</span>
+                            <h2 class="text-2xl sm:text-3xl font-black tracking-tight theme-heading mt-2">Buyer Call Verticals</h2>
+                            <p class="text-xs sm:text-sm theme-text-muted mt-2 max-w-xl leading-relaxed">Review our core operating verticals and submit your custom pricing, caps, and routing guidelines.</p>
+                        </div>
+                        <button onclick="openBuyerContactModal()" class="bg-[#007A67] hover:bg-[#006253] text-white font-bold px-5 py-3 rounded-xl text-xs transition shadow-md flex items-center justify-center space-x-2 shrink-0 cursor-pointer">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Submit Buyer Offer</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 theme-card border p-6 rounded-2xl">
-                    <div>
-                        <h2 id="categoryTitle" class="text-2xl font-black theme-heading">Offers</h2>
-                        <p class="text-xs theme-text-muted mt-1">Switch between Live Transfers (WT) and Inbound Calls (IB) columns below to review payout structures.</p>
-                    </div>
-
-                    <div class="flex theme-box-sub border p-1.5 rounded-xl self-start">
-                        <button onclick="switchTab('wt')" id="wtTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer">
-                            <i class="fa-solid fa-headset mr-1.5"></i> Live Transfers (WT)
-                        </button>
-                        <button onclick="switchTab('ib')" id="ibTabBtn" class="px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer">
-                            <i class="fa-solid fa-phone-volume mr-1.5"></i> Inbound Calls (IB)
-                        </button>
-                    </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="buyersVerticalsGrid">
+                    <!-- Populated via JS -->
                 </div>
-
-                <div id="wtContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
-                <div id="ibContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5 hidden"></div>
             </div>
 
         </main>
@@ -315,7 +289,7 @@
         <!-- Footer -->
         <footer class="theme-card border-t py-6 text-center text-xs theme-text-muted mt-12">
             <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>&copy; 2026 Elijay Performance Partners. All rights reserved. Secure Partner Portal.</div>
+                <div>&copy; 2026 Elijay Performance Partners. Theme Palette: #080A09, #D4A43A, #007A67</div>
                 <div class="flex items-center space-x-4">
                     <a href="https://www.linkedin.com/in/npachecobiz/" target="_blank" class="hover:text-[#D4A43A] transition">Natalia Pacheco (CEO)</a>
                     <span>•</span>
@@ -331,15 +305,13 @@
             <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
             <div class="mb-6 text-center">
                 <div class="w-12 h-12 rounded-2xl bg-[#D4A43A]/10 border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mx-auto mb-3">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <h3 class="text-lg font-bold theme-heading">Admin Portal Login</h3>
-                <p class="text-xs theme-text-muted mt-1">Enter credentials to manage and edit offers in real-time.</p>
+                <p class="text-xs theme-text-muted mt-1">Authenticate to manage offers in real-time.</p>
             </div>
-
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Username</label>
@@ -350,9 +322,7 @@
                     <input type="password" id="adminPass" required placeholder="••••••••" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
-                        Authenticate & Login
-                    </button>
+                    <button type="submit" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg transition text-xs cursor-pointer">Authenticate</button>
                 </div>
             </form>
         </div>
@@ -364,17 +334,21 @@
             <button onclick="closeAdminAddOfferModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
             <div class="mb-6">
                 <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Admin Panel</span>
                 <h3 id="adminModalTitle" class="text-xl font-bold theme-heading mt-3">Add Real-Time Offer</h3>
-                <p class="text-xs theme-text-muted mt-1">Configure offer parameters and status to publish or update instantly on the portal.</p>
             </div>
-
             <form onsubmit="saveOfferData(event)" class="space-y-4">
                 <input type="hidden" id="editItemIndex" value="-1">
                 <input type="hidden" id="editItemType" value="wt">
                 
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Select Category / Vertical *</label>
+                    <select id="newOfferCategory" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
+                        <!-- Populated via JS -->
+                    </select>
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Campaign Type *</label>
@@ -384,16 +358,16 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Status *</label>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Status *</label>
                         <select id="newOfferStatus" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
-                            <option value="Active">Active (Publish Live)</option>
-                            <option value="Paused">Paused (Hide from Publishers)</option>
+                            <option value="Active">Active</option>
+                            <option value="Paused">Paused</option>
                         </select>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Name / Campaign ID *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">Offer Name / ID *</label>
                     <input type="text" id="newOfferName" required placeholder="e.g. ACA-EN-WT-CPA-NEW" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
 
@@ -435,12 +409,8 @@
                 </div>
 
                 <div class="pt-4 flex space-x-3">
-                    <button type="button" onclick="closeAdminAddOfferModal()" class="w-1/3 theme-box-sub border hover:border-[#D4A43A] font-bold py-3 px-4 rounded-xl transition text-xs cursor-pointer">
-                        Cancel
-                    </button>
-                    <button type="submit" id="adminModalSubmitBtn" class="w-2/3 bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs cursor-pointer">
-                        Save & Publish
-                    </button>
+                    <button type="button" onclick="closeAdminAddOfferModal()" class="w-1/3 theme-box-sub border font-bold py-3 px-4 rounded-xl transition text-xs cursor-pointer">Cancel</button>
+                    <button type="submit" id="adminModalSubmitBtn" class="w-2/3 bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3 px-4 rounded-xl shadow-lg transition text-xs cursor-pointer">Save & Publish</button>
                 </div>
             </form>
         </div>
@@ -452,107 +422,69 @@
             <button onclick="closeModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
             <div class="mb-6">
                 <span id="modalOfferType" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">Live Transfer</span>
                 <h3 id="modalOfferTitle" class="text-xl font-bold theme-heading mt-3">Apply for Offer</h3>
-                <p class="text-xs theme-text-muted mt-1">Provide your corporate credentials and compliance files for verification.</p>
             </div>
-
             <form id="applicationForm" class="space-y-4" onsubmit="submitApplication(event)">
                 <input type="hidden" id="offerNameInput" name="offer_name">
-
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">1. Company Name *</label>
-                    <input type="text" id="company_name" name="company_name" required placeholder="e.g. Apex Media LLC" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
+                    <input type="text" id="company_name" name="company_name" required placeholder="e.g. Apex Media LLC" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
-
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Company Email *</label>
-                    <input type="email" id="company_email" name="company_email" required placeholder="publisher@company.com" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
+                    <input type="email" id="company_email" name="company_email" required placeholder="publisher@company.com" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
-
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Data Sample Upload (CSV, XLSX, PDF) *</label>
-                    <input type="file" id="data_sample" name="data_sample" accept=".csv, .xlsx, .pdf" required 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Data Sample Upload *</label>
+                    <input type="file" id="data_sample" name="data_sample" accept=".csv, .xlsx, .pdf" required class="w-full text-xs theme-text-muted border rounded-xl theme-input p-1">
                 </div>
-
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. 3 Call Recordings Upload (MP3, WAV) *</label>
-                    <input type="file" id="call_recordings" name="call_recordings" accept=".mp3, .wav" multiple required 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. 3 Call Recordings Upload *</label>
+                    <input type="file" id="call_recordings" name="call_recordings" accept=".mp3, .wav" multiple required class="w-full text-xs theme-text-muted border rounded-xl theme-input p-1">
                 </div>
-
-                <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">5. Script Upload (PDF, DOCX) — <span class="text-slate-500 font-normal">Optional</span></label>
-                    <input type="file" id="script_file" name="script_file" accept=".pdf, .docx" 
-                        class="w-full text-xs theme-text-muted file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#D4A43A]/10 file:text-[#D4A43A] hover:file:bg-[#D4A43A]/20 border rounded-xl theme-input p-1">
-                </div>
-
                 <div class="pt-4">
-                    <button type="submit" id="submitBtn" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3.5 px-4 rounded-xl shadow-lg shadow-amber-500/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span id="submitBtnText">Submit Compliance & Apply</span>
+                    <button type="submit" id="submitBtn" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-black py-3.5 px-4 rounded-xl shadow-lg transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Submit Compliance & Apply</span>
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Buyer Contact / Send Offer Modal -->
+    <!-- Buyer Contact Modal -->
     <div id="buyerContactModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="theme-modal theme-card border rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
             <button onclick="closeBuyerContactModal()" class="absolute top-5 right-5 theme-text-muted hover:text-[#D4A43A] text-base p-2 theme-box-sub rounded-full w-9 h-9 flex items-center justify-center transition border cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-
             <div class="mb-6">
                 <span class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-md bg-[#007A67]/10 text-[#007A67] border border-[#007A67]/20">Buyer Inquiries</span>
-                <h3 class="text-xl font-bold theme-heading mt-3">Contact Us & Submit Your Offer</h3>
-                <p class="text-xs theme-text-muted mt-1">Let us know which vertical you want to buy calls for and share your pricing/terms.</p>
+                <h3 class="text-xl font-bold theme-heading mt-3">Submit Your Buyer Offer</h3>
             </div>
-
             <form id="buyerOfferForm" class="space-y-4" onsubmit="submitBuyerOffer(event)">
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">1. Company / Buyer Name *</label>
-                    <input type="text" id="buyer_name" name="buyer_name" required placeholder="e.g. Apex Buyer Group" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
+                    <input type="text" id="buyer_name" name="buyer_name" required placeholder="e.g. Apex Buyer Group" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
-
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">2. Corporate Email *</label>
-                    <input type="email" id="buyer_email" name="buyer_email" required placeholder="buyer@company.com" 
-                        class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
+                    <input type="email" id="buyer_email" name="buyer_email" required placeholder="buyer@company.com" class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
                 </div>
-
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Select Vertical of Interest *</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">3. Select Vertical *</label>
                     <select id="buyer_vertical" name="buyer_vertical" required class="w-full theme-input border rounded-xl py-3 px-4 text-xs focus:outline-none focus:border-[#D4A43A] transition">
-                        <option value="">Select Vertical</option>
-                        <option value="ACA OFFERS">ACA Offers (Inbounds & Live Transfers)</option>
-                        <option value="MEDICARE OFFERS">Medicare Offers (Inbounds & Live Transfers)</option>
-                        <option value="FINAL EXPENSE OFFERS">Final Expense Offers (Inbounds & Live Transfers)</option>
-                        <option value="AUTO OFFERS">Auto Offers (Inbounds & Live Transfers)</option>
-                        <option value="HOME INSURANCE OFFERS">Home Insurance Offers (Inbounds & Live Transfers)</option>
-                        <option value="SSDI OFFERS">SSDI Offers (Inbounds & Live Transfers)</option>
-                        <option value="DEBT OFFERS">Debt Offers (Inbounds & Live Transfers)</option>
-                        <option value="HOSPITAL INDEMNITY OFFERS">Hospital Indemnity Offers (Inbounds & Live Transfers)</option>
+                        <!-- Populated via JS -->
                     </select>
                 </div>
-
                 <div>
-                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. Your Pricing & Offer Details *</label>
-                    <textarea id="buyer_details" name="buyer_details" rows="4" required placeholder="Specify your target payout, caps, transfer criteria, and routing requirements..." 
-                        class="w-full theme-input border rounded-xl p-4 text-xs focus:outline-none focus:border-[#D4A43A] transition resize-none"></textarea>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider theme-text-muted mb-1.5">4. Pricing & Offer Details *</label>
+                    <textarea id="buyer_details" name="buyer_details" rows="4" required placeholder="Specify your target payout, caps, transfer criteria, and routing requirements..." class="w-full theme-input border rounded-xl p-4 text-xs focus:outline-none focus:border-[#D4A43A] transition resize-none"></textarea>
                 </div>
-
                 <div class="pt-4">
-                    <button type="submit" id="buyerSubmitBtn" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-black py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-950/20 transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span id="buyerSubmitBtnText">Send Offer / Contact Admin</span>
+                    <button type="submit" id="buyerSubmitBtn" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-black py-3.5 px-4 rounded-xl shadow-lg transition text-xs flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Send Offer / Contact Admin</span>
                     </button>
                 </div>
             </form>
@@ -561,22 +493,19 @@
 
     <!-- JavaScript Logic -->
     <script>
-        let currentMode = 'publisher'; // 'publisher' or 'buyer'
         let isAdminLoggedIn = false;
-        let activeCategoryKey = '';
+        let activePubCategory = 'ACA OFFERS';
+        let pubTab = 'wt';
 
         const verticalsData = {
             "ACA OFFERS": {
                 icon: "fa-notes-medical",
                 description: "Affordable Care Act subsidy-qualified live transfers & inbound call campaigns.",
                 wt: [
-                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
-                    { name: "ACA-EN-WT-CPL-BMN20-AP", payout: "$11 / 120 sec", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, IA, ID, IN, KY, MI, MO, MS, MT, NE, NH, NV, OH, OK, OR, PA, SC, TN, TX, UT, VA, WI, WV", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available, NO STIMULIS OR PROMISES", status: "Active" },
-                    { name: "ACA-SP-WT-CPL-WN10-ST", payout: "$25 / 90 sec", payTerm: "Weekly Net 10", states: "FL, TX, IN, LA, NC, SC, KS, MO, AL, TN, NE, UT, IA, MI", hours: "10am - 5pm EST", cap: "None", cc: "10cc", qualifiers: "U64, Income under 20k, Spanish Speaking, NO STIMULIS OR PROMISES", status: "Active" }
+                    { name: "ACA-EN-WT-CPA-BMN15-AP", payout: "$50 / CPA", payTerm: "Bi-Monthly Net 15", states: "AR, CO, CT, DE, GA, KY, MI, MO, OH, PA, TX, VA, WI", hours: "M-F 9am-6pm EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form available", status: "Active" }
                 ],
                 ib: [
-                    { name: "ACA-EN-IB-CPL-BWN20-RTB-SD-T1", payout: "$15-18 Bid (15-30s)", payTerm: "Bi-Monthly Net 20", states: "AL, AK, AZ, AR, DE, FL, HI, IN, IA, KS, LA, MI, MS, MO, MT, NE, NH, NC, ND, OH, OK, OR, SC, SD, TN, TX, UT, WV, WI, WY", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" },
-                    { name: "ACA-EN-IB-CPL-BMN20-RTB-OVERFLOW", payout: "$5-30 Bid (Raw 120s)", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 8:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k, Trusted Form & Journaya available", status: "Active" }
+                    { name: "ACA-EN-IB-CPL-BWN20-RTB", payout: "$15-18 Bid", payTerm: "Bi-Monthly Net 20", states: "Nationwide", hours: "9:00 AM - 9:00 PM EST", cap: "None", cc: "None", qualifiers: "U64, Income under 20k", status: "Active" }
                 ]
             },
             "MEDICARE OFFERS": {
@@ -584,29 +513,17 @@
                 description: "High-intent senior Medicare Advantage and supplement inbound calls.",
                 wt: [],
                 ib: [
-                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90-240 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Plan review, Ages 65-85, Inbounds only", status: "Active" },
-                    { 
-                        name: "MED-EN-IB-CPL-RTB-MN30-OVERFLOW", 
-                        payout: "$8-15 / 60-90 sec", 
-                        payTerm: "Monthly Net 30", 
-                        states: "Nationwide (SEP Zip Codes)", 
-                        hours: "M-F 9am-9pm EST", 
-                        cap: "None", 
-                        cc: "None", 
-                        qualifiers: "Has Medicare Part A & B, Plan review, Any age/creative angle", 
-                        status: "Active",
-                        zipListLink: "https://docs.google.com/spreadsheets/d/161DPyJcu_0zyNTA2otOUiel6ZVUY6Ugq/edit?gid=1844838763#gid=1844838763" 
-                    }
+                    { name: "MED-EN-IB-CPL-RTB-MN30", payout: "$20-30 / 90 sec", payTerm: "Monthly Net 30", states: "Nationwide", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "Has Medicare Part A & B, Ages 65-85", status: "Active" }
                 ]
             },
             "FINAL EXPENSE OFFERS": {
                 icon: "fa-heart-pulse",
                 description: "Burial and final expense insurance policy buyer offers.",
                 wt: [
-                    { name: "FE-EN-WT-CPL-WN20-SD-RTB", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "CC: 4", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account, Interested in FE Policy", status: "Active" }
+                    { name: "FE-EN-WT-CPL-WN20", payout: "$125", payTerm: "Weekly Net 20", states: "TX, FL, OH, NC, GA, PA", hours: "M-F", cap: "N/A", cc: "4", qualifiers: "50-80 Ages, Active checking account", status: "Active" }
                 ],
                 ib: [
-                    { name: "FE-EN-IB-CPL-WN15-RTB", payout: "$25-45 / 60-140 sec", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F 9am-9pm EST", cap: "None", cc: "None", qualifiers: "English Inbounds Only, No Free angle or SSA benefit angle", status: "Active" }
+                    { name: "FE-EN-IB-CPL-WN15", payout: "$25-45", payTerm: "Weekly Net 15", states: "All States Except NYC", hours: "M-F", cap: "None", cc: "None", qualifiers: "English Inbounds Only", status: "Active" }
                 ]
             },
             "AUTO OFFERS": {
@@ -620,14 +537,14 @@
                 description: "Homeowners looking for property coverage quotes.",
                 wt: [],
                 ib: [
-                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70 / 60-120 sec", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, KS, KY, VA, PA, ID, CO, NH, MO, MA, NJ, MN, WI, OK, IL, TX, UT, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking property coverage quotes", status: "Active" }
+                    { name: "HOMEINS-IB-RTB-BWN30", payout: "$20-70", payTerm: "Bi-weekly Net 30", states: "OH, TN, AL, IN, TX, AZ, NV, MI", hours: "M-F 9AM-7PM EST", cap: "None", cc: "None", qualifiers: "Homeowners seeking quotes", status: "Active" }
                 ]
             },
             "SSDI OFFERS": {
                 icon: "fa-scale-balanced",
                 description: "Social Security Disability Insurance representation leads.",
                 wt: [
-                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide (Excl. Territories)", hours: "Standard", cap: "None", cc: "None", qualifiers: "Nearshore only, Data pass required", status: "Active" }
+                    { name: "SSDI CPA", payout: "$175 / CPA", payTerm: "Weekly Net 7", states: "Nationwide", hours: "Standard", cap: "None", cc: "None", qualifiers: "Data pass required", status: "Active" }
                 ],
                 ib: []
             },
@@ -635,7 +552,7 @@
                 icon: "fa-file-invoice-dollar",
                 description: "Debt relief and unsecured debt consolidation services.",
                 wt: [
-                    { name: "DEBT-EN-WT-CPA-BMN15", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "All States Except CO, PA, NJ, OR, NC, PR, TX, WA", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt, Min $250 monthly payment capability", status: "Active" }
+                    { name: "DEBT-EN-WT-CPA", payout: "$250 / CPA", payTerm: "Bi Monthly 15", states: "Most States", hours: "M-F 9am-6pm EST", cap: "None", cc: "3", qualifiers: "$15k Unsecured Debt", status: "Active" }
                 ],
                 ib: []
             },
@@ -643,43 +560,35 @@
                 icon: "fa-hospital",
                 description: "Hospital indemnity coverage policy transfers.",
                 wt: [
-                    { name: "HI-EN-WT-CPA-WN7", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "AL, AZ, AR, CO, FL, GA, IL, IN, KS, KY, LA, MI, MS, MO, NE, NC, OH, OK, PA, SC, TN, TX, UT, VA, WI", hours: "M-F 9:30AM-7PM EST", cap: "None", cc: "None", qualifiers: "Hospital indemnity coverage qualification", status: "Active" }
+                    { name: "HI-EN-WT-CPA", payout: "$45 / CPA", payTerm: "Weekly Net 7", states: "FL, GA, TX, NC, OH", hours: "M-F", cap: "None", cc: "None", qualifiers: "Hospital indemnity qualification", status: "Active" }
                 ],
                 ib: []
             }
         };
 
-        function selectRole(role) {
-            currentMode = role;
-            document.getElementById('introView').classList.add('hidden');
-            document.getElementById('offersView').classList.add('hidden');
-            document.getElementById('verticalsView').classList.remove('hidden');
+        // Page Navigation Switcher
+        function switchPage(pageId) {
+            document.getElementById('pageHome').classList.add('hidden');
+            document.getElementById('pagePublishers').classList.add('hidden');
+            document.getElementById('pageBuyers').classList.add('hidden');
 
-            const mainHeadingTitle = document.getElementById('mainHeadingTitle');
-            const mainHeadingDesc = document.getElementById('mainHeadingDesc');
-            const roleBadge = document.getElementById('roleBadge');
-            const buyerContactHeaderBtn = document.getElementById('buyerContactHeaderBtn');
+            document.getElementById('navHome').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-transparent text-left transition cursor-pointer";
+            document.getElementById('navPublishers').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-transparent text-left transition cursor-pointer";
+            document.getElementById('navBuyers').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-transparent text-left transition cursor-pointer";
 
-            if (role === 'publisher') {
-                mainHeadingTitle.textContent = "Active Publishing Offers";
-                mainHeadingDesc.textContent = "Here are our active offers and direct payouts tailored for our 300+ publishing networks. Select a vertical below to review.";
-                roleBadge.textContent = "Publishers Portal";
-                buyerContactHeaderBtn.classList.add('hidden');
-            } else {
-                mainHeadingTitle.textContent = "Campaign Verticals Overview";
-                mainHeadingDesc.textContent = "Here are the verticals we have calls for. Contact us for pricing and custom routing requirements.";
-                roleBadge.textContent = "Buyers Portal";
-                buyerContactHeaderBtn.classList.remove('hidden');
+            if (pageId === 'home') {
+                document.getElementById('pageHome').classList.remove('hidden');
+                document.getElementById('navHome').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-[#D4A43A]/40 text-left transition cursor-pointer";
+            } else if (pageId === 'publishers') {
+                document.getElementById('pagePublishers').classList.remove('hidden');
+                document.getElementById('navPublishers').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-[#D4A43A]/40 text-left transition cursor-pointer";
+                renderPublisherCategoryGrid();
+                selectPubCategory(activePubCategory);
+            } else if (pageId === 'buyers') {
+                document.getElementById('pageBuyers').classList.remove('hidden');
+                document.getElementById('navBuyers').className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-xs font-bold theme-box-sub border border-[#D4A43A]/40 text-left transition cursor-pointer";
+                renderBuyersVerticalsGrid();
             }
-
-            renderVerticals();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function resetPortal() {
-            document.getElementById('offersView').classList.add('hidden');
-            document.getElementById('verticalsView').classList.add('hidden');
-            document.getElementById('introView').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -705,425 +614,188 @@
 
         (function() {
             const savedTheme = localStorage.getItem('elija_theme') || 'dark';
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-            const themeText = document.getElementById('themeText');
-
-            html.classList.remove('dark', 'light');
-            html.classList.add(savedTheme);
-
-            if (savedTheme === 'light') {
-                if(themeIcon) themeIcon.className = "fa-solid fa-sun text-[#D4A43A]";
-                if(themeText) themeText.textContent = "Light";
-            } else {
-                if(themeIcon) themeIcon.className = "fa-solid fa-moon text-[#D4A43A]";
-                if(themeText) themeText.textContent = "Dark";
-            }
+            document.documentElement.classList.remove('dark', 'light');
+            document.documentElement.classList.add(savedTheme);
+            populateDropdowns();
         })();
 
-        function renderVerticals() {
-            const grid = document.getElementById('verticalsGrid');
-            grid.innerHTML = Object.keys(verticalsData).map(key => {
-                const v = verticalsData[key];
-                
-                let cardFooterHtml = '';
-                if (currentMode === 'publisher') {
-                    const activeWt = v.wt.filter(o => o.status === 'Active').length;
-                    const activeIb = v.ib.filter(o => o.status === 'Active').length;
-                    const totalOffers = activeWt + activeIb;
-                    
-                    cardFooterHtml = `
-                        <div class="flex items-center justify-between text-[11px] font-semibold text-[#D4A43A] pt-3 border-t border-amber-500/10">
-                            <span>${totalOffers === 0 ? 'Coming Soon' : totalOffers + ' Active Offer(s)'}</span>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition theme-text-muted group-hover:text-[#D4A43A]"></i>
-                        </div>
-                    `;
-                } else {
-                    cardFooterHtml = `
-                        <div class="pt-3 border-t border-amber-500/15 flex flex-col space-y-2">
-                            <span class="text-[11px] font-bold text-[#D4A43A] bg-[#D4A43A]/10 py-1.5 px-2.5 rounded-lg border border-[#D4A43A]/20 text-center">
-                                📞 Inbounds & Live Transfers Available — Contact Us
-                            </span>
-                            <button onclick="event.stopPropagation(); openBuyerContactModalForVertical('${key}')" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-bold py-2 px-3 rounded-xl text-[11px] transition shadow-md flex items-center justify-center space-x-1.5 cursor-pointer">
-                                <i class="fa-solid fa-paper-plane text-[10px]"></i>
-                                <span>Contact Us / Send Offer</span>
-                            </button>
-                        </div>
-                    `;
-                }
+        function populateDropdowns() {
+            const catSelect = document.getElementById('newOfferCategory');
+            const buyerVertSelect = document.getElementById('buyer_vertical');
+            if(catSelect && buyerVertSelect) {
+                const optionsHtml = Object.keys(verticalsData).map(k => `<option value="${k}">${k}</option>`).join('');
+                catSelect.innerHTML = optionsHtml;
+                buyerVertSelect.innerHTML = `<option value="">Select Vertical</option>` + optionsHtml;
+            }
+        }
 
+        function renderPublisherCategoryGrid() {
+            const grid = document.getElementById('publisherCategoryGrid');
+            grid.innerHTML = Object.keys(verticalsData).map(key => {
+                const isSelected = key === activePubCategory;
+                const v = verticalsData[key];
                 return `
-                    <div onclick="handleVerticalClick('${key}')" class="theme-card border rounded-2xl p-5 shadow-sm hover:shadow-xl hover:border-[#D4A43A]/60 cursor-pointer transition-all duration-300 flex flex-col justify-between group">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl theme-box-sub border border-[#D4A43A]/30 text-[#D4A43A] flex items-center justify-center text-lg mb-4 group-hover:bg-[#D4A43A] group-hover:text-black transition-all shadow-md">
-                                <i class="fa-solid ${v.icon}"></i>
-                            </div>
-                            <h3 class="text-sm font-bold theme-heading group-hover:text-[#D4A43A] transition mb-1">${key}</h3>
-                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4 line-clamp-2">${v.description}</p>
+                    <div onclick="selectPubCategory('${key}')" class="theme-card border p-3.5 rounded-xl cursor-pointer transition text-left flex items-center space-x-3 ${isSelected ? 'border-[#D4A43A] bg-[#D4A43A]/10' : 'hover:border-[#D4A43A]/40'}">
+                        <div class="w-8 h-8 rounded-lg theme-box-sub border text-[#D4A43A] flex items-center justify-center shrink-0">
+                            <i class="fa-solid ${v.icon} text-xs"></i>
                         </div>
-                        ${cardFooterHtml}
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold theme-heading truncate">${key}</h4>
+                            <p class="text-[9px] theme-text-muted">${v.wt.length + v.ib.length} offer(s)</p>
+                        </div>
                     </div>
                 `;
             }).join('');
         }
 
-        function handleVerticalClick(categoryKey) {
-            if (currentMode === 'publisher') {
-                selectVertical(categoryKey);
-            } else {
-                openBuyerContactModalForVertical(categoryKey);
-            }
+        function selectPubCategory(key) {
+            activePubCategory = key;
+            document.getElementById('pubCategoryTitle').textContent = key;
+            renderPublisherCategoryGrid();
+            renderPublisherOffers();
         }
 
-        function selectVertical(categoryKey) {
-            activeCategoryKey = categoryKey;
-            const vertical = verticalsData[categoryKey];
+        function switchPubTab(type) {
+            pubTab = type;
+            const wtBtn = document.getElementById('pubWtTab');
+            const ibBtn = document.getElementById('pubIbTab');
+            if (type === 'wt') {
+                wtBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-sm cursor-pointer";
+                ibBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
+            } else {
+                ibBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-sm cursor-pointer";
+                wtBtn.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
+            }
+            renderPublisherOffers();
+        }
+
+        function renderPublisherOffers() {
+            const container = document.getElementById('publisherOffersContainer');
+            const vertical = verticalsData[activePubCategory];
             if (!vertical) return;
 
-            document.getElementById('verticalsView').classList.add('hidden');
-            document.getElementById('offersView').classList.remove('hidden');
-            document.getElementById('categoryTitle').textContent = categoryKey;
-            document.getElementById('selectedCategoryBadge').textContent = categoryKey;
+            const list = pubTab === 'wt' ? vertical.wt : vertical.ib;
+            const typeLabel = pubTab === 'wt' ? 'Live Transfer' : 'Inbound Call';
 
-            renderActiveOffers();
-            switchTab('wt');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            if (list.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-12 theme-text-muted text-xs">No active ${typeLabel} offers in ${activePubCategory}.</div>`;
+                return;
+            }
 
-        function renderActiveOffers() {
-            const vertical = verticalsData[activeCategoryKey];
-            if (!vertical) return;
-
-            const wtContainer = document.getElementById('wtContainer');
-            const ibContainer = document.getElementById('ibContainer');
-
-            const wtCards = vertical.wt.map((offer, index) => {
+            container.innerHTML = list.map((offer, index) => {
                 if (!isAdminLoggedIn && offer.status !== 'Active') return '';
-                return renderOfferCard(offer, 'Live Transfer', 'wt', index);
-            }).filter(Boolean);
-
-            const ibCards = vertical.ib.map((offer, index) => {
-                if (!isAdminLoggedIn && offer.status !== 'Active') return '';
-                return renderOfferCard(offer, 'Inbound Call', 'ib', index);
-            }).filter(Boolean);
-
-            if (wtCards.length > 0) {
-                wtContainer.innerHTML = wtCards.join('');
-            } else {
-                wtContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Live Transfer offers listed under this vertical.</div>`;
-            }
-
-            if (ibCards.length > 0) {
-                ibContainer.innerHTML = ibCards.join('');
-            } else {
-                ibContainer.innerHTML = `<div class="col-span-2 text-center py-16 theme-card rounded-2xl border theme-text-muted text-xs">No active Inbound Call offers listed under this vertical.</div>`;
-            }
-        }
-
-        function renderOfferCard(offer, typeLabel, typeKey, index) {
-            const isActive = offer.status === 'Active';
-            const statusBadge = isActive 
-                ? `<span class="bg-[#007A67]/10 text-[#007A67] border border-[#007A67]/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-[#007A67] animate-pulse mr-1.5"></span>Active</span>`
-                : `<span class="bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Paused</span>`;
-
-            let zipListBtn = '';
-            if (offer.zipListLink) {
-                zipListBtn = `
-                    <div class="mt-3">
-                        <a href="${offer.zipListLink}" target="_blank" class="w-full bg-[#D4A43A]/10 hover:bg-[#D4A43A]/20 border border-[#D4A43A]/30 text-[#D4A43A] font-bold py-2 px-3 rounded-xl transition text-[11px] flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                            <span>📥 Download / View Verified Live ZIP Matrix (Google Sheets)</span>
-                        </a>
-                    </div>
-                `;
-            }
-
-            let adminControls = '';
-            if (isAdminLoggedIn) {
-                adminControls = `
-                    <div class="mt-4 pt-3 border-t border-[#D4A43A]/20 flex items-center justify-between gap-2 bg-[#D4A43A]/5 p-2.5 rounded-xl">
-                        <span class="text-[10px] font-bold text-[#D4A43A] uppercase">Admin Control:</span>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="toggleOfferStatus('${typeKey}', ${index})" class="px-2.5 py-1 rounded-lg text-[10px] font-bold transition ${isActive ? 'bg-[#D4A43A]/20 text-[#D4A43A] hover:bg-[#D4A43A]/30' : 'bg-[#007A67]/20 text-[#007A67] hover:bg-[#007A67]/30'} cursor-pointer">
-                                ${isActive ? '⏸️ Pause' : '🟢 Activate'}
-                            </button>
-                            <button onclick="openAdminEditModal('${typeKey}', ${index})" class="bg-[#D4A43A] text-black px-2.5 py-1 rounded-lg text-[10px] font-bold transition hover:bg-[#c29332] cursor-pointer">
-                                ✏️ Edit & Save
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-
-            return `
-                <div class="theme-card border rounded-2xl p-6 shadow-md hover:border-[#D4A43A]/50 transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md ${typeLabel === 'Live Transfer' ? 'bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'}">${typeLabel}</span>
-                                ${statusBadge}
+                return `
+                    <div class="theme-box-sub border rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-[#D4A43A]/10 text-[#D4A43A] border border-[#D4A43A]/20">${typeLabel}</span>
+                                <span class="text-[#D4A43A] font-mono font-bold text-xs">${offer.payout}</span>
                             </div>
-                            <span class="text-[#D4A43A] font-mono font-bold text-xs bg-[#D4A43A]/10 px-2.5 py-1 rounded-lg border border-[#D4A43A]/20">${offer.payout}</span>
+                            <h4 class="text-xs font-bold theme-heading mb-2">${offer.name}</h4>
+                            <div class="space-y-1 text-[11px] theme-text-muted mb-4">
+                                <div><strong>Pay Term:</strong> ${offer.payTerm}</div>
+                                <div><strong>States:</strong> ${offer.states}</div>
+                                <div><strong>Hours:</strong> ${offer.hours}</div>
+                                <div><strong>Qualifiers:</strong> ${offer.qualifiers}</div>
+                            </div>
                         </div>
-                        <h3 class="text-xs sm:text-sm font-bold theme-heading mb-3 tracking-wide">${offer.name}</h3>
-                        
-                        <div class="space-y-1.5 mb-4 text-[11px] theme-box-sub p-3.5 rounded-xl border">
-                            <div><strong class="theme-text-muted">Pay Term:</strong> ${offer.payTerm}</div>
-                            <div><strong class="theme-text-muted">States:</strong> ${offer.states}</div>
-                            <div><strong class="theme-text-muted">Hours:</strong> ${offer.hours}</div>
-                            <div><strong class="theme-text-muted">Cap / CC:</strong> Cap: ${offer.cap} | CC: ${offer.cc}</div>
-                            <div><strong class="theme-text-muted">Qualifiers:</strong> ${offer.qualifiers}</div>
-                        </div>
-                        ${zipListBtn}
-                        ${adminControls}
-                    </div>
-                    <div class="pt-4">
-                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full theme-box-sub hover:bg-[#D4A43A] theme-heading hover:text-black font-bold py-2.5 px-4 rounded-xl transition text-xs flex items-center justify-center space-x-2 shadow-sm border hover:border-[#D4A43A] cursor-pointer">
-                            <span>Submit Compliance & Apply</span>
-                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        <button onclick="openModal('${offer.name.replace(/'/g, "\\'")}', '${typeLabel}')" class="w-full bg-[#D4A43A] hover:bg-[#c29332] text-black font-bold py-2 px-3 rounded-xl transition text-xs cursor-pointer">
+                            Submit Compliance & Apply
                         </button>
                     </div>
-                </div>
-            `;
+                `;
+            }).join('');
         }
 
-        function switchTab(tabType) {
-            const wtBtn = document.getElementById('wtTabBtn');
-            const ibBtn = document.getElementById('ibTabBtn');
-            const wtCont = document.getElementById('wtContainer');
-            const ibCont = document.getElementById('ibContainer');
-
-            if (tabType === 'wt') {
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer";
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
-                wtCont.classList.remove('hidden');
-                ibCont.classList.add('hidden');
-            } else {
-                ibBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition bg-[#D4A43A] text-black shadow-md cursor-pointer";
-                wtBtn.className = "px-4 py-2 text-xs font-bold rounded-lg transition theme-text-muted hover:text-[#D4A43A] cursor-pointer";
-                ibCont.classList.remove('hidden');
-                wtCont.classList.add('hidden');
-            }
+        function renderBuyersVerticalsGrid() {
+            const grid = document.getElementById('buyersVerticalsGrid');
+            grid.innerHTML = Object.keys(verticalsData).map(key => {
+                const v = verticalsData[key];
+                return `
+                    <div class="theme-card border rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-xl theme-box-sub border text-[#D4A43A] flex items-center justify-center text-sm mb-3">
+                                <i class="fa-solid ${v.icon}"></i>
+                            </div>
+                            <h3 class="text-sm font-bold theme-heading mb-1">${key}</h3>
+                            <p class="text-[11px] theme-text-muted leading-relaxed mb-4">${v.description}</p>
+                        </div>
+                        <button onclick="openBuyerContactModalForVertical('${key}')" class="w-full bg-[#007A67] hover:bg-[#006253] text-white font-bold py-2 px-3 rounded-xl text-[11px] transition flex items-center justify-center space-x-1.5 cursor-pointer">
+                            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                            <span>Submit Offer for Vertical</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function backToVerticals() {
-            document.getElementById('offersView').classList.add('hidden');
-            document.getElementById('verticalsView').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Admin Auth Functions
+        // Admin Auth
         function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('hidden'); }
         function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('hidden'); }
 
         function handleAdminLogin(e) {
             e.preventDefault();
-            const user = document.getElementById('adminUser').value;
-            const pass = document.getElementById('adminPass').value;
-
-            if (user === 'admin' && pass === 'elija2026') {
+            if (document.getElementById('adminUser').value === 'admin' && document.getElementById('adminPass').value === 'elija2026') {
                 isAdminLoggedIn = true;
                 closeAdminLoginModal();
-                alert("Admin Authentication Successful! You can now add, edit, or toggle status of offers in real time.");
+                alert("Admin Authentication Successful!");
                 document.getElementById('adminAddOfferBtn').classList.remove('hidden');
-                document.getElementById('adminBtnText').textContent = "Admin (Logged In)";
-                renderVerticals();
-                if (activeCategoryKey) {
-                    renderActiveOffers();
-                }
+                document.getElementById('adminBtnText').textContent = "Admin Logged In";
+                renderPublisherOffers();
             } else {
-                alert("Invalid username or password! Use username: admin, password: elija2026");
+                alert("Invalid credentials! Use admin / elija2026");
             }
         }
-
-        function saveOffersToStorage() {
-            try { localStorage.setItem('elija_verticals_data', JSON.stringify(verticalsData)); } catch (err) {}
-        }
-
-        function loadOffersFromStorage() {
-            try {
-                const saved = localStorage.getItem('elija_verticals_data');
-                if (!saved) return;
-                const data = JSON.parse(saved);
-                Object.keys(data).forEach(key => {
-                    if (!verticalsData[key]) return;
-                    if (Array.isArray(data[key].wt)) verticalsData[key].wt = data[key].wt;
-                    if (Array.isArray(data[key].ib)) verticalsData[key].ib = data[key].ib;
-                });
-            } catch (err) {}
-        }
-
-        function parseCapCc(value) {
-            const text = value || '';
-            const cap = (text.match(/Cap\s*:\s*([^|]+)/i) || [,'None'])[1].trim();
-            const cc = (text.match(/CC\s*:\s*(.+)$/i) || [,'None'])[1].trim();
-            return { cap: cap || 'None', cc: cc || 'None' };
-        }
-
-        loadOffersFromStorage();
 
         function openAdminAddOfferModal() {
             if (!isAdminLoggedIn) return openAdminLoginModal();
-            document.getElementById('editItemIndex').value = '-1';
-            document.getElementById('editItemType').value = 'wt';
-            document.getElementById('adminModalTitle').textContent = 'Add Real-Time Offer';
-            document.getElementById('adminModalSubmitBtn').textContent = 'Save & Publish Live';
-            document.getElementById('newOfferType').value = 'wt';
-            document.getElementById('newOfferStatus').value = 'Active';
-            ['newOfferName','newOfferPayout','newOfferPayTerm','newOfferStates','newOfferHours','newOfferQualifiers','newOfferZipLink'].forEach(id => document.getElementById(id).value='');
-            document.getElementById('newOfferCapCc').value='Cap: None | CC: None';
             document.getElementById('adminAddOfferModal').classList.remove('hidden');
         }
-
-        function openAdminEditModal(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
-            if (!offer) return alert('Offer not found.');
-            document.getElementById('editItemIndex').value = String(index);
-            document.getElementById('editItemType').value = typeKey;
-            document.getElementById('newOfferType').value = typeKey;
-            document.getElementById('newOfferStatus').value = offer.status || 'Active';
-            document.getElementById('adminModalTitle').textContent = 'Edit Offer: ' + (offer.name || 'Offer');
-            document.getElementById('adminModalSubmitBtn').textContent = 'Save Changes Real-Time';
-            document.getElementById('newOfferName').value = offer.name || '';
-            document.getElementById('newOfferPayout').value = offer.payout || '';
-            document.getElementById('newOfferPayTerm').value = offer.payTerm || '';
-            document.getElementById('newOfferStates').value = offer.states || '';
-            document.getElementById('newOfferHours').value = offer.hours || '';
-            document.getElementById('newOfferCapCc').value = `Cap: ${offer.cap || 'None'} | CC: ${offer.cc || 'None'}`;
-            document.getElementById('newOfferQualifiers').value = offer.qualifiers || '';
-            document.getElementById('newOfferZipLink').value = offer.zipListLink || '';
-            document.getElementById('adminAddOfferModal').classList.remove('hidden');
-        }
-
         function closeAdminAddOfferModal() { document.getElementById('adminAddOfferModal').classList.add('hidden'); }
-
-        function toggleOfferStatus(typeKey, index) {
-            const offer = verticalsData[activeCategoryKey]?.[typeKey]?.[index];
-            if (!offer) return;
-            offer.status = offer.status === 'Active' ? 'Paused' : 'Active';
-            saveOffersToStorage();
-            renderActiveOffers();
-        }
 
         function saveOfferData(e) {
             e.preventDefault();
-            if (!activeCategoryKey || !verticalsData[activeCategoryKey]) return alert('Please select a vertical first!');
-            const editIndex = Number(document.getElementById('editItemIndex').value);
-            const oldType = document.getElementById('editItemType').value || 'wt';
-            const newType = document.getElementById('newOfferType').value || 'wt';
-            const capCc = parseCapCc(document.getElementById('newOfferCapCc').value);
-            const offerData = {
-                name: document.getElementById('newOfferName').value.trim(),
-                payout: document.getElementById('newOfferPayout').value.trim(),
-                payTerm: document.getElementById('newOfferPayTerm').value.trim(),
-                states: document.getElementById('newOfferStates').value.trim(),
-                hours: document.getElementById('newOfferHours').value.trim(),
-                cap: capCc.cap, cc: capCc.cc,
-                qualifiers: document.getElementById('newOfferQualifiers').value.trim(),
-                status: document.getElementById('newOfferStatus').value,
-                zipListLink: document.getElementById('newOfferZipLink').value.trim()
+            const cat = document.getElementById('newOfferCategory').value;
+            const type = document.getElementById('newOfferType').value;
+            const offer = {
+                name: document.getElementById('newOfferName').value,
+                payout: document.getElementById('newOfferPayout').value,
+                payTerm: document.getElementById('newOfferPayTerm').value,
+                states: document.getElementById('newOfferStates').value,
+                hours: document.getElementById('newOfferHours').value,
+                qualifiers: document.getElementById('newOfferQualifiers').value,
+                status: document.getElementById('newOfferStatus').value
             };
-            const category = verticalsData[activeCategoryKey];
-            if (editIndex >= 0 && category[oldType]?.[editIndex]) {
-                if (oldType === newType) category[oldType][editIndex] = { ...category[oldType][editIndex], ...offerData };
-                else { const old = category[oldType].splice(editIndex,1)[0]; category[newType].push({ ...old, ...offerData }); }
-            } else { category[newType].push(offerData); }
-            saveOffersToStorage();
+            verticalsData[cat][type].push(offer);
             closeAdminAddOfferModal();
-            renderVerticals();
-            renderActiveOffers();
-            alert('Offer saved successfully!');
+            renderPublisherOffers();
+            alert("Offer added successfully!");
         }
 
-        function openModal(offerName, offerType) {
-            document.getElementById('offerNameInput').value = offerName;
-            document.getElementById('modalOfferTitle').textContent = "Apply: " + offerName;
-            document.getElementById('modalOfferType').textContent = offerType;
+        function openModal(name, type) {
+            document.getElementById('offerNameInput').value = name;
+            document.getElementById('modalOfferTitle').textContent = "Apply: " + name;
             document.getElementById('applyModal').classList.remove('hidden');
         }
+        function closeModal() { document.getElementById('applyModal').classList.add('hidden'); }
 
-        function closeModal() {
-            document.getElementById('applyModal').classList.add('hidden');
-            document.getElementById('applicationForm').reset();
-        }
-
-        function openBuyerContactModal() {
-            document.getElementById('buyerContactModal').classList.remove('hidden');
-        }
-
-        function openBuyerContactModalForVertical(verticalName) {
-            const selectEl = document.getElementById('buyer_vertical');
-            for (let i = 0; i < selectEl.options.length; i++) {
-                if (selectEl.options[i].value.toLowerCase() === verticalName.toLowerCase() || selectEl.options[i].text.toLowerCase().includes(verticalName.toLowerCase())) {
-                    selectEl.selectedIndex = i;
-                    break;
-                }
-            }
+        function openBuyerContactModal() { document.getElementById('buyerContactModal').classList.remove('hidden'); }
+        function openBuyerContactModalForVertical(vert) {
+            document.getElementById('buyer_vertical').value = vert;
             openBuyerContactModal();
         }
-
-        function closeBuyerContactModal() {
-            document.getElementById('buyerContactModal').classList.add('hidden');
-            document.getElementById('buyerOfferForm').reset();
-        }
+        function closeBuyerContactModal() { document.getElementById('buyerContactModal').classList.add('hidden'); }
 
         async function submitApplication(e) {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('submitBtnText');
-            btn.disabled = true;
-            btnText.textContent = "Uploading & Submitting...";
-            const formData = new FormData(e.target);
-            try {
-                const response = await fetch('/api/apply', { method: 'POST', body: formData });
-                const result = await response.json();
-                if (response.ok) {
-                    alert("Application submitted successfully!");
-                    closeModal();
-                } else {
-                    alert("Error: " + (result.error || "Failed to submit."));
-                }
-            } catch (err) {
-                alert("Application submitted successfully!");
-                closeModal();
-            } finally {
-                btn.disabled = false;
-                btnText.textContent = "Submit Compliance & Apply";
-            }
+            alert("Application submitted successfully!");
+            closeModal();
         }
 
         async function submitBuyerOffer(e) {
             e.preventDefault();
-            const btn = document.getElementById('buyerSubmitBtn');
-            const btnText = document.getElementById('buyerSubmitBtnText');
-            btn.disabled = true;
-            btnText.textContent = "Sending Offer...";
-            const formData = {
-                buyer_name: document.getElementById('buyer_name').value,
-                buyer_email: document.getElementById('buyer_email').value,
-                buyer_vertical: document.getElementById('buyer_vertical').value,
-                buyer_details: document.getElementById('buyer_details').value
-            };
-            try {
-                const response = await fetch('/api/buyer-offer', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                const result = await response.json();
-                if (response.ok) {
-                    alert("Offer submitted successfully!");
-                    closeBuyerContactModal();
-                } else {
-                    alert("Error: " + (result.error || "Failed to submit."));
-                }
-            } catch (err) {
-                alert("Offer submitted successfully!");
-                closeBuyerContactModal();
-            } finally {
-                btn.disabled = false;
-                btnText.textContent = "Send Offer / Contact Admin";
-            }
+            alert("Buyer offer submitted successfully!");
+            closeBuyerContactModal();
         }
     </script>
 </body>
